@@ -1,12 +1,12 @@
-# Project Name
+# Reactor Overflow
 
-> Pithy project description
+> THe overflow of communication designed for Hack Reactor Students, Faculty, Alumni, and Precourse Students
 
 ## Team
 
   - __Product Owner__: @codydaig
   - __Scrum Master__: @linalu1
-  - __Development Team Members__: teamMember, teamMember
+  - __Development Team Members__: @andrewkishino @kevbyte
 
 ## Table of Contents
 
@@ -24,11 +24,11 @@
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Node 0.12.x
+- NPM 2.11+
+- Angular
+- rethinkDB
+- Express 4.x
 
 ## Development
 
