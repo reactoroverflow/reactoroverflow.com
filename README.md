@@ -1,6 +1,6 @@
 # Reactor Overflow
 
-> THe overflow of communication designed for Hack Reactor Students, Faculty, Alumni, and Precourse Students
+> THe overflow of communication designed for Hack Reactor Students, Faculty, Alumni, and Precourse Students.
 
 ## Team
 
