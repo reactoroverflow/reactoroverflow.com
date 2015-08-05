@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/codydaig/reactoroverflow.com#readme",
   "dependencies": {
-    "chalk": "^1.1.0"
+    "chalk": "^1.1.0",
+    "express": "^4.13.3",
+    "morgan": "^1.6.1"
   }
 }
