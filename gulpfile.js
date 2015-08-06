@@ -11,12 +11,12 @@ var gulp = require('gulp'),
     minifyHTML = require('gulp-minify-html');
 
 var paths = {
-    scripts: 'src/js/**/*.*',
-    styles: 'src/less/**/*.*',
-    images: 'src/img/**/*.*',
-    templates: 'src/templates/**/*.html',
-    index: 'src/index.html',
-    bower_fonts: 'src/components/**/*.{ttf,woff,eof,svg}',
+    scripts: 'client/js/**/*.*',
+    styles: 'client/less/**/*.*',
+    images: 'client/img/**/*.*',
+    templates: 'client/templates/**/*.html',
+    index: 'client/index.html',
+    bower_fonts: 'client/components/**/*.{ttf,woff,eof,svg}',
 };
 
 /**
