@@ -101,8 +101,16 @@ gulp.task('livereload', function() {
         .pipe(connect.reload());
 });
 
+gulp.task('nodemon', function () {
+  return plugins.nodemon({
+    script: 'index.js',
+    ext: 'js,html',
+    watch: ['server/**/*.js']
+  });
+});
+
 /**
  * Gulp tasks
  */
 gulp.task('build', ['usemin', 'build-assets', 'build-custom']);
-gulp.task('default', ['build', 'webserver', 'livereload', 'watch']);
+gulp.task('default', ['build', 'webserver', 'livereload', 'watch', 'nodemon']);
