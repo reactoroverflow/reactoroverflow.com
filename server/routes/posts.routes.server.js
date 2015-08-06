@@ -9,7 +9,7 @@ module.exports = function(app) {
 
   app.post('/api/posts', posts.storePost);
 
-  app.put('/api/posts', posts.updatePost);
+  //app.put('/api/posts', posts.updatePost);
 
-  app.delete('/api/posts', posts.deletePost);
+  //app.delete('/api/posts', posts.deletePost);
 };

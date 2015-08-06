@@ -3,21 +3,44 @@
 'use strict';
 
 var path = require('path');
-//var r = require(path.resolve('./lib/rethinkdb'));
+
+var client = require(path.resolve('./lib/elasticsearch'));
 
 exports.renderPosts = function(req, res) {
-  //tell model to query the db for posts
-    // need to res.json(results)
-  r.table('posts').run().then(function(result) {
-    console.log(result);
-    // res.json(results);
+  
+  var query = {};
+  query.match_all = {};
+
+  var search = {};
+  search.index = 'posts';
+  search.type = 'post';
+  search.size = 50;
+  search.body = {};
+  search.body.query = query;
+  search.body.sort = {"created_at" : {"order" : "desc"}};
+
+  client.search(search).then(function(results){
+    res.json(results.hits.hits);
   });
 };
 
 exports.storePost = function(req, res) {
-  //tell model to send a post to the db
-    //need to res.sendStatus(201)
-  r.table('posts').insert(); //<----place the req data into the input to insert
+
+  var post = {};
+  post.title = 'Title will go Here';
+  post.author = 'codydaig';
+  post.created_at = Date.now();
+  post.comments = [];
+
+  var query = {};
+  query.index = 'posts';
+  query.type = 'post';
+  query._timestamp = {enabled: true};
+  query.body = post;
+
+  client.create(query).then(function(results){
+    res.send(results);
+  });
 };
 
 exports.updatePost = function(req, res) {
