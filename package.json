@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/codydaig/reactoroverflow.com#readme",
   "dependencies": {
+    "body-parser": "^1.13.3",
     "bower": "^1.3.9",
     "chalk": "^1.1.0",
     "elasticsearch": "^6.0.0",
