@@ -3,8 +3,7 @@
 'use strict';
 
 var path = require('path');
-var r = require(path.resolve('./lib/rethinkdb'));
-
+//var r = require(path.resolve('./lib/rethinkdb'));
 
 exports.renderPosts = function(req, res) {
   //tell model to query the db for posts
