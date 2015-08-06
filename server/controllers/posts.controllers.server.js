@@ -24,11 +24,17 @@ exports.renderPosts = function(req, res) {
   });
 };
 
+exports.renderPost = function(req, res) {
+  // Return a single post by ID
+  res.json(req.post);
+};
+
 exports.storePost = function(req, res) {
 
   var post = {};
-  post.title = 'Title will go Here';
-  post.author = 'codydaig';
+  post.title = req.body.title;
+  post.author = req.body.author; // Set this on the server side
+  post.content = req.body.content;
   post.created_at = Date.now();
   post.comments = [];
 
@@ -39,7 +45,7 @@ exports.storePost = function(req, res) {
   query.body = post;
 
   client.create(query).then(function(results){
-    res.send(results);
+    res.json(results);
   });
 };
 
@@ -48,7 +54,22 @@ exports.updatePost = function(req, res) {
   r.table('posts').get().update().run(conn); //<----input value for get
 };
 
-exports.deletePosts = function(req, res) {
+exports.deletePost = function(req, res) {
   //tell model to delete a post
   r.table("posts").get().delete().run(conn); //<----needs major attention
+};
+
+exports.postByID = function(req, res, next, id) {
+
+  var query = {};
+  query.index = 'posts';
+  query.type = 'post';
+  query.id = id;
+
+  client.get(query).then(function(result){
+    req.post = result;
+    next();
+  });
+
+  
 };
