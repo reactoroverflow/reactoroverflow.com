@@ -36,6 +36,12 @@
 
 ### Installing Dependencies
 
+Setting up rethinkDB
+
+```sh
+brew update && brew install rethinkdb
+```
+
 From within the root directory:
 
 ```sh
