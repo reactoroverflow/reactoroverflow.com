@@ -1,22 +1,17 @@
+//Cody, please work your magic with the db query's :)
+
 'use strict';
 
 var path = require('path');
+var r = require(path.resolve('./lib/rethinkdb'));
 
 
-exports.renderIndex = function(req, res) {
-  //serve up static index.html
-  res.sendFile(path.resolve('./client/index.html'));
-};
-
-
-
-
-//use an ORM inside these functions? If not we need models.
 exports.renderPosts = function(req, res) {
   //tell model to query the db for posts
     // need to res.json(results)
   r.table('posts').run().then(function(result) {
-    // console.log(result);
+    console.log(result);
+    // res.json(results);
   });
 };
 
