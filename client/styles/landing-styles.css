@@ -1,15 +1,13 @@
 #reactorOverflow {
-  /*top: 50%;  */
   margin-top:50px;
 }
-
-
 
 #login-signup-outer-container>div{
   margin-top:200px;
   position:relative;
   top: 50%;
 }
+
 #login-signup-container li{
   list-style-type: none;
 }
