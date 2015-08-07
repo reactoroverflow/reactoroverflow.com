@@ -1,3 +1,4 @@
+'use strict';
 /**
  * Widget Body Directive
  */
@@ -18,4 +19,4 @@ function rdWidgetBody() {
         restrict: 'E'
     };
     return directive;
-};
+}

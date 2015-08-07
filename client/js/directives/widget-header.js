@@ -1,3 +1,4 @@
+'use strict';
 /**
  * Widget Header Directive
  */
@@ -18,4 +19,4 @@ function rdWidgetTitle() {
         restrict: 'E'
     };
     return directive;
-};
+}
