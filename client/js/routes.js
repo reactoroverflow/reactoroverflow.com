@@ -22,10 +22,10 @@ angular.module('RDash')
         templateUrl: 'templates/post.html',
         controller: 'PostCtrl'
       })
-      .state('ask', {
-        url: '/ask',
+      .state('create', {
+        url: '/create',
         templateUrl: 'templates/create.html',
-        controller: 'AskCtrl'
+        controller: 'CreateCtrl'
       })
       .state('tables', {
         url: '/tables',

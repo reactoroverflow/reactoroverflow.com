@@ -1,9 +1,11 @@
-<div id='container' ng-controller='AskCtrl'>
+<div id='container' ng-controller='CreateCtrl'>
   Title      
-  <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="title-input" placeholder="Enter title for your listing or question. Be specific." ng-model="">
+  <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="title" placeholder="Enter title for your listing or question. Be specific." ng-model="" ng-style="{ 'width' : 500px }">
+  <br>
   Post Body       
-  <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="text-input" placeholder="Elaborate on your listing or question here" ng-model="">
+  <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="content" placeholder="Elaborate on your listing or question here" ng-model="">
+  <br>
   Tags       
-  <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="tag-input" placeholder="Add your Tags here. Be specific." ng-model="">
-  <button id="post-create-submit-button" ng-click="" class="btn-primary" value="SubmitPost" type="submit"> Submit </button>
+  <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="tags" placeholder="Add your Tags here. Be specific." ng-model="">
+  <button id="post-create-submit-button" ng-click="createPost" class="btn-primary" value="SubmitPost" type="submit" ng-style="{ 'width' : 500px }"> Submit </button>
 </div>
