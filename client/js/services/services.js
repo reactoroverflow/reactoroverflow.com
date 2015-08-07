@@ -1,4 +1,4 @@
-angular.module('RDash.services')
+angular.module('RDash.services', [])
 .factory('Posts', function ($http) {
 
   var getPosts = function(cb){
