@@ -31,6 +31,7 @@ exports.storePost = function(req, res) {
   post.title = req.body.title;
   post.author = req.body.author; // Set this on the server side
   post.content = req.body.content;
+  post.tags = req.body.tags;
   post.created_at = Date.now();
   post.comments = [];
 
