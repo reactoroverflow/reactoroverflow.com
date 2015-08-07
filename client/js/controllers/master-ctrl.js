@@ -5,7 +5,7 @@
  */
 
 angular.module('RDash')
-    .controller('MasterCtrl', ['$rootScope', '$scope', '$cookieStore', MasterCtrl]);
+    .controller('MasterCtrl', ['$rootScope', '$scope', '$cookieStore', MasterCtrl, Posts]);
 
 function MasterCtrl($rootScope, $scope, $cookieStore) {
     /**
@@ -14,12 +14,12 @@ function MasterCtrl($rootScope, $scope, $cookieStore) {
     var mobileView = 992;
 
     $scope.submitSearch = function () {
-        console.log("========= I am in the MasterCtrl trying to submitSearch()");
+        console.log('========= I am in the MasterCtrl trying to submitSearch() on ' + $scope.keywords);
         //call the factory method to grab specific posts from server
             //should initiate a GET request with the specific keywords from input field
             //the request is a JSON request
 
-        //searchPosts();
+        Posts.searchPosts($scope.keywords);
         //$scope.keywords
 
 
