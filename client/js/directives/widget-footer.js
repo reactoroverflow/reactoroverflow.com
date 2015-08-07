@@ -1,3 +1,4 @@
+'use strict';
 /**
  * Widget Footer Directive
  */
@@ -14,4 +15,4 @@ function rdWidgetFooter() {
         restrict: 'E'
     };
     return directive;
-};
+}

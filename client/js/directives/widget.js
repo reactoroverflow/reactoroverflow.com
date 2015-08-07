@@ -1,3 +1,4 @@
+'use strict';
 /**
  * Widget Directive
  */
@@ -17,4 +18,4 @@ function rdWidget() {
     function link(scope, element, attrs) {
         /* */
     }
-};
+}

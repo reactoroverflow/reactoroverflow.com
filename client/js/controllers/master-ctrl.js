@@ -1,3 +1,4 @@
+'use strict';
 /**
  * Master Controller
  */
