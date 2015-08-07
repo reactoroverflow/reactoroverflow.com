@@ -20,4 +20,4 @@ exports.loggedIn = function(req, res, next) {
   } else {
     next();
   }
-}
+};
