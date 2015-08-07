@@ -24,7 +24,7 @@ angular.module('RDash')
       })
       .state('ask', {
         url: '/ask',
-        templateUrl: 'templates/ask.html',
+        templateUrl: 'templates/create.html',
         controller: 'AskCtrl'
       })
       .state('tables', {
