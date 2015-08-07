@@ -10,6 +10,7 @@
   <link rel="stylesheet" type="text/css" href="components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="components/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="components/rdash-ui/dist/css/rdash.min.css">
+  <link rel="stylesheet" type="text/css" href="/styles.css">
   <!-- endbuild -->
   <!-- SCRIPTS -->
   <!-- build:js lib/js/main.min.js -->
@@ -21,7 +22,7 @@
   <!-- Custom Scripts -->
   <script type="text/javascript" src="js/module.js"></script>
   <script type="text/javascript" src="js/routes.js"></script>
-  <script type="text/javascript" src="js/controllers/alert-ctrl.js"></script>
+  <script type="text/javascript" src="js/services.js"></script>
   <script type="text/javascript" src="js/controllers/master-ctrl.js"></script>
   <script type="text/javascript" src="js/directives/loading.js"></script>
   <script type="text/javascript" src="js/directives/widget-body.js"></script>
@@ -110,18 +111,15 @@
               </div>
               <div class="item dropdown">
                <a href="#" class="dropdown-toggle">
-                  <i class="fa fa-bell-o"></i>
+                  <!-- <i class="fa fa-bell-o"></i> -->
+                  <button class="button-post">Post</button>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li class="dropdown-header">
-                    Notifications
-                  </li>
-                  <li class="divider"></li>
-                  <li>
-                    <a href="#">Server Down!</a>
-                  </li>
-                </ul>
               </div>
+            </div>
+            <div class="searchbox pull-right">
+              <form ng-submit="submitSearch()">
+                <input type="text" class="form-control text-center" placeholder="SEARCH ME" ng-model="keywords">
+              </form>
             </div>
             <div class="meta">
               <div class="page">

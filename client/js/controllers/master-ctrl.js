@@ -1,15 +1,29 @@
+'use strict';
+
 /**
  * Master Controller
  */
 
 angular.module('RDash')
-    .controller('MasterCtrl', ['$scope', '$cookieStore', MasterCtrl]);
+    .controller('MasterCtrl', ['$rootScope', '$scope', '$cookieStore', MasterCtrl]);
 
-function MasterCtrl($scope, $cookieStore) {
+function MasterCtrl($rootScope, $scope, $cookieStore) {
     /**
      * Sidebar Toggle & Cookie Control
      */
     var mobileView = 992;
+
+    $scope.submitSearch = function () {
+        console.log("========= I am in the MasterCtrl trying to submitSearch()");
+        //call the factory method to grab specific posts from server
+            //should initiate a GET request with the specific keywords from input field
+            //the request is a JSON request
+
+        //searchPosts();
+        //$scope.keywords
+
+
+    };
 
     $scope.getWidth = function() {
         return window.innerWidth;
