@@ -10,7 +10,7 @@
   <link rel="stylesheet" type="text/css" href="components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="components/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="components/rdash-ui/dist/css/rdash.min.css">
-  <link rel="stylesheet" type="text/css" href="/styles.css">
+  <link rel="stylesheet" type="text/css" href="/styles/index-styles.css">
   <!-- endbuild -->
   <!-- SCRIPTS -->
   <!-- build:js lib/js/main.min.js -->
@@ -24,6 +24,7 @@
   <script type="text/javascript" src="js/routes.js"></script>
   <script type="text/javascript" src="js/services/services.js"></script>
   <script type="text/javascript" src="js/controllers/master-ctrl.js"></script>
+  <script type="text/javascript" src="js/controllers/postlist-ctrl.js"></script>
   <script type="text/javascript" src="js/directives/loading.js"></script>
   <script type="text/javascript" src="js/directives/widget-body.js"></script>
   <script type="text/javascript" src="js/directives/widget-footer.js"></script>
@@ -109,17 +110,17 @@
                   </li>
                 </ul>
               </div>
-              <div class="item dropdown">
-              <!-- the post button -->
-                <a href="#/ask" class="dropdown-toggle">
-                  <button class="button-post">Post</button>
-                </a>
-              </div>
+            </div>
+            <div class="item dropdown pull-right">
+            <!-- the post button -->
+              <a href="#/Create">
+                <button class="button-post">CREATE A POST</button>
+              </a>
             </div>
             <!-- the searchbox -->
             <div class="searchbox pull-right">
               <form ng-submit="submitSearch()">
-                <input type="text" class="form-control text-center" placeholder="SEARCH ME" ng-model="keywords">
+                <input type="text" class="form-control text-center" placeholder="SEARCH FOR POST" ng-model="keywords">
               </form>
             </div>
             <div class="meta">

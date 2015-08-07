@@ -1,13 +1,12 @@
-'use strict';
 
 /**
  * Master Controller
  */
 
 angular.module('RDash')
-    .controller('MasterCtrl', ['$rootScope', '$scope', '$cookieStore', MasterCtrl, Posts]);
+    .controller('MasterCtrl', ['$scope', '$cookieStore', 'Posts', MasterCtrl]);
 
-function MasterCtrl($rootScope, $scope, $cookieStore) {
+function MasterCtrl($scope, $cookieStore, Posts) {
     /**
      * Sidebar Toggle & Cookie Control
      */
@@ -20,7 +19,7 @@ function MasterCtrl($rootScope, $scope, $cookieStore) {
             //the request is a JSON request
 
         Posts.searchPosts($scope.keywords);
-        //$scope.keywords
+        $scope.keywords = '';
 
 
     };
