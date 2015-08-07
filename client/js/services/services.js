@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('RDash.services', [])
 .factory('Posts', function ($http) {
 
