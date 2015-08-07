@@ -17,13 +17,13 @@ exports.renderPosts = function(req, res) {
   search.body.sort = {"created_at" : {"order" : "desc"}};
 
   client.search(search).then(function (results){
-    res.json(results.hits.hits);
+    res.send(results.hits.hits);
   });
 };
 
 exports.renderPost = function(req, res) {
   // Return a single post by ID
-  res.json(req.post);
+  res.send(req.post);
 };
 
 exports.storePost = function(req, res) {
