@@ -1,5 +1,5 @@
 /**
- * Create Controller
+ * Create Controller. 
  */
 
 angular.module('RDash')

@@ -1,6 +1,6 @@
 'use strict';
 
-/**
+/** 
  * Route configuration for the RDash module.
  */
 angular.module('RDash')
