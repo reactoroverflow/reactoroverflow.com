@@ -36,7 +36,6 @@ angular.module('RDash.services', [])
       url: '/api/posts',
       data: post
     }).then(function (resp) {
-      console.log("-----------> addPost POST worked", resp);
       return resp.data;
     });
   };
