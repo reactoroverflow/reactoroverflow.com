@@ -3,7 +3,9 @@
  */
 
 angular.module('RDash')
-.controller('PostListCtrl', function ($rootScope, $scope, Posts) {
+.controller('PostListCtrl', ['$scope', 'Posts', PostListCtrl]);
+
+function PostListCtrl($scope, Posts) {
 
   $scope.data = {};
 
@@ -15,4 +17,4 @@ angular.module('RDash')
   };
 
   $scope.getPosts();
-});
+};
