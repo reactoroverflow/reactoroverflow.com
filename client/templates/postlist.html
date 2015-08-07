@@ -1,5 +1,19 @@
 <div id='container' ng-controller='PostListCtrl'>
   <div class="row">
-    
+
+    <div ng-repeat="post in data.posts" class="col-md-12">
+      <rd-widget>
+        <rd-widget-body>
+          <div class="widget-icon blue pull-left">
+            <div class="views">views</div>
+          </div>
+          <div class="title">Title: {{post.title}}</div>
+          <div class="author">Author: {{post.author}}</div>
+          <div class="content">Content: {{post.content}}</div>
+          <div class="date">Date: {{post.created_at}}</div>
+        </rd-widget-body>
+      </rd-widget>
+    </div>
+
   </div>
 </div>
