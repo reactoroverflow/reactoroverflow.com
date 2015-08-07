@@ -12,6 +12,15 @@ angular.module('RDash.services', [])
     });
   };
 
+  var getPost = function(postID){
+    $http({
+      method: 'GET',
+      url: '/api/posts/:'+postID
+    }).then(function (resp) {
+      return resp.data;
+    });
+  };
+
   var searchPosts = function(text){
     return $http({
       method: 'GET',

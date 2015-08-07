@@ -13,37 +13,40 @@ function PostListCtrl($scope, Posts) {
       {
         title: "Test",
         author: "Andrew Kishino",
-        content: "Hi Guys",
-        created_at:
+        content: "Street art keytar Schlitz Vice, ugh art party tofu. Cold-pressed pug disrupt health goth listicle, fixie ennui salvia aesthetic skateboard paleo mixtape XOXO.",
+        created_at: Date.now(),
         tags: []
       },
       {
         title: "Test2",
         author: "Kevin Schweigert",
-        content: "Hi Guys",
+        content: "Street art keytar Schlitz Vice, ugh art party tofu. Cold-pressed pug disrupt health goth listicle, fixie ennui salvia aesthetic skateboard paleo mixtape XOXO.",
+        created_at: Date.now(),
         tags: []
       },
       {
         title: "Test3",
         author: "Lina Lu",
-        content: "Hi Guys",
+        content: "Street art keytar Schlitz Vice, ugh art party tofu. Cold-pressed pug disrupt health goth listicle, fixie ennui salvia aesthetic skateboard paleo mixtape XOXO.",
+        created_at: Date.now(),
         tags: []
       },
       {
         title: "Test4",
         author: "Cody Daig",
-        content: "Hi Guys",
+        content: "Street art keytar Schlitz Vice, ugh art party tofu. Cold-pressed pug disrupt health goth listicle, fixie ennui salvia aesthetic skateboard paleo mixtape XOXO.",
+        created_at: Date.now(),
         tags: []
       }
     ]
   };
 
-  // $scope.getPosts = function() {
-  //   Posts.getPosts(function(data) {
-  //     $scope.data.posts = data;
-  //     console.log('===========', data);
-  //   });
-  // };
+  $scope.getPosts = function() {
+    Posts.getPosts(function(data) {
+      $scope.data.posts = data;
+      console.log('===========', data);
+    });
+  };
 
   // $scope.getPosts();
-};
+}
