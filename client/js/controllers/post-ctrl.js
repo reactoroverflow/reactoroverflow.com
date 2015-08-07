@@ -4,7 +4,7 @@
  */
 
 angular.module('RDash')
-.controller('PostCtrl', function PostCtrl($scope) {
+.controller('PostCtrl', function PostCtrl($scope, Posts) {
   $scope.data = {
     posts: [
       {
@@ -17,9 +17,9 @@ angular.module('RDash')
   }; // clear out this test data when ready
 
   $scope.fetch = function(){
-    console.log('I am in the PostCtrl trying to fetch post')
-    console.log('postID = ', $scope.data.post.postID)
-    $scope.data.post = Posts.getPost($scope.data.post.postID)
+    console.log('I am in the PostCtrl trying to fetch post');
+    console.log('postID = ', $scope.data.post.postID);
+    $scope.data.post = Posts.getPost($scope.data.post.postID);
   };
 
   // $scope.fetch();
