@@ -1,15 +1,21 @@
+'use strict';
+
 module.exports = function(grunt) {
 
   grunt.initConfig({
     jshint: {
-      files: ['Gruntfile.js', 'index.js', 'server/**/*.js', 'lib/**/*.js'],
+      files: ['gruntfile.js', 'index.js', 'server/**/*.js', 'lib/**/*.js', 'client/**/*.js'],
       options: {
         curly: true,
         eqeqeq: true,
         eqnull: true,
         browser: true,
         node: true,
+        strict: true,
+        smarttabs: false,
+        indent: 2,
         globals: {
+          angular: true,
           jQuery: true
         },
       }
