@@ -4,8 +4,8 @@
  * Route configuration for the RDash module.
  */
 angular.module('RDash')
-.config(['$stateProvider', '$urlRouterProvider',
-  function($stateProvider, $urlRouterProvider) {
+.config(['$stateProvider', '$urlRouterProvider', 
+  function ($stateProvider, $urlRouterProvider) {
 
     // For unmatched routes
     $urlRouterProvider.otherwise('/');
@@ -18,7 +18,7 @@ angular.module('RDash')
         controller: 'PostListCtrl'
       })
       .state('post', {
-        url: '/post',
+        url: '/post/:postID',
         templateUrl: 'templates/post.html',
         controller: 'PostCtrl'
       })

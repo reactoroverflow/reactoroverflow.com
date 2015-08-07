@@ -16,8 +16,8 @@ angular.module('RDash')
       tags: $scope.tags
       }; //keys: title, content and tags
     Posts.addPost($scope.post)
-    .then(function() {
-      $location.path('#'); //takes user to the post they created.
+    .then(function(resp) {
+      $location.path('/post/'+resp._id); //takes user to the post they created.
     })
     .catch(function(error) {
       console.log(error);

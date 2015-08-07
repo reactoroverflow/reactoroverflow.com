@@ -23,7 +23,7 @@ exports.renderPosts = function(req, res) {
 
 exports.renderPost = function(req, res) {
   // Return a single post by ID
-  res.send(req.post);
+  res.json(req.post);
 };
 
 exports.storePost = function(req, res) {
@@ -42,6 +42,7 @@ exports.storePost = function(req, res) {
   query.body = post;
 
   client.create(query).then(function (results){
+    console.log(results);
     res.json(results);
   });
 };
