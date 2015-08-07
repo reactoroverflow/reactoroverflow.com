@@ -9,9 +9,9 @@ angular.module('RDash')
 function PostListCtrl($scope, Posts) {
 
   $scope.getPosts = function() {
+    $scope.data = {};
     Posts.getPosts(function(data) {
       $scope.data.posts = data;
-      console.log('===========', data);
     });
   };
 
