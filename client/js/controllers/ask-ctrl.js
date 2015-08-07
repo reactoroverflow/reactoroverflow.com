@@ -1,9 +1,37 @@
-/**
- * Ask Controller
- */
+// /**
+//  * Ask Controller
+//  */
+
+// // angular.module('RDash')
+// // .controller('AskCtrl', function AskCtrl($scope) {
+// //   $scope.
+// // });
+
+// /**
+//  * Create Controller
+//  */
 
 // angular.module('RDash')
-// .controller('AskCtrl', function AskCtrl($scope) {
-//   $scope.
+// .controller('CreateCtrl', function CreateCtrl ($scope, Posts) {
+//   console.log("------------------------>inside controller")
+//   $scope.title = '';
+//   $scope.content = '';
+//   $scope.tags = [];
+//   $scope.post = {
+//     title: $scope.title, 
+//     content: $scope.content, 
+//     tags: $scope.tags
+//     }; //keys: title, content and tags
+//   $scope.createPost = function() {
+//     console.log("----------------------------->", $scope.post);
+//     Posts.addPost($scope.post)
+//     .then(function() {
+//       $location.path('#'); //takes user to the post they created.
+//     })
+//     .catch(function(error) {
+//       console.log(error);
+//     })
+      
+    
+//   }
 // });
-// can delete this later

@@ -1,11 +1,13 @@
 <div id='container' ng-controller='CreateCtrl'>
   Title      
-  <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="title" placeholder="Enter title for your listing or question. Be specific." ng-model="" ng-style="{ 'width' : 500px }">
+  <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="title" placeholder="Enter title for your listing or question. Be specific." ng-model="title" ng-style="{ 'width' : '500px' }">
   <br>
   Post Body       
-  <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="content" placeholder="Elaborate on your listing or question here" ng-model="">
+  <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="content" placeholder="Elaborate on your listing or question here" ng-model="content" ng-style="{ 'width' : '500px', 'height' : '500px' }">
   <br>
   Tags       
-  <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="tags" placeholder="Add your Tags here. Be specific." ng-model="">
-  <button id="post-create-submit-button" ng-click="createPost" class="btn-primary" value="SubmitPost" type="submit" ng-style="{ 'width' : 500px }"> Submit </button>
+  <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="tags" placeholder="Add your Tags here. Be specific." ng-model="tags">
+  <br>
+  <button id="post-create-submit-button" ng-click="createPost()" class="btn-primary" value="SubmitPost" type="submit" ng-style="{ 'width' : '500px' }"> Submit </button>
+  {{title}}{{content}}{{tags}}
 </div>
