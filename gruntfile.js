@@ -18,6 +18,6 @@ module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt); // npm install --save-dev load-grunt-tasks 
 
-  grunt.registerTask('default test', ['jshint']);
+  grunt.registerTask('test', ['jshint']);
 
 };
