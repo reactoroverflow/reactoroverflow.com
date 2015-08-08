@@ -25,6 +25,7 @@ module.exports = function(app) {
   );
 
   app.get('/logout', function(req, res){
+    req.session.user = undefined;
     req.logout();
     res.redirect('/');
   });
