@@ -12,12 +12,21 @@ angular.module('RDash.services', [])
     });
   };
 
-  var getPost = function(postID){
+  var getPostsByTag = function(tagName, cb){
     $http({
       method: 'GET',
-      url: '/api/posts/:'+postID
+      url: '/api/search/tag/'+tagName
     }).then(function (resp) {
-      return resp.data;
+      cb(resp.data);
+    });
+  };
+
+  var getPost = function(postID, cb){
+    $http({
+      method: 'GET',
+      url: '/api/posts/'+postID
+    }).then(function (resp) {
+      cb(resp.data);
     });
   };
 
@@ -42,6 +51,8 @@ angular.module('RDash.services', [])
 
   return {
     getPosts: getPosts,
+    getPost: getPost,
+    getPostsByTag: getPostsByTag,
     searchPosts: searchPosts,
     addPost: addPost
   };

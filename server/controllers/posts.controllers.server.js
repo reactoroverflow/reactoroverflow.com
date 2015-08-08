@@ -23,13 +23,13 @@ exports.renderPosts = function(req, res) {
 
 exports.renderPost = function(req, res) {
   // Return a single post by ID
-  res.send(req.post);
+  res.json(req.post);
 };
 
 exports.storePost = function(req, res) {
   var post = {};
   post.title = req.body.title;
-  post.author = req.body.author; // Set this on the server side
+  post.author = req.session.user.login;
   post.content = req.body.content;
   post.tags = req.body.tags;
   post.created_at = Date.now();
@@ -42,6 +42,7 @@ exports.storePost = function(req, res) {
   query.body = post;
 
   client.create(query).then(function (results){
+    console.log(results);
     res.json(results);
   });
 };
@@ -64,7 +65,7 @@ exports.addComment = function(req, res) {
   var comment = {};
   comment.postID = post._id;
   comment.content = req.body.content;
-  comment.author = req.body.author; // Set this on the server side
+  comment.author = req.session.user.login;
   comment.created_at = Date.now();
 
   var query = {};
