@@ -22,6 +22,11 @@ angular.module('RDash')
         templateUrl: 'templates/post.html',
         controller: 'PostCtrl'
       })
+      .state('tag', {
+        url: '/tag/:tagName',
+        templateUrl: 'templates/postlist.html',
+        controller: 'TagListCtrl'
+      })
       .state('create', {
         url: '/create',
         templateUrl: 'templates/create.html',

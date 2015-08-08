@@ -1,4 +1,4 @@
-<div id='container' ng-controller='PostListCtrl'>
+<div id='container'>
   <div class="row">
 
     <div ng-repeat="post in data.posts" class="col-md-12">
@@ -12,6 +12,7 @@
             <div class="title"><a href="/#/post/{{ post._id }}">Title: {{post._source.title}}</a></div>
             <div class="author">Author: {{post._source.author}}</div>
             <div class="content">Content: {{post._source.content}}</div>
+            <div class="tags">Tags: {{post._source.tags}}</div>
             <div class="date">Date: {{post._source.created_at}}</div>
           </div>
         </rd-widget-body>

@@ -12,6 +12,15 @@ angular.module('RDash.services', [])
     });
   };
 
+  var getPostsByTag = function(tagName, cb){
+    $http({
+      method: 'GET',
+      url: '/api/search/tag/'+tagName
+    }).then(function (resp) {
+      cb(resp.data);
+    });
+  };
+
   var getPost = function(postID, cb){
     $http({
       method: 'GET',
@@ -43,6 +52,7 @@ angular.module('RDash.services', [])
   return {
     getPosts: getPosts,
     getPost: getPost,
+    getPostsByTag: getPostsByTag,
     searchPosts: searchPosts,
     addPost: addPost
   };
