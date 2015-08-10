@@ -4,16 +4,23 @@
  */
 
 angular.module('RDash')
-.controller('PostListCtrl', ['$scope', 'Posts', PostListCtrl]);
+.controller('PostListCtrl', ['$rootScope', '$scope', 'Posts', PostListCtrl]);
 
-function PostListCtrl($scope, Posts) {
+function PostListCtrl($rootScope, $scope, Posts) {
+  $scope.data = {};
 
   $scope.getPosts = function() {
-    $scope.data = {};
+    
     Posts.getPosts(function(data) {
       $scope.data.posts = data;
     });
   };
+  
+  //receive the broadcast data from master-ctrl.js
+  $rootScope.$on('showResults', function(event, args){
+      console.log("I have received the boradcasted data === ", args)
+      $scope.data.posts = args;
+    });
 
   $scope.getPosts();
 }
