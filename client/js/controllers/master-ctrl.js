@@ -18,7 +18,9 @@ function MasterCtrl($scope, $cookieStore, Posts) {
             //should initiate a GET request with the specific keywords from input field
             //the request is a JSON request
 
-        Posts.searchPosts($scope.keywords);
+        Posts.searchPosts($scope.keywords, function(resp){
+            
+        });
         $scope.keywords = '';
 
 
