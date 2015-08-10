@@ -19,13 +19,16 @@ exports.search = function(req, res) {
           search.body.query.match.title.query = q.text;
           search.body.query.match.title.fuzziness = 3;
           search.body.query.match.title.operator = "and";
+        search.body.query.match.body = {};
+          search.body.query.match.body.query = q.text;
+          search.body.query.match.body.fuzziness = 3;
+          search.body.query.match.body.operator = "and";
+        // Fix and uncomment once tags are stored as an array
+        // search.body.query.match.tags = {};
+        //   search.body.query.match.tags.query = q.text;
+        //   search.body.query.match.tags.fuzziness = 3;
+        //   search.body.query.match.tags.operator = "and";
     search.body.sort = '_score';
-    search.body.highlight = {};
-      search.body.highlight.order = 'score';
-      search.body.highlight.fields = {};
-        search.body.highlight.fields.title = {};
-          search.body.highlight.fields.title.fragment_size = 200;
-          search.body.highlight.fields.title.number_of_fragments = 0;
 
   client.search(search).then(function (result) {
     res.json(result.hits.hits);
