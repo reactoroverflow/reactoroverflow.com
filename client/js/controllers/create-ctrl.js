@@ -8,16 +8,14 @@ angular.module('RDash')
 .controller('CreateCtrl', function CreateCtrl ($scope, $location, Posts) {
   $scope.title = '';
   $scope.content = '';
-  $scope.tag;
   $scope.tags = [];
   $scope.addTag = function(newTag) {
     $scope.tags.push(newTag);
     $scope.tag = '';
   };
-
   $scope.removeTag = function(index) {
     $scope.tags.splice(index, 1);
-  }
+  };
   $scope.createPost = function() {
     $scope.post = {
       title: $scope.title, 
