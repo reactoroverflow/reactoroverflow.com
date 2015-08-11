@@ -16,16 +16,6 @@ module.exports = function(app) {
     .put(posts.updatePost)
     .delete(posts.deletePost);
 
-  app.route('/api/posts/:postID/comments').all(auth.loggedIn)
-    .post(posts.addComment);
-
-  app.route('/api/posts/:postID/comments/:commentID').all(auth.loggedIn)
-    .get(posts.renderComment)
-    .put(posts.updateComment)
-    .delete(posts.deleteComment);
-
   app.param('postID', posts.postByID);
-
-  app.param('commentID', posts.commentByID);
 
 };
