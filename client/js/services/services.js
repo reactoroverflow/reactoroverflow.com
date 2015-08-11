@@ -31,6 +31,7 @@ angular.module('RDash.services', [])
   };
 
   var searchPosts = function(text, cb){
+    console.log("I am in searchPosts");
     $http({
       method: 'GET',
       url: '/api/search?text='+text

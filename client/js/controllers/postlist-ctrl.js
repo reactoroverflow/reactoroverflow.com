@@ -15,10 +15,10 @@ function PostListCtrl($rootScope, $scope, Posts) {
       $scope.data.posts = data;
     });
   };
-  
+
   //receive the broadcast data from master-ctrl.js
   $rootScope.$on('showResults', function(event, args){
-      console.log("I have received the boradcasted data === ", args)
+      console.log("I have received the boradcasted data === ", args);
       $scope.data.posts = args;
     });
 
