@@ -33,7 +33,6 @@ exports.storePost = function(req, res) {
   post.content = req.body.content;
   post.tags = req.body.tags;
   post.created_at = Date.now();
-  post.comments = [];
 
   var query = {};
   query.index = 'posts';
@@ -55,38 +54,6 @@ exports.deletePost = function(req, res) {
   // Delete a Single Post
 };
 
-exports.renderComment = function(req, res) {
-  res.json(req.comment);
-};
-
-exports.addComment = function(req, res) {
-  var post = req.post;
-
-  var comment = {};
-  comment.postID = post._id;
-  comment.content = req.body.content;
-  comment.author = req.session.user.login;
-  comment.created_at = Date.now();
-
-  var query = {};
-  query.index = 'comments';
-  query.type = 'comment';
-  query._timestamp = {enabled: true};
-  query.body = comment;
-
-  client.create(query).then(function (results) {
-    res.json(results);
-  });
-};
-
-exports.updateComment = function(req, res) {
-
-};
-
-exports.deleteComment = function(req, res) {
-
-};
-
 exports.postByID = function(req, res, next, id) {
   var query = {};
   query.index = 'posts';
@@ -95,18 +62,6 @@ exports.postByID = function(req, res, next, id) {
 
   client.get(query).then(function (result) {
     req.post = result;
-    next();
-  });
-};
-
-exports.commentByID = function(req, res, next, id) {
-  var query = {};
-  query.index = 'comments';
-  query.type = 'comment';
-  query.id = id;
-
-  client.get(query).then(function (result) {
-    req.comment = result;
     next();
   });
 };
