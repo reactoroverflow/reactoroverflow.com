@@ -6,12 +6,13 @@ var client = require(path.resolve('./lib/elasticsearch'));
 
 exports.renderComments = function(req, res) {
   var postID = req.query.postID;
+  var search;
 
   if(!postID) {
     var query = {};
     query.match_all = {};
 
-    var search = {};
+    search = {};
     search.index = 'comments';
     search.type = 'comment';
     search.size = 50;
@@ -23,7 +24,7 @@ exports.renderComments = function(req, res) {
       res.send(results.hits.hits);
     });
   } else {
-    var search = {};
+    search = {};
     search.index = 'comments';
     search.type = 'comment';
     search.size = 10;
