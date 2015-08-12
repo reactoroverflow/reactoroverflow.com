@@ -6,7 +6,13 @@
   <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="content" placeholder="Elaborate on your listing or question here" ng-model="content" ng-style="{ 'width' : '500px', 'height' : '500px' }">
   <br>
   Tags       
-  <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="tags" placeholder="Add your Tags here. Be specific." ng-model="tags">
+  <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="tags" placeholder="Add individual tags. Be specific." ng-model="tag" ng-style="{ 'width' : '250px'}">
+  <button ng-click="addTag(tag)">add</button>
+  <ul>
+    <li ng-repeat="eachTag in tags track by $index" ng-click="removeTag($index)">
+    {{ eachTag }}
+    </li>
+  </ul>
   <br>
   <button id="post-create-submit-button" ng-click="createPost()" class="btn-primary" value="SubmitPost" type="submit" ng-style="{ 'width' : '500px' }"> Submit </button>
 </div>

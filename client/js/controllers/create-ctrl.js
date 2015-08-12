@@ -9,12 +9,20 @@ angular.module('RDash')
   $scope.title = '';
   $scope.content = '';
   $scope.tags = [];
+  $scope.addTag = function(newTag) {
+    $scope.tags.push(newTag);
+    $scope.tag = '';
+  };
+  $scope.removeTag = function(index) {
+    $scope.tags.splice(index, 1);
+  };
   $scope.createPost = function() {
     $scope.post = {
       title: $scope.title, 
       content: $scope.content, 
-      tags: $scope.tags
+      tags: $scope.tags //format: Tags: ["asdf","asdf"]
       }; //keys: title, content and tags
+    console.log("$scope.post",$scope.post);
     Posts.addPost($scope.post)
     .then(function(resp) {
       $location.path('/post/'+resp._id); //takes user to the post they created.
