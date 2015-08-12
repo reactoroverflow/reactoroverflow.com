@@ -1,24 +1,5 @@
 <div id='container' ng-controller='PostCtrl'>
 
-
-<!-- <div class="row">
-  <div class="col-lg-12">
-      <rd-widget>
-        <rd-widget-header class= "titleHeader" title="{{data.post.title}}">
-        </rd-widget-header>
-        <rd-widget-body>
-        <div class="message">
-          This is a standard message which will also work the ".no-padding" class, I can also <span class="error">be an error message!</span>
-        </div>
-        <hr />
-        <div class="message">
-          <a href="http://angular-ui.github.io/bootstrap/" target="_blank">UI Bootstrap</a> is included, so you can use <a href="#" tooltip="I'm a tooltip!">tooltips</a> and all of the other native Bootstrap JS components!
-        </div>
-        </rd-widget-body>
-      </rd-widget>
-  </div> -->
-
-
   <div class="col-md-12">
     <rd-widget>
       <rd-widget-body>
@@ -60,9 +41,81 @@
     <br/>
     <rd-widget>
       <rd-widget-body>
-        <div class="row">
-          TEST!
+        <div>
+          Replies
         </div>
+        <hr>
+
+        <!-- <div ng-repeat="comment in data.comments">
+          <rd-widget>
+            <rd-widget-body>
+              {{comment._source.content}}
+              <hr>
+              <div class="authorTags">
+                <div class="pull-left">
+                  <img style="width:50px; border-radius: 2px" src="img/avatar.jpg"/>
+                </div>
+                <div class="pull-right" style=" margin: 5px 10px;">
+                  <div class="author">
+                    Author: <a href="http://www.github.com/{{post._source.author}}">@{{comment._source.author}}</a>
+                  </div>
+                  <div class="date">
+                    Posted: {{comment._source.created_at}}
+                  </div>
+                </div>
+              </div>
+            </rd-widget-body>
+          </rd-widget>
+          <br/>
+        </div> -->
+
+        <rd-widget>
+          <rd-widget-body>
+            Content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content
+            <hr>
+            <div class="authorTags">
+              <div class="pull-left">
+                <img style="width:50px; border-radius: 2px" src="img/avatar.jpg"/>
+              </div>
+              <div class="pull-right" style=" margin: 5px 10px;">
+                <div class="author">
+                  Author: <a href="http://www.github.com/{{data.post.author}}">@{{data.post.author}}</a>
+                </div>
+                <div class="date">
+                  Posted: {{data.comment.created_at}}
+                </div>
+              </div>
+            </div>
+          </rd-widget-body>
+        </rd-widget>
+        
+        <br/>
+
+        <rd-widget>
+          <rd-widget-body>
+            Content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content
+            <hr>
+            <div class="authorTags">
+              <div class="pull-left">
+                <img style="width:50px; border-radius: 2px" src="img/avatar.jpg"/>
+              </div>
+              <div class="pull-right" style=" margin: 5px 10px;">
+                <div class="author">
+                  Author: <a href="http://www.github.com/{{data.post.author}}">@{{data.post.author}}</a>
+                </div>
+                <div class="date">
+                  Posted: {{data.comment.created_at}}
+                </div>
+              </div>
+            </div>
+          </rd-widget-body>
+        </rd-widget>
+
+        <br/>
+
+        <textarea></textarea>
+
+        <button class="btn btn-sm btn-primary" ng-click="createComment()">Reply</button>
       </rd-widget-body>
     </rd-widget>
   </div>

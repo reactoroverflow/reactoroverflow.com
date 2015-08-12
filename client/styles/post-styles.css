@@ -3,3 +3,7 @@
   padding: 8px;
   display: inline-block;
 }
+
+.CodeMirror, .CodeMirror-scroll {
+    min-height: 200px !important;
+}
