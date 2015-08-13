@@ -15,23 +15,28 @@ exports.search = function(req, res) {
   search.body = {};
     search.body.query = {};
       search.body.query.match = {};
-        search.body.query.match.title = {};
-          search.body.query.match.title.query = q.text;
-          search.body.query.match.title.fuzziness = 3;
-          search.body.query.match.title.operator = "and";
-        search.body.query.match.body = {};
-          search.body.query.match.body.query = q.text;
-          search.body.query.match.body.fuzziness = 3;
-          search.body.query.match.body.operator = "and";
+        // search.body.query.match.title = {};
+        //   search.body.query.match.title.query = q.text;
+        //   search.body.query.match.title.fuzziness = 3;
+        //   search.body.query.match.title.operator = "and";
+        search.body.query.match.content = {};
+          search.body.query.match.content.query = q.text;
+          search.body.query.match.content.fuzziness = 3;
+          search.body.query.match.content.operator = "and";
+
         // Fix and uncomment once tags are stored as an array
         // search.body.query.match.tags = {};
         //   search.body.query.match.tags.query = q.text;
         //   search.body.query.match.tags.fuzziness = 3;
         //   search.body.query.match.tags.operator = "and";
     search.body.sort = '_score';
+    console.log("match.content======= ", search.body.query.match.content);
+    console.log("search====== ", search)
 
   client.search(search).then(function (result) {
+    console.log("result=========== ", result);
     res.json(result.hits.hits);
+
   });
 
 };
