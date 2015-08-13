@@ -21,7 +21,7 @@ angular.module('RDash')
 
   $scope.createComment = function() {
     $scope.comment = {
-      content: $scope.simplemde.value()
+      content: marked($scope.simplemde.value())
     }; //keys: content
     // console.log("$scope.comment",$scope.comment);
     Comments.addComment($scope.comment)

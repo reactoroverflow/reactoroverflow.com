@@ -7,13 +7,7 @@
           {{data.post.title}}
         </div>
         <hr/>
-        <!-- <rd-widget>
-          <rd-widget-body> -->
-        <div class="content">
-          {{data.post.content}}
-        </div>
-          <!-- </rd-widget-body>
-        </rd-widget> -->
+        <div class="content" ng-bind-html='data.post.content'></div>
         <br/>
         <div class="tags">
           Tags: {{data.post.tags}}
@@ -49,7 +43,7 @@
         <div ng-repeat="comment in data.comments | orderBy:'_source.created_at'">
           <rd-widget>
             <rd-widget-body>
-              {{comment._source.content}}
+              <div ng-bind-html='comment._source.content'></div>
               <hr>
               <div class="authorTags">
                 <div class="pull-left">
