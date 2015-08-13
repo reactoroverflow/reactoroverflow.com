@@ -17,7 +17,7 @@ module.exports = function(grunt) {
         globals: {
           angular: true,
           jQuery: true,
-          markdown: true,
+          marked: true,
           SimpleMDE: true
         },
       }
