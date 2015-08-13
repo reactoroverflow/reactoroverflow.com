@@ -5,8 +5,7 @@
  */
 
 angular.module('RDash')
-.controller('CreateCtrl', function CreateCtrl ($scope, $location, $q,Posts) {
-  var anotherDeferred = $q.defer();
+.controller('CreateCtrl', function CreateCtrl ($scope, $location, Posts) {
   $scope.title = '';
   $scope.content = '';
   $scope.tags = [];
