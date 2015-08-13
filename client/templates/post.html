@@ -29,7 +29,7 @@
           </div>
           <div class="pull-right" style=" margin: 5px 10px;">
             <div class="author">
-              Author: <a href="http://www.github.com/{{data.post.author}}">@{{data.post.author}}</a>
+              <a href="http://www.github.com/{{data.post.author}}">@{{data.post.author}}</a>
             </div>
             <div class="date">
               Posted: {{data.post.created_at}}
@@ -46,7 +46,7 @@
         </div>
         <hr>
 
-        <!-- <div ng-repeat="comment in data.comments">
+        <div ng-repeat="comment in data.comments | orderBy:'_source.created_at'">
           <rd-widget>
             <rd-widget-body>
               {{comment._source.content}}
@@ -57,7 +57,7 @@
                 </div>
                 <div class="pull-right" style=" margin: 5px 10px;">
                   <div class="author">
-                    Author: <a href="http://www.github.com/{{post._source.author}}">@{{comment._source.author}}</a>
+                    <a href="http://www.github.com/{{comment._source.author}}">@{{comment._source.author}}</a>
                   </div>
                   <div class="date">
                     Posted: {{comment._source.created_at}}
@@ -67,51 +67,7 @@
             </rd-widget-body>
           </rd-widget>
           <br/>
-        </div> -->
-
-        <rd-widget>
-          <rd-widget-body>
-            Content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content
-            <hr>
-            <div class="authorTags">
-              <div class="pull-left">
-                <img style="width:50px; border-radius: 2px" src="img/avatar.jpg"/>
-              </div>
-              <div class="pull-right" style=" margin: 5px 10px;">
-                <div class="author">
-                  Author: <a href="http://www.github.com/{{data.post.author}}">@{{data.post.author}}</a>
-                </div>
-                <div class="date">
-                  Posted: {{data.comment.created_at}}
-                </div>
-              </div>
-            </div>
-          </rd-widget-body>
-        </rd-widget>
-        
-        <br/>
-
-        <rd-widget>
-          <rd-widget-body>
-            Content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content
-            <hr>
-            <div class="authorTags">
-              <div class="pull-left">
-                <img style="width:50px; border-radius: 2px" src="img/avatar.jpg"/>
-              </div>
-              <div class="pull-right" style=" margin: 5px 10px;">
-                <div class="author">
-                  Author: <a href="http://www.github.com/{{data.post.author}}">@{{data.post.author}}</a>
-                </div>
-                <div class="date">
-                  Posted: {{data.comment.created_at}}
-                </div>
-              </div>
-            </div>
-          </rd-widget-body>
-        </rd-widget>
-
-        <br/>
+        </div>
 
         <textarea></textarea>
 
