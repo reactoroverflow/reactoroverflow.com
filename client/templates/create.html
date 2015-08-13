@@ -2,12 +2,13 @@
   Title      
   <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="title" placeholder="Enter title for your listing or question. Be specific." ng-model="title" ng-style="{ 'width' : '500px' }">
   <br>
-  Post Body       
+  Post
   <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="content" placeholder="Elaborate on your listing or question here" ng-model="content" ng-style="{ 'width' : '500px', 'height' : '500px' }">
   <br>
   Tags       
   <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="tags" placeholder="Add individual tags. Be specific." ng-model="tag" ng-style="{ 'width' : '250px'}">
-  <button ng-click="addTag(tag)">add</button>
+  <button ng-click="addTag(tag); showInstruction();">add</button>
+  <p><font color="grey"><i> {{ instruction }} </i></font></p>
   <ul>
     <li ng-repeat="eachTag in tags track by $index" ng-click="removeTag($index)">
     {{ eachTag }}
