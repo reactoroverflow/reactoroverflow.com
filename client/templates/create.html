@@ -15,5 +15,14 @@
     </li>
   </ul>
   <br>
+
+  <div style="margin-top: 20px">
+    Upload a Photo
+    <input  onchange="angular.element(this).scope().add()" type="file" id="file" name="file" style="margin-top: 10px"/>
+    <br>
+    <image id="pic" src="" style="margin-top: 20px; width:100px; height:100px;">
+  </div>
+  <br>
+
   <button id="post-create-submit-button" ng-click="createPost()" class="btn-primary" value="SubmitPost" type="submit" ng-style="{ 'width' : '500px' }"> Submit </button>
 </div>

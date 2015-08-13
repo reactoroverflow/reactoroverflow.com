@@ -27,11 +27,13 @@ exports.renderPost = function(req, res) {
 };
 
 exports.storePost = function(req, res) {
+  console.log("inside storePost")
   var post = {};
   post.title = req.body.title;
   post.author = req.session.user.login;
   post.content = req.body.content;
   post.tags = req.body.tags;
+  post.data = req.body.data;
   post.created_at = Date.now();
 
   var query = {};
