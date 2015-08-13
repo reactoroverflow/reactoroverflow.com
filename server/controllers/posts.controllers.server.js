@@ -1,5 +1,6 @@
 'use strict';
 
+
 var path = require('path');
 
 var client = require(path.resolve('./lib/elasticsearch'));
@@ -32,6 +33,7 @@ exports.storePost = function(req, res) {
   post.author = req.session.user.login;
   post.content = req.body.content;
   post.tags = req.body.tags;
+  post.data = req.body.data;
   post.created_at = Date.now();
 
   var query = {};
