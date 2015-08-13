@@ -20,7 +20,7 @@ angular.module('RDash')
     r.onloadend = function(e){
       preview.src = e.target.result;
       $scope.data = e.target.result;
-    }
+    };
     r.readAsDataURL( f );
   }; //adds image data to $scope.data
 
