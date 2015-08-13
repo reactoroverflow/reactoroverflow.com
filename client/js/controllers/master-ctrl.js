@@ -1,12 +1,13 @@
 'use strict';
+
 /**
  * Master Controller
  */
 
 angular.module('RDash')
-    .controller('MasterCtrl', ['$scope', '$cookieStore', 'Posts', MasterCtrl]);
+    .controller('MasterCtrl', ['$rootScope', '$scope', '$cookieStore', 'Posts', MasterCtrl]);
 
-function MasterCtrl($scope, $cookieStore, Posts) {
+function MasterCtrl($rootScope, $scope, $cookieStore, Posts) {
     /**
      * Sidebar Toggle & Cookie Control
      */
@@ -17,8 +18,13 @@ function MasterCtrl($scope, $cookieStore, Posts) {
         //call the factory method to grab specific posts from server
             //should initiate a GET request with the specific keywords from input field
             //the request is a JSON request
+        
 
-        Posts.searchPosts($scope.keywords);
+        Posts.searchPosts($scope.keywords, function(data){
+            //boradcast the response data to postlist-ctrl.js
+            console.log('I am broadcasting the response data==== ', data);
+            $rootScope.$broadcast('showResults', data);
+        });
         $scope.keywords = '';
 
 
