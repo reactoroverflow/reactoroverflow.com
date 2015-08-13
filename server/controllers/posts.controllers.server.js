@@ -1,5 +1,6 @@
 'use strict';
 
+
 var path = require('path');
 
 var client = require(path.resolve('./lib/elasticsearch'));

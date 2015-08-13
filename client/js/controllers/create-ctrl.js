@@ -28,9 +28,11 @@ angular.module('RDash')
     $scope.tags.push(newTag);
     $scope.tag = '';
   };
+
   $scope.showInstruction = function() {
     $scope.instruction = 'Click on individual tags to remove them';
   };
+  
   $scope.removeTag = function(index) {
     $scope.tags.splice(index, 1);
   };
