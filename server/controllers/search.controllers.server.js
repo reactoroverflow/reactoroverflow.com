@@ -31,7 +31,7 @@ exports.search = function(req, res) {
         //   search.body.query.match.tags.operator = "and";
     search.body.sort = '_score';
     console.log("match.content======= ", search.body.query.match.content);
-    console.log("search====== ", search)
+    console.log("search====== ", search);
 
   client.search(search).then(function (result) {
     console.log("result=========== ", result);
