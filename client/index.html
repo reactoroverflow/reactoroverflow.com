@@ -46,6 +46,11 @@
   <script type="text/javascript" src="js/directives/widget-header.js"></script>
   <script type="text/javascript" src="js/directives/widget.js"></script>
 
+  <!--Embedding The User Object-->
+  <script type="text/javascript">
+    var user = {{ user | json | safe }};
+  </script>
+
 </head>
 <body ng-controller="MasterCtrl">
   <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
@@ -122,15 +127,15 @@
             <div class="user pull-right">
               <div class="item dropdown">
                 <a href="#" class="dropdown-toggle">
-                  <img src="img/avatar.jpg">
+                  <img src="{{ user.avatar_url }}">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                   <li class="dropdown-header">
-                    Joe Bloggs
+                    {{ user.name }}
                   </li>
                   <li class="divider"></li>
                   <li class="link">
-                    <a href="http://www.github.com">
+                    <a href="http://www.github.com/{{ user.login }}">
                       My Github
                     </a>
                   </li>
