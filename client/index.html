@@ -50,6 +50,10 @@
   <script type="text/javascript">
     var user = {{ user | json | safe }};
   </script>
+  <script src="components/socket.io-client/socket.io.js"></script>
+  <script>
+    var socket = io();
+  </script>
 
 </head>
 <body ng-controller="MasterCtrl">

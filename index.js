@@ -2,7 +2,13 @@
 
 var app = require('./lib/express');
 var clog = require('./lib/clog');
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
-app.listen(4000, function(){
+io.on('connection', function(socket){
+  clog.green('a user connected');
+});
+
+http.listen(4000, function(){
   clog.green('Listening on port 4000');
 });
