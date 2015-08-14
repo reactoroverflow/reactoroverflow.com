@@ -40,6 +40,7 @@
   <script type="text/javascript" src="js/controllers/post-ctrl.js"></script>
   <script type="text/javascript" src="js/controllers/taglist-ctrl.js"></script>
   <script type="text/javascript" src="js/controllers/create-ctrl.js"></script>
+  <script type="text/javascript" src="js/controllers/chat-ctrl.js"></script>
   <script type="text/javascript" src="js/directives/loading.js"></script>
   <script type="text/javascript" src="js/directives/widget-body.js"></script>
   <script type="text/javascript" src="js/directives/widget-footer.js"></script>
@@ -50,7 +51,12 @@
   <script type="text/javascript">
     var user = {{ user | json | safe }};
   </script>
-
+  <script src="components/socket.io-client/socket.io.js"></script>
+  <script>
+    var socket = io();
+  </script>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
 </head>
 <body ng-controller="MasterCtrl">
   <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
@@ -88,15 +94,20 @@
         </li>
         <!-- Active users -->
         <li class="sidebar-title"><span>Active Users</span></li>
+        <div id="users"></div>
         <li class="sidebar-list">
-          <a href="#/">@User1 <!-- <span class="menu-icon fa fa-tachometer"></span> --></a>
+          <a href="#/chat">Chat</a>
+        </li>
+<!--         <li class="sidebar-list">
+          <a href="#/">@User1</a>
         </li>
         <li class="sidebar-list">
-          <a href="#/tables">@User2 <!-- <span class="menu-icon fa fa-table"></span> --></a>
+          <a href="#/tables">@User2</a>
         </li>
         <li class="sidebar-list">
           <a href="#/tag/sometag">@User3</a>
         </li>
+ -->      
       </ul>
       <div class="sidebar-footer">
         <div class="col-xs-4">

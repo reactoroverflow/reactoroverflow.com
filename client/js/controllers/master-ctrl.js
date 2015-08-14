@@ -7,11 +7,68 @@
 angular.module('RDash')
     .controller('MasterCtrl', ['$rootScope', '$scope', '$cookieStore', 'Posts', MasterCtrl]);
 
-function MasterCtrl($rootScope, $scope, $cookieStore, Posts) {
+function MasterCtrl($rootScope, $scope, $cookieStore, Posts, $stateParams) {
     /**
      * Sidebar Toggle & Cookie Control
      */
     var mobileView = 992;
+    var $users = $('#users');
+    var selectedUserID;
+    // var stringifiedUserData = JSON.stringify(user);
+    // var loginName = user.login;
+    // console.log('user.login inside masterCtrl', loginName);
+    jQuery(function($){
+      $("body").click(function(event) {
+        $stateParams.selectedUserID = event.target.id;
+
+        selectedUserID = event.target.id;
+      });
+      console.log('selectedUserID', selectedUserID);
+
+      socket.emit('new user', user.login, function(data){
+      });
+      
+      socket.on('usernames', function(data){
+        console.log('----------------->socket.on triggered');
+        console.log('------------------> socket.on usernames, data:', data);
+        // console.log('------------------> socket.on usernames, typeof data:', Array.isArray(data));
+
+        // $rootScope.activeUsers = data;
+        var html = '';
+        for (var i = 0 ; i < data.length; i++) {
+          // console.log('data[key]-------------->',data[key]);
+
+          // var indivUserInfo = JSON.parse(data[key]).userinfo;
+          // console.log('indivUserInfo-------------->',indivUserInfo);
+          // console.log('indivUserInfo.id-------------->',indivUserInfo.id);
+          // console.log('indivUserInfo.name-------------->',indivUserInfo.name);
+          html += '<li class="sidebar-list"><a id="userid' + data[i] + '" href="#/chat"> ' + data[i] + '</a></li>';
+
+        }
+        // for(var i = 0; i < data.length; i++){
+        //   var parsedUserInfo = JSON.parse(data[i]);
+        //   html += '<li class="sidebar-list" id="userid' + parsedUserInfo.id + '"><a href="#"> ' + parsedUserInfo.name + '</a></li>';
+        // }
+        $users.html(html);
+      });
+
+      // socket.emit('new user', loginName, function(data){
+      //   console.log('socket.emit on new user, data:', data);
+      //   console.log('socket.emit on new user, loginName:', loginName);
+      // });
+      
+      // socket.on('usernames', function(data){
+      //   console.log('socket.on usernames',data);
+      //   $rootScope.activeUsers = data;
+      //   var html = '';
+      //   for(var i = 0; i < data.length; i++){
+      //     // var parsedUserInfo = JSON.parse(data[i]);
+      //     html += '<li class="sidebar-list" id="userid' + data[i] + '"><a href="#"> ' + data[i] + '</a></li>';
+      //   }
+      //   $users.html(html);
+      // });    
+    });
+
 
     $scope.submitSearch = function () {
         console.log('========= I am in the MasterCtrl trying to submitSearch() on ' + $scope.keywords);
