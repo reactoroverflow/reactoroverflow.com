@@ -16,7 +16,9 @@ module.exports = function(grunt) {
         indent: 2,
         globals: {
           angular: true,
-          jQuery: true
+          jQuery: true,
+          marked: true,
+          SimpleMDE: true
         },
       }
     }

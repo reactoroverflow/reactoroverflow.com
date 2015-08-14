@@ -8,7 +8,7 @@ var comments = require(path.resolve('./server/controllers/comments.controllers.s
 module.exports = function(app) {
 
   app.route('/api/comments').all(auth.loggedIn)
-    .get(comments.renderComment)
+    .get(comments.renderComments)
     .post(comments.storeComment);
 
   app.route('/api/comments/:commentID').all(auth.loggedIn)

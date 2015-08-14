@@ -57,4 +57,40 @@ angular.module('RDash.services', [])
     searchPosts: searchPosts,
     addPost: addPost
   };
+})
+.factory('Comments', function ($http) {
+
+  var getComments = function(cb){
+    $http({
+      method: 'GET',
+      url: '/api/comments'
+    }).then(function (resp) {
+      cb(resp.data);
+    });
+  };
+
+  var getComment = function(postID, cb){
+    $http({
+      method: 'GET',
+      url: '/api/comments/'+postID
+    }).then(function (resp) {
+      cb(resp.data);
+    });
+  };
+
+  var addComment = function(post){
+    return $http({
+      method: 'POST',
+      url: '/api/comments',
+      data: post
+    }).then(function (resp) {
+      return resp.data;
+    });
+  };
+
+  return {
+    getComments: getComments,
+    getComment: getComment,
+    addComment: addComment
+  };
 });

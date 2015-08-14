@@ -49,7 +49,7 @@ exports.renderComment = function(req, res) {
 };
 
 exports.storeComment = function(req, res) {
-  var post = req.post;
+  var post = req.body;
 
   var comment = {};
   comment.postID = post._id;

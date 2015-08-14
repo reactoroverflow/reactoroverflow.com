@@ -1,16 +1,14 @@
 <div id='container' ng-controller='PostCtrl'>
+
   <div class="col-md-12">
     <rd-widget>
       <rd-widget-body>
-        <div class="title" class="col-md-12">
-          Title: {{data.post.title}}
+        <div class="title">
+          {{data.post.title}}
         </div>
-        <div class="author">
-          Author: {{data.post.author}}
-        </div>
-        <div class="content">
-          Content: {{data.post.content}}
-        </div>
+        <hr/>
+        <div class="content" ng-bind-html='data.post.content'></div>
+        <br/>
         <div class="tags">
           Tags: {{data.post.tags}}
         </div>
@@ -18,7 +16,56 @@
         <div class="data">
           <image src={{data.post.data}} style="width:100px; height:100px;">
         </div>
-        
+        <hr/>
+        <div class="authorTags">
+          <div class="pull-left">
+            <img style="width:50px; border-radius: 2px" src="img/avatar.jpg"/>
+          </div>
+          <div class="pull-right" style=" margin: 5px 10px;">
+            <div class="author">
+              <a href="http://www.github.com/{{data.post.author}}">@{{data.post.author}}</a>
+            </div>
+            <div class="date">
+              Posted: {{data.post.created_at}}
+            </div>
+          </div>
+        </div>
+      </rd-widget-body>
+    </rd-widget>
+    <br/>
+    <rd-widget>
+      <rd-widget-body>
+        <div>
+          Replies
+        </div>
+        <hr>
+
+        <div ng-repeat="comment in data.comments | orderBy:'_source.created_at'">
+          <rd-widget>
+            <rd-widget-body>
+              <div ng-bind-html='comment._source.content'></div>
+              <hr>
+              <div class="authorTags">
+                <div class="pull-left">
+                  <img style="width:50px; border-radius: 2px" src="img/avatar.jpg"/>
+                </div>
+                <div class="pull-right" style=" margin: 5px 10px;">
+                  <div class="author">
+                    <a href="http://www.github.com/{{comment._source.author}}">@{{comment._source.author}}</a>
+                  </div>
+                  <div class="date">
+                    Posted: {{comment._source.created_at}}
+                  </div>
+                </div>
+              </div>
+            </rd-widget-body>
+          </rd-widget>
+          <br/>
+        </div>
+
+        <textarea></textarea>
+
+        <button class="btn btn-sm btn-primary" ng-click="createComment()">Reply</button>
       </rd-widget-body>
     </rd-widget>
   </div>
