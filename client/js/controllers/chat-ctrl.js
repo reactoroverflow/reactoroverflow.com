@@ -1,5 +1,4 @@
 'use strict';
-var io = require('../../index');
 
 /**
  * Create Controller
@@ -17,19 +16,19 @@ angular.module('RDash')
     var $messageBox = $('#message');
     var $chat = $('#chat');
     
-    $nickForm.submit(function(e){
-      e.preventDefault();
-      socket.emit('new user', $nickBox.val(), function(data){
-        console.log("socket emitting new user info");
-        if(data){
-          $('#nickWrap').hide();
-          $('#contentWrap').show();
-        } else{
-          $nickError.html('That username is already taken!  Try again.');
-        }
+    // $nickForm.submit(function(e){
+      // e.preventDefault();
+      socket.emit('new user', user.name, function(data){
+        // console.log("socket emitting new user info");
+        // if(data){
+        //   $('#nickWrap').hide();
+        //   $('#contentWrap').show();
+        // } else{
+        //   $nickError.html('That username is already taken!  Try again.');
+        // }
       });
-      $nickBox.val('');
-    });
+      // $nickBox.val('');
+    // });
     
     socket.on('usernames', function(data){
       var html = '';
