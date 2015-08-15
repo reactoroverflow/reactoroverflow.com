@@ -25,7 +25,7 @@ function MasterCtrl($rootScope, $scope, $cookieStore, Posts) {
         var html = '';
         for(var i = 0; i < data.length; i++){
           var parsedUserInfo = JSON.parse(data[i]) 
-          html += '<li id="userid' + parsedUserInfo.id + '">' + parsedUserInfo.name + '</li>';
+          html += '<li class="sidebar-list" id="userid' + parsedUserInfo.id + '"><a href="#"> ' + parsedUserInfo.name + '</a></li>';
         }
         console.log(html)
         $users.html(html);
