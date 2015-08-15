@@ -51,8 +51,10 @@ io.sockets.on('connection', function(socket){
   });
   
   socket.on('disconnect', function(data){
-    if(!socket.nickname) return;
+    if(!socket.nickname) {return};
     delete users[socket.nickname];
     updateNicknames();
   });
 });
+
+module.exports = io;

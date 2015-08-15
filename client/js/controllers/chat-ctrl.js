@@ -1,4 +1,5 @@
 'use strict';
+var io = require('../../index');
 
 /**
  * Create Controller
@@ -32,8 +33,8 @@ angular.module('RDash')
     
     socket.on('usernames', function(data){
       var html = '';
-      for(i=0; i < data.length; i++){
-        html += data[i] + '<br/>'
+      for(var i = 0; i < data.length; i++){
+        html += data[i] + '<br/>';
       }
       $users.html(html);
     });
