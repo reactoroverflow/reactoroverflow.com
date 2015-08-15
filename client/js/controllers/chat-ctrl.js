@@ -5,39 +5,29 @@
  */
 
 angular.module('RDash')
-.controller('ChatCtrl', function ChatCtrl ($scope) {
+.controller('ChatCtrl', function ChatCtrl ($scope, $rootScope) {
   jQuery(function($){
     var socket = io.connect();
     var $nickForm = $('#setNick');
     var $nickError = $('#nickError');
     var $nickBox = $('#nickname');
-    var $users = $('#users');
+    var $usersList = $('#usersList');
     var $messageForm = $('#send-message');
     var $messageBox = $('#message');
     var $chat = $('#chat');
-    
-    // $nickForm.submit(function(e){
-      // e.preventDefault();
-      socket.emit('new user', user.name, function(data){
-        // console.log("socket emitting new user info");
-        // if(data){
-        //   $('#nickWrap').hide();
-        //   $('#contentWrap').show();
-        // } else{
-        //   $nickError.html('That username is already taken!  Try again.');
-        // }
-      });
-      // $nickBox.val('');
+    console.log($rootScope.activeUsers, "activeUsers rootscope")
+    // socket.emit('new user', user.name, function(data){
     // });
     
-    socket.on('usernames', function(data){
+    // socket.on('usernames', function(data){
       var html = '';
-      for(var i = 0; i < data.length; i++){
-        html += data[i] + '<br/>';
+      for(var i = 0; i < $rootScope.activeUsers.length; i++){
+        html += '<p id="' + $rootScope.activeUsers[i] + '">' + $rootScope.activeUsers[i] + '</p>';
       }
-      $users.html(html);
-    });
-    
+      console.log(html)
+      // $usersList.html(html);
+    // });
+
     $messageForm.submit(function(e){
       e.preventDefault();
       console.log("submitting message");

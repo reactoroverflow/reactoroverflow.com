@@ -12,6 +12,26 @@ function MasterCtrl($rootScope, $scope, $cookieStore, Posts) {
      * Sidebar Toggle & Cookie Control
      */
     var mobileView = 992;
+    var $users = $('#users');
+    console.log('all user info', user);
+    var stringifiedUserData = JSON.stringify(user);
+    jQuery(function($){
+      socket.emit('new user', stringifiedUserData, function(data){
+      });
+      
+      socket.on('usernames', function(data){
+        console.log('data',data);
+        $rootScope.activeUsers = data;
+        var html = '';
+        for(var i = 0; i < data.length; i++){
+          var parsedUserInfo = JSON.parse(data[i]) 
+          html += '<li id="userid' + parsedUserInfo.id + '">' + parsedUserInfo.name + '</li>';
+        }
+        console.log(html)
+        $users.html(html);
+      });
+    });
+
 
     $scope.submitSearch = function () {
         console.log('========= I am in the MasterCtrl trying to submitSearch() on ' + $scope.keywords);
