@@ -1,12 +1,11 @@
 'use strict';
-var io = require('../../index');
 
 /**
  * Create Controller
  */
 
 angular.module('RDash')
-.controller('ChatCtrl', function ChatCtrl ($scope) {
+.controller('ChatCtrl', function ChatCtrl ($scope, $rootScope) {
   jQuery(function($){
     var socket = io.connect();
     var $nickForm = $('#setNick');
@@ -16,20 +15,20 @@ angular.module('RDash')
     var $messageForm = $('#send-message');
     var $messageBox = $('#message');
     var $chat = $('#chat');
-    
-    $nickForm.submit(function(e){
-      e.preventDefault();
-      socket.emit('new user', $nickBox.val(), function(data){
-        console.log("socket emitting new user info");
-        if(data){
-          $('#nickWrap').hide();
-          $('#contentWrap').show();
-        } else{
-          $nickError.html('That username is already taken!  Try again.');
-        }
+    // console.log("------------------------>user", user.name);
+    // $nickForm.submit(function(e){
+      // e.preventDefault();
+      socket.emit('new user', user.name, function(data){
+        console.log("socket emitting new user info, $nickBox.val():", user.name);
+        // if(data){
+        //   // $('#nickWrap').hide();
+        //   // $('#contentWrap').show();
+        // } else{
+        //   $nickError.html('That username is already taken!  Try again.');
+        // }
       });
-      $nickBox.val('');
-    });
+      // $nickBox.val('');
+    // }); //$nickForm.submit
     
     socket.on('usernames', function(data){
       var html = '';
