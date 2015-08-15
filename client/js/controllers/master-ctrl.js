@@ -12,6 +12,27 @@ function MasterCtrl($rootScope, $scope, $cookieStore, Posts) {
      * Sidebar Toggle & Cookie Control
      */
     var mobileView = 992;
+    $rootScope.activeUsers;
+    jQuery(function($){
+      // $(document).ready(function() {
+        var socket = io.connect();
+        socket.emit('new user', user.name, function(data){
+          console.log('new user emitted',data);
+        });
+
+        socket.on('usernames', function(data){
+          $rootScope.activeUsers = data;
+          console.log('$rootScope.activeUsers-------------->', $rootScope.activeUsers);
+          // console.log('masterCtrl------------->',$rootScope.activeUsers);
+          console.log('masterCtrl-------------> Is array if true',Array.isArray($rootScope.activeUsers));
+          console.log('$rootScope activeUsers-------------> type of what',typeof $rootScope.activeUsers);
+          for (var i = 0 ; i < $rootScope.activeUsers.length; i++) {
+            console.log($rootScope.activeUsers[i]);
+          }
+        });
+        
+      // }); //$document.ready
+    });
 
     $scope.submitSearch = function () {
         console.log('========= I am in the MasterCtrl trying to submitSearch() on ' + $scope.keywords);

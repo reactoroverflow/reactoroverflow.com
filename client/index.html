@@ -94,6 +94,10 @@
         </li>
         <!-- Active users -->
         <li class="sidebar-title"><span>Active Users</span></li>
+        <ul>
+          <li ng-repeat="user in activeUsers"> {{ user }} </li>
+        </ul>
+
         <li class="sidebar-list">
           <a href="#/chat">Chat <!-- <span class="menu-icon fa fa-tachometer"></span> --></a>
         </li>
