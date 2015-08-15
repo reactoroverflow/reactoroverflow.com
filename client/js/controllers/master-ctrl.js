@@ -13,23 +13,38 @@ function MasterCtrl($rootScope, $scope, $cookieStore, Posts) {
      */
     var mobileView = 992;
     var $users = $('#users');
-    console.log('all user info', user);
     var stringifiedUserData = JSON.stringify(user);
+    var loginName = user.login;
+    console.log('user.login inside masterCtrl', loginName);
     jQuery(function($){
       socket.emit('new user', stringifiedUserData, function(data){
       });
       
       socket.on('usernames', function(data){
-        console.log('data',data);
         $rootScope.activeUsers = data;
         var html = '';
         for(var i = 0; i < data.length; i++){
-          var parsedUserInfo = JSON.parse(data[i]) 
+          var parsedUserInfo = JSON.parse(data[i]);
           html += '<li class="sidebar-list" id="userid' + parsedUserInfo.id + '"><a href="#"> ' + parsedUserInfo.name + '</a></li>';
         }
-        console.log(html)
         $users.html(html);
       });
+
+      // socket.emit('new user', loginName, function(data){
+      //   console.log('socket.emit on new user, data:', data);
+      //   console.log('socket.emit on new user, loginName:', loginName);
+      // });
+      
+      // socket.on('usernames', function(data){
+      //   console.log('socket.on usernames',data);
+      //   $rootScope.activeUsers = data;
+      //   var html = '';
+      //   for(var i = 0; i < data.length; i++){
+      //     // var parsedUserInfo = JSON.parse(data[i]);
+      //     html += '<li class="sidebar-list" id="userid' + data[i] + '"><a href="#"> ' + data[i] + '</a></li>';
+      //   }
+      //   $users.html(html);
+      // });    
     });
 
 

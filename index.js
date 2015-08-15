@@ -16,8 +16,8 @@ io.sockets.on('connection', function(socket){
       callback(false);
     } else{
       callback(true);
-      socket.nickname = data;
-      users[socket.nickname] = socket;
+      socket.userinfo = data;
+      users[socket.userinfo] = socket;
       updateNicknames();
     }
   });
@@ -27,6 +27,8 @@ io.sockets.on('connection', function(socket){
   }
 
   socket.on('send message', function(data, callback){
+    var parsedUserInfo = JSON.parse(socket.userinfo);
+    var userName = parsedUserInfo.name;
     var msg = data.trim();
     console.log('after trimming message is: ' + msg);
     if(msg.substr(0,3) === '/w '){
@@ -36,7 +38,7 @@ io.sockets.on('connection', function(socket){
         var name = msg.substring(0, ind);
         var msg = msg.substring(ind + 1);
         if(name in users){
-          users[name].emit('whisper', {msg: msg, nick: socket.nickname});
+          users[name].emit('whisper', {msg: msg, nick: userName});
           console.log('message sent is: ' + msg);
           console.log('Whisper!');
         } else{
@@ -46,15 +48,15 @@ io.sockets.on('connection', function(socket){
         callback('Error!  Please enter a message for your whisper.');
       }
     } else{
-      io.sockets.emit('new message', {msg: msg, nick: socket.nickname});
+      io.sockets.emit('new message', {msg: msg, nick: userName});
     }
   });
   
   socket.on('disconnect', function(data){
-    if(!socket.nickname) {return};
-    delete users[socket.nickname];
+    if(!socket.userinfo) {return};
+    delete users[socket.userinfo];
     updateNicknames();
   });
 });
 
-module.exports = io;
+// module.exports = io;
