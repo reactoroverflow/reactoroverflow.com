@@ -2,30 +2,20 @@
   #chat{
     height:500px;
   }
-  #contentWrap{
+  .templateWrap{
+    display: block;  
     /*display: none;*/
   }
   #chatWrap{
-    float: left;
+    /*float: left;*/
+    width:90%;
+    display: block;
     border: 1px #000 solid;
   }
   .error{
     color: red;
   }
-  .whisper{
-    color: gray;
-    font-style: italic;
-  }
 </style>
-<!-- <div id="nickWrap">
-  <p>Enter a username:</p>
-  <p id="nickError"></p>
-  <form id="setNick">
-    <input size="35" id="nickname"></input>
-    <input type="submit"></input>
-  </form>
-</div>
- -->
 <div id="contentWrap">
   <div id="chatWrap">
     <div id="chat"></div>
@@ -34,6 +24,6 @@
       <input type="submit"></input>
     </form>
   </div>
-  <div id="usersList">
-  </div>
+</div>
+<div class="templateWrap"> 
 </div>

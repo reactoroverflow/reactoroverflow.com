@@ -33,7 +33,7 @@ angular.module('RDash')
         controller: 'CreateCtrl'
       })
       .state('chat', {
-        url: '/chat',
+        url: '/chat/:userID',
         templateUrl: 'templates/chat.html',
         controller: 'ChatCtrl'
       })
