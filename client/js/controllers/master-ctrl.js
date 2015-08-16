@@ -7,16 +7,23 @@
 angular.module('RDash')
     .controller('MasterCtrl', ['$rootScope', '$scope', '$cookieStore', 'Posts', MasterCtrl]);
 
-function MasterCtrl($rootScope, $scope, $cookieStore, Posts) {
+function MasterCtrl($rootScope, $scope, $cookieStore, Posts, $stateParams) {
     /**
      * Sidebar Toggle & Cookie Control
      */
     var mobileView = 992;
     var $users = $('#users');
+    var selectedUserID;
     // var stringifiedUserData = JSON.stringify(user);
     // var loginName = user.login;
     // console.log('user.login inside masterCtrl', loginName);
     jQuery(function($){
+      $("body").click(function(event) {
+        $stateParams.selectedUserID = event.target.id;
+
+        selectedUserID = event.target.id;
+      });
+      console.log('selectedUserID', selectedUserID);
 
       socket.emit('new user', user.login, function(data){
       });
@@ -35,7 +42,7 @@ function MasterCtrl($rootScope, $scope, $cookieStore, Posts) {
           // console.log('indivUserInfo-------------->',indivUserInfo);
           // console.log('indivUserInfo.id-------------->',indivUserInfo.id);
           // console.log('indivUserInfo.name-------------->',indivUserInfo.name);
-          html += '<li class="sidebar-list" id="userid' + data[i] + '"><a href="#"> ' + data[i] + '</a></li>';
+          html += '<li class="sidebar-list"><a id="userid' + data[i] + '" href="#/chat"> ' + data[i] + '</a></li>';
 
         }
         // for(var i = 0; i < data.length; i++){

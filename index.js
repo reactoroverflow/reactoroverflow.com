@@ -81,6 +81,7 @@ io.sockets.on('connection', function(socket){
 
           
           users[name].emit('whisper', {msg: msg, nick: socket.nickname});
+          socket.emit('whisper', {msg: msg, nick: socket.nickname});
 
           // console.log('----------------->*******users[name].emit whisper executed');
           // also do the above line for the current user. 
