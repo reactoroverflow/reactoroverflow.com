@@ -29,7 +29,7 @@ angular.module('RDash')
       // $usersList.html(html);
     // });
     var selectedUserToSend = $rootScope.selectedUserID;
-    $templateWrap.html(selectedUserToSend);
+    $templateWrap.append(selectedUserToSend.slice(6));
 
     $messageForm.submit(function(e){
       e.preventDefault();
@@ -51,37 +51,35 @@ angular.module('RDash')
 
       var msg = data.trim();
       console.log('after trimming message is: ' + msg);
-      if(msg.substr(0,3) === '/w '){
-        msg = msg.substr(3);
-        var ind = msg.indexOf(' ');
-        if(ind !== -1){
+      // if(msg.substr(0,3) === '/w '){
+      //   msg = msg.substr(3);
+      //   var ind = msg.indexOf(' ');
+      //   if(ind !== -1){
           // var name = msg.substring(0, ind);
-          var name = selectedUserToSend;
+      var name = selectedUserToSend;
+      var msg = msg.substring(ind + 1);
+      if(name in users){
+        // console.log('---------------->*****name',name);
+        // console.log('---------------->*****msg',msg);          
+        // console.log('---------------->*****users',users);
+        // console.log('---------------->*****users[name]',users[name]);
+        
+        users[name].emit('whisper', {msg: msg, nick: socket.nickname});
+        socket.emit('whisper', {msg: msg, nick: socket.nickname});
 
-          var msg = msg.substring(ind + 1);
-          if(name in users){
-            // console.log('---------------->*****name',name);
-            // console.log('---------------->*****msg',msg);          
-            // console.log('---------------->*****users',users);
-            // console.log('---------------->*****users[name]',users[name]);
-
-            
-            users[name].emit('whisper', {msg: msg, nick: socket.nickname});
-            socket.emit('whisper', {msg: msg, nick: socket.nickname});
-
-            // console.log('----------------->*******users[name].emit whisper executed');
-            // also do the above line for the current user. 
-            console.log('message sent is: ' + msg);
-            console.log('Whisper!');
-          } else{
-            callback('Error!  Enter a valid user.');
-          }
-        } else{
-          callback('Error!  Please enter a message for your whisper.');
-        }
-      } else{
-        io.sockets.emit('new message', {msg: msg, nick: socket.nickname});
+        // console.log('----------------->*******users[name].emit whisper executed');
+        // also do the above line for the current user. 
+        console.log('message sent is: ' + msg);
+        console.log('Whisper!');
+      } else {
+        callback('Error!  Enter a valid user.');
       }
+      //   } else{ //index does not exist
+      //     callback('Error!  Please enter a message for your whisper.');
+      //   }
+      // } else{ //if /w exists
+      //   io.sockets.emit('new message', {msg: msg, nick: socket.nickname});
+      // }
     });
     
     socket.on('new message', function(data){
