@@ -21,7 +21,7 @@ io.sockets.on('connection', function(socket){
       callback(false);
     } else{
       callback(true);
-      // socket.userinfo = JSON.stringify(data);
+      socket.userinfo = data;
       // console.log('-------------------> socket.on new user, socket.userinfo', socket.userinfo);
       console.log('-------------------> socket.on new user, socket', socket);
 
@@ -41,6 +41,9 @@ io.sockets.on('connection', function(socket){
   }
 
   socket.on('send message', function(data, callback){
+    console.log('-------------------> socket.on sendmessage, data:', data);
+    console.log('-------------------> socket.on sendmessage, socket:', socket);
+
     var parsedUserInfo = JSON.parse(socket.userinfo);
     var userName = parsedUserInfo.name;
     var msg = data.trim();
