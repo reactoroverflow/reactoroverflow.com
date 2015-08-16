@@ -18,23 +18,24 @@ function MasterCtrl($rootScope, $scope, $cookieStore, Posts) {
     // console.log('user.login inside masterCtrl', loginName);
     jQuery(function($){
 
-      socket.emit('new user', user, function(data){
+      socket.emit('new user', user.login, function(data){
       });
       
       socket.on('usernames', function(data){
+        console.log('----------------->socket.on triggered');
         console.log('------------------> socket.on usernames, data:', data);
-        console.log('------------------> socket.on usernames, typeof data:', Array.isArray(data));
+        // console.log('------------------> socket.on usernames, typeof data:', Array.isArray(data));
 
         // $rootScope.activeUsers = data;
         var html = '';
-        for (var key in data) {
-          console.log('data[key]-------------->',data[key]);
+        for (var i = 0 ; i < data.length; i++) {
+          // console.log('data[key]-------------->',data[key]);
 
-          var indivUserInfo = JSON.parse(data[key]).userinfo;
-          console.log('indivUserInfo-------------->',indivUserInfo);
-          console.log('indivUserInfo.id-------------->',indivUserInfo.id);
-          console.log('indivUserInfo.name-------------->',indivUserInfo.name);
-          html += '<li class="sidebar-list" id="userid' + indivUserInfo.id + '"><a href="#"> ' + indivUserInfo.name + '</a></li>';
+          // var indivUserInfo = JSON.parse(data[key]).userinfo;
+          // console.log('indivUserInfo-------------->',indivUserInfo);
+          // console.log('indivUserInfo.id-------------->',indivUserInfo.id);
+          // console.log('indivUserInfo.name-------------->',indivUserInfo.name);
+          html += '<li class="sidebar-list" id="userid' + data[i] + '"><a href="#"> ' + data[i] + '</a></li>';
 
         }
         // for(var i = 0; i < data.length; i++){

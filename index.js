@@ -18,7 +18,7 @@ io.sockets.on('connection', function(socket){
     // var userID = JSON.stringify(parsedUserInfo.id).slice();
     // console.log('socket.on new user, parsedUserInfo.id', parsedUserInfo.id);
     // var userID = "lina";
-    if (data.id in users){
+    if (data in users){
       callback(false);
     } else{
       callback(true);
@@ -32,7 +32,7 @@ io.sockets.on('connection', function(socket){
       // console.log('-------------------> socket.on users, socket.emit:', socket.emit);
 
 
-      socket.nickname = data.id;
+      socket.nickname = data;
       users[socket.nickname] = socket;
 
       // socket.nickname = data;
@@ -42,9 +42,9 @@ io.sockets.on('connection', function(socket){
       // users[userID].userinfo = parsedUserInfo;
       // // socket.userinfo = data;
       // JSON.stringify(socket);
-      console.log('1.-------------------> socket.on new user, users', users);
+      // console.log('1.-------------------> socket.on new user, users', users);
       // var allUsers = JSON.stringify(users).slice();
-      console.log('2.-------------------> socket.on new user, users', users);
+      // console.log('2.-------------------> socket.on new user, users', users);
 
       updateNicknames();
     }
@@ -52,19 +52,19 @@ io.sockets.on('connection', function(socket){
   });
   
   function updateNicknames(){
-    console.log('-------------------> socket.emit usernames, users:', users);
-    console.log('-------------------> socket.emit usernames, typeof users:', typeof users);
+    // console.log('-------------------> socket.emit usernames, users:', users);
+    // console.log('-------------------> socket.emit usernames, typeof users:', typeof users);
     // var stringifiedUsers = JSON.stringify(users);
     // socket.emit('usernames', users);
-    io.sockets.emit('usernames', users);
+    io.sockets.emit('usernames', Object.keys(users));
   }
 
   socket.on('send message', function(data, callback){
-    console.log('-------------------> socket.on sendmessage, data:', data);
-    console.log('-------------------> socket.on sendmessage, socket:', socket);
+    // console.log('-------------------> socket.on sendmessage, data:', data);
+    // console.log('-------------------> socket.on sendmessage, socket:', socket);
 
-    var parsedUserInfo = JSON.parse(socket.userinfo);
-    var userName = parsedUserInfo.name;
+    // var parsedUserInfo = JSON.parse(socket.userinfo);
+    // var userName = parsedUserInfo.name;
     var msg = data.trim();
     console.log('after trimming message is: ' + msg);
     if(msg.substr(0,3) === '/w '){
@@ -74,15 +74,15 @@ io.sockets.on('connection', function(socket){
         var name = msg.substring(0, ind);
         var msg = msg.substring(ind + 1);
         if(name in users){
-          console.log('---------------->*****name',name);
-          console.log('---------------->*****msg',msg);          
-          console.log('---------------->*****users',users);
-          console.log('---------------->*****users[name]',users[name]);
+          // console.log('---------------->*****name',name);
+          // console.log('---------------->*****msg',msg);          
+          // console.log('---------------->*****users',users);
+          // console.log('---------------->*****users[name]',users[name]);
 
           
-          users[name].emit('whisper', {msg: msg, nick: userName});
+          users[name].emit('whisper', {msg: msg, nick: socket.nickname});
 
-          console.log('----------------->*******users[name].emit whisper executed');
+          // console.log('----------------->*******users[name].emit whisper executed');
           // also do the above line for the current user. 
           console.log('message sent is: ' + msg);
           console.log('Whisper!');
@@ -93,13 +93,13 @@ io.sockets.on('connection', function(socket){
         callback('Error!  Please enter a message for your whisper.');
       }
     } else{
-      io.sockets.emit('new message', {msg: msg, nick: userName});
+      io.sockets.emit('new message', {msg: msg, nick: socket.nickname});
     }
   });
   
   socket.on('disconnect', function(data){
-    if(!socket.userinfo) {return};
-    delete users[socket.userinfo];
+    if(!socket.nickname) {return};
+    delete users[socket.nickname];
     updateNicknames();
   });
 });
