@@ -5,7 +5,7 @@
  */
 
 angular.module('RDash')
-.controller('ChatCtrl', function ChatCtrl ($scope, $rootScope, $stateParams) {
+.controller('ChatCtrl', function ChatCtrl ($scope, $rootScope) {
   jQuery(function($){
     var $nickForm = $('#setNick');
     var $nickError = $('#nickError');
@@ -14,6 +14,8 @@ angular.module('RDash')
     var $messageForm = $('#send-message');
     var $messageBox = $('#message');
     var $chat = $('#chat');
+    var $templateWrap = $('.templateWrap');
+
     // console.log($rootScope.activeUsers, "activeUsers rootscope")
     // socket.emit('new user', user.name, function(data){
     // });
@@ -26,7 +28,9 @@ angular.module('RDash')
       // console.log(html)
       // $usersList.html(html);
     // });
-    var selectedUserToSend = $stateParams.selectedUserID;
+    var selectedUserToSend = $rootScope.selectedUserID;
+    $templateWrap.html(selectedUserToSend);
+
     $messageForm.submit(function(e){
       e.preventDefault();
       console.log("submitting message");
@@ -44,6 +48,7 @@ angular.module('RDash')
 
       // var parsedUserInfo = JSON.parse(socket.userinfo);
       // var userName = parsedUserInfo.name;
+
       var msg = data.trim();
       console.log('after trimming message is: ' + msg);
       if(msg.substr(0,3) === '/w '){
@@ -52,6 +57,7 @@ angular.module('RDash')
         if(ind !== -1){
           // var name = msg.substring(0, ind);
           var name = selectedUserToSend;
+
           var msg = msg.substring(ind + 1);
           if(name in users){
             // console.log('---------------->*****name',name);
