@@ -14,7 +14,7 @@ angular.module('RDash')
     var $messageForm = $('#send-message');
     var $messageBox = $('#message');
     var $chat = $('#chat');
-    var $templateWrap = $('.templateWrap');
+    var $templateWrap= $('.templateWrap');
 
     // console.log($rootScope.activeUsers, "activeUsers rootscope")
     // socket.emit('new user', user.name, function(data){

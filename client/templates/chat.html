@@ -2,13 +2,14 @@
   #chat{
     height:500px;
   }
-  #contentWrap{
+  .templateWrap{
+    display: block;  
     /*display: none;*/
   }
   #chatWrap{
-    float: left;
+    /*float: left;*/
     width:90%;
-    display: inline-block;
+    display: block;
     border: 1px #000 solid;
   }
   .error{
@@ -28,16 +29,14 @@
   </form>
 </div>
  -->
-<div class="templateWrap"> 
-  <div id="contentWrap">
-    <div id="chatWrap">
-      <div id="chat"></div>
-      <form id="send-message">
-        <input size="35" id="message"></input>
-        <input type="submit"></input>
-      </form>
-    </div>
-    <div id="usersList">
-    </div>
+<div id="contentWrap">
+  <div id="chatWrap">
+    <div id="chat"></div>
+    <form id="send-message">
+      <input size="35" id="message"></input>
+      <input type="submit"></input>
+    </form>
   </div>
+</div>
+<div class="templateWrap"> 
 </div>
