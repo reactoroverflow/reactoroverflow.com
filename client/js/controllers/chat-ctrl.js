@@ -29,7 +29,7 @@ angular.module('RDash')
       // $usersList.html(html);
     // });
     var selectedUserToSend = $rootScope.selectedUserID;
-    $templateWrap.append(selectedUserToSend.slice(6));
+    $templateWrap.append('Chatting to: ', selectedUserToSend.slice(6));
 
     $messageForm.submit(function(e){
       e.preventDefault();
