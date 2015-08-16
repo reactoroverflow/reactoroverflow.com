@@ -12,18 +12,32 @@ http.listen(4000, function(){
 
 io.sockets.on('connection', function(socket){
   socket.on('new user', function(data, callback){
-    if (data in users){
+    console.log('socket.on new user, data', data);
+    var parsedUserInfo = JSON.parse(data);
+    console.log('socket.on new user, parsedUserInfo', parsedUserInfo);
+    var userID = parsedUserInfo.id;
+    console.log('socket.on new user, parsedUserInfo.id', parsedUserInfo.id);
+    if (userID in users){
       callback(false);
     } else{
       callback(true);
-      socket.userinfo = data;
-      users[socket.userinfo] = socket;
+      // socket.userinfo = JSON.stringify(data);
+      // console.log('-------------------> socket.on new user, socket.userinfo', socket.userinfo);
+      console.log('-------------------> socket.on new user, socket', socket);
+
+      users[userID] = data;
+      // JSON.stringify(socket);
+      // console.log('-------------------> socket.on new user, users', users);
+
       updateNicknames();
     }
+    // console.log('-------------------> socket.on connection, users:', users);
   });
   
   function updateNicknames(){
-    io.sockets.emit('usernames', Object.keys(users));
+    console.log('-------------------> socket.emit usernames, users:', users);
+    // socket.emit('usernames', users);
+    io.sockets.emit('usernames', users);
   }
 
   socket.on('send message', function(data, callback){

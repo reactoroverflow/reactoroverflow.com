@@ -21,12 +21,25 @@ function MasterCtrl($rootScope, $scope, $cookieStore, Posts) {
       });
       
       socket.on('usernames', function(data){
+        console.log('------------------> socket.on usernames, data:', data);
+        console.log('------------------> socket.on usernames, typeof data:', Array.isArray(data));
+
         $rootScope.activeUsers = data;
         var html = '';
-        for(var i = 0; i < data.length; i++){
-          var parsedUserInfo = JSON.parse(data[i]);
-          html += '<li class="sidebar-list" id="userid' + parsedUserInfo.id + '"><a href="#"> ' + parsedUserInfo.name + '</a></li>';
+        for (var key in data) {
+          console.log('data[key]-------------->',data[key]);
+
+          var indivUserInfo = JSON.parse(data[key]);
+          console.log('indivUserInfo-------------->',indivUserInfo);
+          console.log('indivUserInfo.id-------------->',indivUserInfo.id);
+          console.log('indivUserInfo.name-------------->',indivUserInfo.name);
+          html += '<li class="sidebar-list" id="userid' + indivUserInfo.id + '"><a href="#"> ' + indivUserInfo.name + '</a></li>';
+
         }
+        // for(var i = 0; i < data.length; i++){
+        //   var parsedUserInfo = JSON.parse(data[i]);
+        //   html += '<li class="sidebar-list" id="userid' + parsedUserInfo.id + '"><a href="#"> ' + parsedUserInfo.name + '</a></li>';
+        // }
         $users.html(html);
       });
 
