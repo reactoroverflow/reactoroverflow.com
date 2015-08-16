@@ -44,6 +44,7 @@ angular.module('RDash')
     });
     
     socket.on('whisper', function(data){
+      console.log('--------------->socket.on whisper executed.');
       $chat.append('<span class="whisper"><b>' + data.nick + ': </b>' + data.msg + "</span><br/>");
     });
   });

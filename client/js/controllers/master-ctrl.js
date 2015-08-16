@@ -13,23 +13,24 @@ function MasterCtrl($rootScope, $scope, $cookieStore, Posts) {
      */
     var mobileView = 992;
     var $users = $('#users');
-    var stringifiedUserData = JSON.stringify(user);
-    var loginName = user.login;
-    console.log('user.login inside masterCtrl', loginName);
+    // var stringifiedUserData = JSON.stringify(user);
+    // var loginName = user.login;
+    // console.log('user.login inside masterCtrl', loginName);
     jQuery(function($){
-      socket.emit('new user', stringifiedUserData, function(data){
+
+      socket.emit('new user', user, function(data){
       });
       
       socket.on('usernames', function(data){
         console.log('------------------> socket.on usernames, data:', data);
         console.log('------------------> socket.on usernames, typeof data:', Array.isArray(data));
 
-        $rootScope.activeUsers = data;
+        // $rootScope.activeUsers = data;
         var html = '';
         for (var key in data) {
           console.log('data[key]-------------->',data[key]);
 
-          var indivUserInfo = JSON.parse(data[key]);
+          var indivUserInfo = JSON.parse(data[key]).userinfo;
           console.log('indivUserInfo-------------->',indivUserInfo);
           console.log('indivUserInfo.id-------------->',indivUserInfo.id);
           console.log('indivUserInfo.name-------------->',indivUserInfo.name);
