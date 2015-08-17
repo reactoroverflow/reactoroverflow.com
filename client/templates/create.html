@@ -49,10 +49,12 @@
       <!-- photo upload -->
       <div style="margin-top: 20px">
         Upload a Photo
-        <input  onchange="angular.element(this).scope().add()" type="file" id="file" name="file" style="margin-top: 10px"/>
+        <input  onchange="angular.element(this).scope().add()" type="file" id="file" name="file" style="margin-top: 10px" ng-click="showImagePreviewFn()"/>
         </br>
-        <p>Preview</p>
-        <image id="pic" src="" style="margin-top: 0px; width:100px; height:100px;">
+        <div ng-show="toShowImagePreview">
+          <p>Preview</p>
+          <image id="pic" src="" style="margin-top: 0px; width:100px; height:100px;">
+        </div>
       </div>
       </br>
 

@@ -10,13 +10,14 @@ angular.module('RDash')
   $scope.tags = [];
   $scope.tag = '';
   $scope.tagsObject = {};
-  $scope.content = [];
+  $scope.content = '';
   $scope.isDisabled = true;
   $scope.instruction = '';
   $scope.data = '';
   $scope.tagPlaceholder = 'Add individual tags. Be specific.';
   $scope.enterTitleInstruc = 'Enter Title';
   $scope.categoryInstruc = 'Select Category';
+  $scope.toShowImagePreview = false;
 
   $scope.add = function() {
     var preview = document.getElementById('pic');
@@ -29,6 +30,10 @@ angular.module('RDash')
     r.readAsDataURL( f );
   }; //adds image data to $scope.data
 
+  $scope.showImagePreviewFn = function() {
+    $scope.toShowImagePreview = true;
+  }
+  
   $scope.addTag = function(newTag) {
     var newTagLower = newTag.toLowerCase();
     $scope.tagPlaceholder = '';
