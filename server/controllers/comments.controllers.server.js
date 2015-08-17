@@ -76,9 +76,13 @@ exports.upvoteComment = function(req, res) {
   if(!comment.upvotes) {
     comment.upvotes = [];
   }
-  comment.upvotes.push(req.session.user.id);
-
-  //save comment
+  if(comment.downvotes.indexOf(req.session.user.id) > -1) {
+    comment.downvotes.splice(comment.downvotes.indexOf(req.session.user.id), 1);
+  }
+  if(comment.upvotes.indexOf(req.session.user.id) === -1) {
+    comment.upvotes.push(req.session.user.id);
+  }
+  // save comment
 };
 
 exports.downvoteComment = function(req, res) {
@@ -86,9 +90,13 @@ exports.downvoteComment = function(req, res) {
   if(!comment.downvotes) {
     comment.downvotes = [];
   }
-  comment.downvotes.push(req.session.user.id);
-
-  // Save comment
+  if(comment.upvotes.indexOf(req.session.user.id) > -1) {
+    comment.upvotes.splice(comment.upvotes.indexOf(req.session.user.id), 1);
+  }
+  if(comment.downvotes.indexOf(req.session.user.id) === -1) {
+    comment.downvotes.push(req.session.user.id);
+  }
+  // save comment
 };
 
 exports.updateComment = function(req, res) {
