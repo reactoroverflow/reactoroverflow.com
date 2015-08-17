@@ -18,7 +18,10 @@ module.exports = function(grunt) {
           angular: true,
           jQuery: true,
           marked: true,
-          SimpleMDE: true
+          SimpleMDE: true,
+          _: true,
+          socket: true,
+          user: true
         },
       }
     }
