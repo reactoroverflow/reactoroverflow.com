@@ -38,7 +38,11 @@ exports.renderComments = function(req, res) {
       search.body.sort = '_score';
 
     client.search(search).then(function (result) {
-      res.json(result.hits.hits);
+      var hits = result.hits.hits;
+      for(var i=0; i<hits.length; i++) {
+        hits[i].votes = hits[i].upvotes.length - hits[i].downvotes.length;
+      }
+      res.json(hits);
     });
   }
   
