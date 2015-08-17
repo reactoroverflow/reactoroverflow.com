@@ -31,10 +31,10 @@ exports.renderComments = function(req, res) {
     search.body = {};
       search.body.query = {};
         search.body.query.match = {};
-          search.body.query.match.tags = {};
-            search.body.query.match.tags.query = postID;
-            search.body.query.match.tags.fuzziness = 1;
-            search.body.query.match.tags.operator = "and";
+          search.body.query.match.postID = {};
+            search.body.query.match.postID.query = postID;
+            search.body.query.match.postID.fuzziness = 1;
+            search.body.query.match.postID.operator = "and";
       search.body.sort = '_score';
 
     client.search(search).then(function (result) {
@@ -49,10 +49,8 @@ exports.renderComment = function(req, res) {
 };
 
 exports.storeComment = function(req, res) {
-  var post = req.body;
-
   var comment = {};
-  comment.postID = post._id;
+  comment.postID = req.body.postID;
   comment.content = req.body.content;
   comment.author = req.session.user.login;
   comment.replies = [];
