@@ -15,7 +15,6 @@ angular.module('RDash')
     });
     Comments.getComments($stateParams.postID, function (resp) {
       $scope.data.comments = resp;
-      console.log("===========> " + $scope.data.comments);
       $scope.data.comments.forEach(function (comment) {
         comment._source.created_at = new Date(comment._source.created_at).toString();
       });
@@ -31,7 +30,6 @@ angular.module('RDash')
     }; //keys: content
     Comments.addComment($scope.comment)
     .then(function(resp) {
-      console.log("===========> 2" + $scope.data.comments);
       resp._source.created_at = new Date(resp._source.created_at).toString();
       $scope.data.comments.push(resp);
     })

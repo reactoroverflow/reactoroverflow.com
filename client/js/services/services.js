@@ -59,16 +59,6 @@ angular.module('RDash.services', [])
   };
 })
 .factory('Comments', function ($http) {
-  //var comments = [];
-  // console.log(comments);
-  // var getComments = function(cb){
-  //   $http({
-  //     method: 'GET',
-  //     url: '/api/comments'
-  //   }).then(function (resp) {
-  //     cb(resp.data);
-  //   });
-  // };
 
   var getComments = function(postID, cb){
     $http({
@@ -91,7 +81,6 @@ angular.module('RDash.services', [])
 
   return {
     getComments: getComments,
-    // getComment: getComment,
     addComment: addComment
   };
 });
