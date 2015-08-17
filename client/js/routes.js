@@ -32,6 +32,11 @@ angular.module('RDash')
         templateUrl: 'templates/create.html',
         controller: 'CreateCtrl'
       })
+      .state('chat', {
+        url: '/chat/:userID',
+        templateUrl: 'templates/chat.html',
+        controller: 'ChatCtrl'
+      })
       .state('tables', {
         url: '/tables',
         templateUrl: 'templates/tables.html'
