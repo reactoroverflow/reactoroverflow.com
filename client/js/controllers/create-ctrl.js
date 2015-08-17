@@ -32,8 +32,8 @@ angular.module('RDash')
 
   $scope.showImagePreviewFn = function() {
     $scope.toShowImagePreview = true;
-  }
-  
+  };
+
   $scope.addTag = function(newTag) {
     var newTagLower = newTag.toLowerCase();
     $scope.tagPlaceholder = '';
