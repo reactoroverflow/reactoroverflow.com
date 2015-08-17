@@ -76,13 +76,26 @@ exports.upvoteComment = function(req, res) {
   if(!comment.upvotes) {
     comment.upvotes = [];
   }
+  if(!comment.downvotes) {
+    comment.downvotes = [];
+  }
   if(comment.downvotes.indexOf(req.session.user.id) > -1) {
     comment.downvotes.splice(comment.downvotes.indexOf(req.session.user.id), 1);
   }
   if(comment.upvotes.indexOf(req.session.user.id) === -1) {
     comment.upvotes.push(req.session.user.id);
   }
-  // save comment
+  var update = {};
+  update.index = 'comments';
+  update.type = 'comment';
+  update.id = comment._id;
+  update.body = {};
+  update.body.doc = {};
+  update.body.upvotes = comment.upvotes;
+  update.body.downvotes = comment.downvotes;
+  client.update(update).then(function (result) {
+    res.send(result);
+  });
 };
 
 exports.downvoteComment = function(req, res) {
@@ -90,13 +103,26 @@ exports.downvoteComment = function(req, res) {
   if(!comment.downvotes) {
     comment.downvotes = [];
   }
+  if(!comment.upvotes) {
+    comment.upvotes = [];
+  }
   if(comment.upvotes.indexOf(req.session.user.id) > -1) {
     comment.upvotes.splice(comment.upvotes.indexOf(req.session.user.id), 1);
   }
   if(comment.downvotes.indexOf(req.session.user.id) === -1) {
     comment.downvotes.push(req.session.user.id);
   }
-  // save comment
+  var update = {};
+  update.index = 'comments';
+  update.type = 'comment';
+  update.id = comment._id;
+  update.body = {};
+  update.body.doc = {};
+  update.body.upvotes = comment.upvotes;
+  update.body.downvotes = comment.downvotes;
+  client.update(update).then(function (result) {
+    res.send(result);
+  });
 };
 
 exports.updateComment = function(req, res) {
