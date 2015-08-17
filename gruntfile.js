@@ -21,7 +21,8 @@ module.exports = function(grunt) {
           SimpleMDE: true,
           _: true,
           socket: true,
-          user: true
+          user: true,
+          $: true
         },
       }
     }
