@@ -46,10 +46,7 @@ angular.module('RDash')
   $scope.upVote = function(commentID) {
     console.log("commentID ===== ", commentID)
     //use commentID to send the user into the comment.upVotes array
-    Comments.upVote(commentID, function(resp){
-      console.log("upVote resp ===== ", resp)
-      
-    })
+    Comments.upVote(commentID)
   };
 
   // $scope.downVote = function() {
