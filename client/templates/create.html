@@ -1,29 +1,36 @@
 <div id='container' ng-controller='CreateCtrl'>
+  <rd-widget>
+    <rd-widget-body>
+    
+      <!-- title -->
+      <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="title" placeholder="Enter title for your listing or question. Be specific." ng-model="title" ng-style="{ 'width' : '500px' }">
+      </br></br>
 
-  Title      
-  <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="title" placeholder="Enter title for your listing or question. Be specific." ng-model="title" ng-style="{ 'width' : '500px' }">
-  <br>
-  Post
-  <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="content" placeholder="Elaborate on your listing or question here" ng-model="content" ng-style="{ 'width' : '500px', 'height' : '500px' }">
-  <br>
-  Tags       
-  <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="tags" placeholder="Add individual tags. Be specific." ng-model="tag" ng-style="{ 'width' : '250px'}">
-  <button ng-click="addTag(tag); showInstruction();">add</button>
-  <p><font color="grey"><i> {{ instruction }} </i></font></p>
-  <ul>
-    <li ng-repeat="eachTag in tags track by $index" ng-click="removeTag($index)">
-    {{ eachTag }}
-    </li>
-  </ul>
-  <br>
+      <!-- post -->
+      <textarea></textarea>
+    
+      <!-- tags -->
+      <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="tags" placeholder="Add individual tags. Be specific." ng-model="tag" ng-style="{ 'width' : '250px'}">
+      <button class="btn btn-sm btn-primary" ng-click="addTag(tag); showInstruction();">add</button>
+      <p><font color="grey"><i> {{ instruction }} </i></font></p>
+      <ul>
+        <li ng-repeat="eachTag in tags track by $index" ng-click="removeTag($index)">
+        {{ eachTag }}
+        </li>
+      </ul>
 
-  <div style="margin-top: 20px">
-    Upload a Photo
-    <input  onchange="angular.element(this).scope().add()" type="file" id="file" name="file" style="margin-top: 10px"/>
-    <br>
-    <image id="pic" src="" style="margin-top: 20px; width:100px; height:100px;">
-  </div>
-  <br>
+      <!-- photo upload -->
+      <div style="margin-top: 20px">
+        Upload a Photo
+        <input  onchange="angular.element(this).scope().add()" type="file" id="file" name="file" style="margin-top: 10px"/>
+        </br>
+        <p>Preview</p>
+        <image id="pic" src="" style="margin-top: 0px; width:100px; height:100px;">
+      </div>
+      </br>
 
-  <button id="post-create-submit-button" ng-click="createPost()" class="btn-primary" value="SubmitPost" type="submit" ng-style="{ 'width' : '500px' }"> Submit </button>
+      <!-- submit button -->
+      <button class="btn btn-sm btn-primary" ng-click="createPost()">Post</button>
+    </rd-widget-body>
+  </rd-widget>
 </div>

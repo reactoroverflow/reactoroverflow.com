@@ -7,7 +7,6 @@
 angular.module('RDash')
 .controller('CreateCtrl', function CreateCtrl ($scope, $location, Posts) {
   $scope.title = '';
-  $scope.content = '';
   $scope.tags = [];
   $scope.instruction = '';
   $scope.data = '';
@@ -36,10 +35,17 @@ angular.module('RDash')
     $scope.tags.splice(index, 1);
   };
 
+  $scope.$on('$viewContentLoaded', function(){
+    $scope.simplemde = new SimpleMDE({
+      tabSize: 2
+    });
+    $scope.simplemde.render();
+  });
+
   $scope.createPost = function() {
     $scope.post = {
       title: $scope.title, 
-      content: $scope.content, 
+      content: marked($scope.simplemde.value()), 
       tags: $scope.tags, //format: Tags: ["asdf","asdf"]
       data: $scope.data
       }; //keys: title, content and tags
