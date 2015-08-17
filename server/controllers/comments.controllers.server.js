@@ -35,12 +35,14 @@ exports.renderComments = function(req, res) {
             search.body.query.match.postID.query = postID;
             search.body.query.match.postID.fuzziness = 1;
             search.body.query.match.postID.operator = "and";
-      search.body.sort = '_score';
+      search.body.sort = {"created_at" : {"order" : "asc"}};
+
 
     client.search(search).then(function (result) {
       var hits = result.hits.hits;
+      console.log(hits);
       for(var i=0; i<hits.length; i++) {
-        hits[i].votes = hits[i].upvotes.length - hits[i].downvotes.length;
+        hits[i].votes = hits[i]._source.upvotes.length - hits[i]._source.downvotes.length;
       }
       res.json(hits);
     });

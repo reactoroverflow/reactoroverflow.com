@@ -9,13 +9,13 @@ angular.module('RDash')
     $scope.data = {};
 
   $scope.fetch = function(){
-    console.log('-------- CALLED ---------');
     Posts.getPost($stateParams.postID, function (resp) {
       $scope.data.post = resp._source;
       $scope.data.post.created_at = new Date($scope.data.post.created_at).toString();
     });
-    Comments.getComments(function (resp) {
+    Comments.getComments($stateParams.postID, function (resp) {
       $scope.data.comments = resp;
+      console.log("===========> " + $scope.data.comments);
       $scope.data.comments.forEach(function (comment) {
         comment._source.created_at = new Date(comment._source.created_at).toString();
       });
@@ -29,10 +29,10 @@ angular.module('RDash')
       content: marked($scope.simplemde.value()),
       postID: $stateParams.postID
     }; //keys: content
-    console.log($scope.comment);
     Comments.addComment($scope.comment)
     .then(function(resp) {
-      console.log(resp);
+      console.log("===========> 2" + $scope.data.comments);
+      resp._source.created_at = new Date(resp._source.created_at).toString();
       $scope.data.comments.push(resp);
     })
     .catch(function(error) {
