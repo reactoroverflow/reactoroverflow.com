@@ -11,9 +11,13 @@ angular.module('RDash')
   $scope.fetch = function(){
     Posts.getPost($stateParams.postID, function (resp) {
       $scope.data.post = resp._source;
+      $scope.data.post.created_at = new Date($scope.data.post.created_at).toString();
     });
     Comments.getComments(function (resp) {
       $scope.data.comments = resp;
+      $scope.data.comments.forEach(function (comment) {
+        comment._source.created_at = new Date(comment._source.created_at).toString();
+      });
     });
   };
 

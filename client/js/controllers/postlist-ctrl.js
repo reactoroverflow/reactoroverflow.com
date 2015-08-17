@@ -13,6 +13,9 @@ function PostListCtrl($rootScope, $scope, Posts) {
     
     Posts.getPosts(function(data) {
       $scope.data.posts = data;
+      $scope.data.posts.forEach(function (post) {
+        post._source.created_at = new Date(post._source.created_at).toString();
+      });
     });
   };
 
