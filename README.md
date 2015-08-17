@@ -22,41 +22,36 @@
 1. [Team](#team)
 1. [Contributing](#contributing)
 
-## Usage
-
-> Some usage instructions
-
 ## Requirements
 
 - Node 0.12.x
 - NPM 2.11+
 - Angular
-- rethinkDB
+- elasticsearch
 - Express 4.x
 
 ## Development
 
 ### Installing Dependencies
 
-Setting up rethinkDB
+Setting up ElasticSearch
 
 ```sh
-brew update && brew install rethinkdb
+brew update && brew install elasticsearch
 ```
 
 From within the root directory:
 
 ```sh
-sudo npm install -g bower
+npm install -g bower
 npm install
 bower install
-gulp build
-gulp
+node index.js
 ```
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://github.com/reactoroverflow/reactoroverflow.com/issues)
 
 
 ## Contributing
