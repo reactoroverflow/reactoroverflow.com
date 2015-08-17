@@ -38,12 +38,12 @@ angular.module('RDash')
     });
   };
 
-  $scope.upVote = function() {
-    console.log("user id ==== ", user.id);
+  $scope.upVote = function(commentID) {
+    console.log("commentID ===== ", commentID)
     //use commentID to send the user into the comment.upVotes array
-    Comments.upVote($stateParams._id, user.id, function(resp){
+    Comments.upVote(commentID, function(resp){
       console.log("upVote resp ===== ", resp)
-      $scope.data.comment.votes = resp.upVotes.length - resp.downVotes.length;
+      
     })
   };
 

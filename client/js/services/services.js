@@ -79,12 +79,10 @@ angular.module('RDash.services', [])
     });
   };
 
-  var upVote = function(commentID, user, cb){
-    console.log("user ==== ", user)
+  var upVote = function(commentID, cb){
     return $http({
       method: 'POST',
-      url: '/api/comments/'+commentID+'/upvote',
-      data: user
+      url: '/api/comments/'+commentID+'/upvote'
     }).then(function (resp) {
       cb(resp.data);
     });
