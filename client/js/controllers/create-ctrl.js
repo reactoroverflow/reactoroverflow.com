@@ -65,6 +65,13 @@ angular.module('RDash')
   $scope.removeEnterTitleInstruction = function() {
     $scope.enterTitleInstruc = '';
   };
+
+  $scope.addEnterTitleInstruction = function (event) {
+    if ($scope.title && $scope.title.length<2 || !$scope.title) {
+      $scope.enterTitleInstruc = 'Enter Title';      
+    }
+  };
+
   $scope.showInstruction = function() {
     if(!$scope.newTagBlankError && !$scope.repeatedTagError && !$scope.tagHasSpaceError) {    
       $scope.instruction = 'Click on tag to remove';
