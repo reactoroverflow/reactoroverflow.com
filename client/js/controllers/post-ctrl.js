@@ -6,9 +6,10 @@
 
 angular.module('RDash')
 .controller('PostCtrl', function PostCtrl($scope, $stateParams, $location, Posts, Comments) {
-  $scope.data = {};
+    $scope.data = {};
 
   $scope.fetch = function(){
+    console.log('-------- CALLED ---------');
     Posts.getPost($stateParams.postID, function (resp) {
       $scope.data.post = resp._source;
       $scope.data.post.created_at = new Date($scope.data.post.created_at).toString();
@@ -25,12 +26,14 @@ angular.module('RDash')
 
   $scope.createComment = function() {
     $scope.comment = {
-      content: marked($scope.simplemde.value())
+      content: marked($scope.simplemde.value()),
+      postID: $stateParams.postID
     }; //keys: content
-    // console.log("$scope.comment",$scope.comment);
+    console.log($scope.comment);
     Comments.addComment($scope.comment)
     .then(function(resp) {
-      window.location.reload();// $location.path('/post/'+resp._id); //takes user to the post they created.
+      console.log(resp);
+      $scope.data.comments.push(resp);
     })
     .catch(function(error) {
       console.log(error);

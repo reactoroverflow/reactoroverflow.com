@@ -65,7 +65,7 @@
 
         <textarea></textarea>
 
-        <button class="btn btn-sm btn-primary" ng-click="createComment()">Reply</button>
+        <button class="btn btn-sm btn-primary" ng-click="createComment()" onchance="angular.element(this).scope().fetch()">Reply</button>
       </rd-widget-body>
     </rd-widget>
   </div>
