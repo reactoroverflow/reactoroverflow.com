@@ -1,23 +1,50 @@
-<div id='container' ng-controller='CreateCtrl'>
+<div id='container' ng-controller='CreateCtrl' ng-style="{'margin-top':'-10px'}">
   <rd-widget>
     <rd-widget-body>
-    
+      <p ng-style="{'margin-top':'-30px'}"><h2>Create a post</h2></p>
       <!-- title -->
-      <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="title" placeholder="Enter title for your listing or question. Be specific." ng-model="title" ng-style="{ 'width' : '500px' }">
-      </br></br>
+      <form name="createPostForm">
+        Title <span ng-click="removeEnterTitleInstruction()"><input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="title" placeholder="Enter title for your listing or question. Be specific." ng-model="title" ng-style="{ 'width' : '500px' , 'margin-left':'20px', 'padding-left':'5px'}" required> 
+        <font ng-if='createPostForm.title.$error.required && createPostForm.title.$dirty' ng-style="{'color':'red'}"></span>
+        Title required </font>
 
-      <!-- post -->
-      <textarea></textarea>
-    
-      <!-- tags -->
-      <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="tags" placeholder="Add individual tags. Be specific." ng-model="tag" ng-style="{ 'width' : '250px'}">
-      <button class="btn btn-sm btn-primary" ng-click="addTag(tag); showInstruction();">add</button>
-      <p><font color="grey"><i> {{ instruction }} </i></font></p>
-      <ul>
-        <li ng-repeat="eachTag in tags track by $index" ng-click="removeTag($index)">
-        {{ eachTag }}
-        </li>
-      </ul>
+        </br></br>
+
+        <!-- post -->
+        <textarea></textarea>
+
+        <!-- Pick a (tag) category -->
+        <p ng-style="{'margin-top':'-30px'}"><h4>Select a category tag</h4></p>
+        <div ng-click="addTag('question'); showInstruction() ; toggleDisable(); removeSelectCategoryInstruction()" ng-style="{'background-color':'#5492C9', 'width':'120px','border-radius':'3px', 'text-align': 'center', 'display':'inline-block'}" ng-disabled='createPostForm.$invalid || isDisabled'><span ng-style="{'display':'inline-block', 'line-height': '30px'}"><font color="white" size='3px'>#question</font></span></div>
+
+        <div ng-click="addTag('listing'); showInstruction() ; toggleDisable(); removeSelectCategoryInstruction()" ng-style="{'background-color':'#5492C9', 'width':'120px','border-radius':'3px', 'text-align': 'center', 'display':'inline-block', 'margin-left':'20px'}" ng-disabled='createPostForm.$invalid || isDisabled'><span ng-style="{'display':'inline-block', 'line-height': '30px'}"><font color="white" size='3px'>#listing</font></span></div>
+
+        <div ng-click="addTag('other'); showInstruction() ; toggleDisable(); removeSelectCategoryInstruction()" ng-style="{'background-color':'#5492C9', 'width':'120px','border-radius':'3px', 'text-align': 'center', 'display':'inline-block', 'margin-left':'20px'}" ng-disabled='createPostForm.$invalid || isDisabled'><span ng-style="{'display':'inline-block', 'line-height': '30px'}"><font color="white" size='3px'>#other</font></span></div>
+
+        </br>
+        </br>
+        <!-- add tags -->
+        Tags <input type="text" autocapitalize="off" autocorrect="off" autocomplete="off" value="" name="tags" placeholder="{{tagPlaceholder}}" ng-model="tag" ng-style="{ 'width' : '250px' , 'margin-left':'20px', 'padding-left':'5px'}">
+        <button class="btn btn-sm btn-primary" ng-click="addTag(tag); showInstruction(); toggleDisable()">add</button> <font color="red">{{newTagBlankError}} {{repeatedTagError}} {{tagHasSpaceError}}</font>
+
+        <!-- submit button -->
+        <button class="btn btn-lg btn-primary" ng-click="createPost()" ng-style="{'float':'right'}" ng-disabled='createPostForm.$invalid || isDisabled'>Post</button>
+        </br>
+        </br>
+        <div ng-style="{'float':'right'}">{{enterTitleInstruc}}</div>
+        </br>
+        <div ng-style="{'float':'right'}">{{categoryInstruc}}</div>
+      </form>
+
+        <!-- added tags -->
+        <p ng-style="{'margin-top':'-20px'}"><font color="green"> {{ instruction }} </font></p>
+        <ul>
+          <div ng-repeat="eachTag in tags track by $index" ng-click="removeTag($index)" ng-style="{'background-color':'#5492C9', 'border-radius':'3px', 'text-align': 'center', 'display':'inline-block', 'margin':'2px'}">
+            <span ng-style="{'display':'inline-block', 'line-height': '25px', 'padding':'5px'}">
+              <font color="white">#{{ eachTag }}</font>
+            </span>
+          </div>
+        </ul>
 
       <!-- photo upload -->
       <div style="margin-top: 20px">
@@ -29,8 +56,6 @@
       </div>
       </br>
 
-      <!-- submit button -->
-      <button class="btn btn-sm btn-primary" ng-click="createPost()">Post</button>
     </rd-widget-body>
   </rd-widget>
 </div>

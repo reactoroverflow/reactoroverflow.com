@@ -8,8 +8,15 @@ angular.module('RDash')
 .controller('CreateCtrl', function CreateCtrl ($scope, $location, Posts) {
   $scope.title = '';
   $scope.tags = [];
+  $scope.tag = '';
+  $scope.tagsObject = {};
+  $scope.content = [];
+  $scope.isDisabled = true;
   $scope.instruction = '';
   $scope.data = '';
+  $scope.tagPlaceholder = 'Add individual tags. Be specific.';
+  $scope.enterTitleInstruc = 'Enter Title';
+  $scope.categoryInstruc = 'Select Category';
 
   $scope.add = function() {
     var preview = document.getElementById('pic');
@@ -23,12 +30,40 @@ angular.module('RDash')
   }; //adds image data to $scope.data
 
   $scope.addTag = function(newTag) {
-    $scope.tags.push(newTag);
-    $scope.tag = '';
+    var newTag = newTag.toLowerCase();
+    $scope.tagPlaceholder = '';
+    $scope.newTagBlankError = '';
+    $scope.repeatedTagError = '';
+    $scope.tagHasSpaceError = '';
+    $scope.tag='';
+    if(newTag !== '') {
+      if(!$scope.tagsObject.hasOwnProperty(newTag)) {
+        if(newTag.indexOf(' ')===-1) {
+          $scope.tags.push(newTag);
+          $scope.tagsObject[newTag]=true;
+          $scope.tag = '';
+        } else {
+          $scope.tagHasSpaceError = 'Tags cannot have space';
+        }
+      } else {
+        $scope.repeatedTagError = 'Tag already added';
+      }
+    } else {
+      $scope.newTagBlankError = 'Tag cannot be blank';
+    }
   };
 
+  $scope.removeSelectCategoryInstruction = function() {
+    $scope.categoryInstruc = '';
+  }
+
+  $scope.removeEnterTitleInstruction = function() {
+    $scope.enterTitleInstruc = '';
+  }
   $scope.showInstruction = function() {
-    $scope.instruction = 'Click on individual tags to remove them';
+    if(!$scope.newTagBlankError && !$scope.repeatedTagError && !$scope.tagHasSpaceError) {    
+      $scope.instruction = 'Click on tag to remove';
+    }
   };
   
   $scope.removeTag = function(index) {
@@ -49,7 +84,6 @@ angular.module('RDash')
       tags: $scope.tags, //format: Tags: ["asdf","asdf"]
       data: $scope.data
       }; //keys: title, content and tags
-    console.log('Inside createPost(), $scope.post = ', $scope.post);
     Posts.addPost($scope.post)
     .then(function(resp) {
       $location.path('/post/'+resp._id); //takes user to the post they created.
@@ -58,4 +92,14 @@ angular.module('RDash')
       console.log(error);
     });
   };
+
+  $scope.toggleDisable = function() {
+    if ($scope.tags.length > 0) {
+      if($scope.tagsObject.hasOwnProperty('question') ||
+         $scope.tagsObject.hasOwnProperty('listing') || 
+         $scope.tagsObject.hasOwnProperty('other')) {      
+        $scope.isDisabled = false;
+      }
+    } 
+  }
 });
