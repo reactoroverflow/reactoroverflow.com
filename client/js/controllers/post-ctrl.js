@@ -38,6 +38,21 @@ angular.module('RDash')
     });
   };
 
+  $scope.upVote = function() {
+    console.log("user id ==== ", user.id);
+    //use commentID to send the user into the comment.upVotes array
+    Comments.upVote($stateParams._id, user.id, function(resp){
+      console.log("upVote resp ===== ", resp)
+      $scope.data.comment.votes = resp.upVotes.length - resp.downVotes.length;
+    })
+  };
+
+  // $scope.downVote = function() {
+  //   Comments.downVote($stateParams.postID, user.id, function(resp){
+  //     $scope.data.comment.votes = resp.upVotes.length - resp.downVotes.length;
+  //   })
+  // };
+
   $scope.$on('$viewContentLoaded', function(){
     $scope.simplemde = new SimpleMDE({
       tabSize: 2
