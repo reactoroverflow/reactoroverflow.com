@@ -40,7 +40,7 @@
         </div>
         <hr>
 
-        <div ng-repeat="comment in data.comments | orderBy:'_source.created_at'">
+        <div ng-repeat="comment in data.comments">
           <rd-widget>
             <rd-widget-body>
               <div ng-bind-html='comment._source.content'></div>

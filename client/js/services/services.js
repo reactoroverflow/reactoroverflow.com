@@ -60,19 +60,10 @@ angular.module('RDash.services', [])
 })
 .factory('Comments', function ($http) {
 
-  var getComments = function(cb){
+  var getComments = function(postID, cb){
     $http({
       method: 'GET',
-      url: '/api/comments'
-    }).then(function (resp) {
-      cb(resp.data);
-    });
-  };
-
-  var getComment = function(postID, cb){
-    $http({
-      method: 'GET',
-      url: '/api/comments/'+postID
+      url: '/api/comments?postID='+postID
     }).then(function (resp) {
       cb(resp.data);
     });
@@ -90,7 +81,6 @@ angular.module('RDash.services', [])
 
   return {
     getComments: getComments,
-    getComment: getComment,
     addComment: addComment
   };
 });
