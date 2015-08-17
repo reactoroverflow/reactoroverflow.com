@@ -56,6 +56,8 @@ exports.storeComment = function(req, res) {
   comment.content = req.body.content;
   comment.author = req.session.user.login;
   comment.replies = [];
+  comment.upvotes = [];
+  comment.downvotes = [];
   comment.created_at = Date.now();
 
   var query = {};
@@ -67,6 +69,26 @@ exports.storeComment = function(req, res) {
   client.create(query).then(function (results) {
     res.json(results);
   });
+};
+
+exports.upvoteComment = function(req, res) {
+  var comment = req.comment;
+  if(!comment.upvotes) {
+    comment.upvotes = [];
+  }
+  comment.upvotes.push(req.session.user.id);
+
+  //save comment
+};
+
+exports.downvoteComment = function(req, res) {
+  var comment = req.comment;
+  if(!comment.downvotes) {
+    comment.downvotes = [];
+  }
+  comment.downvotes.push(req.session.user.id);
+
+  // Save comment
 };
 
 exports.updateComment = function(req, res) {

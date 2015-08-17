@@ -16,6 +16,12 @@ module.exports = function(app) {
     .put(comments.updateComment)
     .delete(comments.deleteComment);
 
+  app.route('/api/comments/:commentID/upvote').all(auth.loggedIn)
+    .post(comments.upvoteComment);
+
+  app.route('/api/comments/:commentID/downvote').all(auth.loggedIn)
+    .post(comments.downvoteComment);
+
   app.param('commentID', comments.commentByID);
 
 };
