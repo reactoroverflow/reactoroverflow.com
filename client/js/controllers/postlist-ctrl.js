@@ -8,13 +8,12 @@ angular.module('RDash')
 
 function PostListCtrl($rootScope, $scope, Posts) {
   $scope.data = {};
-
-  $scope.getPosts = function() {
-    
+  $scope.getPosts = function() {    
     Posts.getPosts(function(data) {
       $scope.data.posts = data;
       $scope.data.posts.forEach(function (post) {
         post._source.created_at = new Date(post._source.created_at).toString();
+        post._source.contentNoTags = post._source.content.replace(/(<([^>]+)>)/ig, '');
       });
     });
   };
@@ -27,3 +26,4 @@ function PostListCtrl($rootScope, $scope, Posts) {
 
   $scope.getPosts();
 }
+
