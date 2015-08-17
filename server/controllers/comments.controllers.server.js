@@ -5,6 +5,7 @@ var path = require('path');
 var client = require(path.resolve('./lib/elasticsearch'));
 
 exports.renderComments = function(req, res) {
+  console.log("I am rendering Comments")
   var postID = req.query.postID;
   var search;
 
@@ -21,6 +22,7 @@ exports.renderComments = function(req, res) {
     search.body.sort = {"created_at" : {"order" : "desc"}};
 
     client.search(search).then(function (results){
+      console.log("in !postID")
       res.send(results.hits.hits);
     });
   } else {
@@ -44,6 +46,7 @@ exports.renderComments = function(req, res) {
       for(var i=0; i<hits.length; i++) {
         hits[i].votes = hits[i]._source.upvotes.length - hits[i]._source.downvotes.length;
       }
+      console.log("hits === ", hits);
       res.json(hits);
     });
   }
@@ -85,6 +88,7 @@ exports.storeComment = function(req, res) {
 };
 
 exports.upvoteComment = function(req, res) {
+  console.log("req.comment ==== ", req.comment)
   var comment = req.comment;
   if(!comment.upvotes) {
     comment.upvotes = [];

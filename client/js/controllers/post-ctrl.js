@@ -5,6 +5,7 @@
  */
 
 angular.module('RDash')
+
 .controller('PostCtrl', function PostCtrl($scope, $stateParams, $location, Posts, Comments) {
     $scope.data = {};
 
@@ -37,6 +38,10 @@ angular.module('RDash')
       console.log(error);
     });
   };
+
+  $rootScope.$on('showComments', function(event){
+      $scope.fetch()
+    });
 
   $scope.upVote = function(commentID) {
     console.log("commentID ===== ", commentID)
