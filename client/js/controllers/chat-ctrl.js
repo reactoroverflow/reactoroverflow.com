@@ -7,10 +7,6 @@
 angular.module('RDash')
 .controller('ChatCtrl', function ChatCtrl ($scope, $rootScope) {
   jQuery(function($){
-    var $nickForm = $('#setNick');
-    var $nickError = $('#nickError');
-    var $nickBox = $('#nickname');
-    var $usersList = $('#usersList');
     var $messageForm = $('#send-message');
     var $messageBox = $('#message');
     var $chat = $('#chat');
@@ -35,7 +31,7 @@ angular.module('RDash')
         $chat.append('<span class="whisper"><b>' + data.nick + ': </b>' + data.msg + "</span><br/>");
       } else {
         $chat.append('<span class="whisper"><b>[Message from another user] ' + data.nick + ': </b>' + data.msg + "</span><br/>");
-      };
+      }
     });
   });
 });

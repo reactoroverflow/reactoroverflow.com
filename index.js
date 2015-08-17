@@ -19,12 +19,12 @@ io.sockets.on('connection', function(socket){
       socket.nickname = data;
       users[socket.nickname] = socket;
       updateNicknames();
-    };
+    }
   });
   
   function updateNicknames(){
     io.sockets.emit('usernames', Object.keys(users));
-  };
+  }
 
   socket.on('send message', function(data, receiverUser, callback){
     var msg = data.trim();
@@ -35,11 +35,11 @@ io.sockets.on('connection', function(socket){
       socket.emit('new message', {msg: msg, nick: socket.nickname});
     } else {
       callback('Error!  Enter a valid user.');
-    };
+    }
   });
 
   socket.on('disconnect', function(data){
-    if(!socket.nickname) {return};
+    if(!socket.nickname) {return;}
     delete users[socket.nickname];
     updateNicknames();
   });

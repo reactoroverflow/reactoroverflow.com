@@ -22,27 +22,27 @@ function MasterCtrl($rootScope, $scope, $cookieStore, Posts) {
           var eventTargetId = event.target.id.slice(6);
           if($rootScope.importedListOfUsers.hasOwnProperty(eventTargetId)) {
             $rootScope.selectedUserID = eventTargetId;
-          };
-        };
+          }
+        }
       });
 
       socket.emit('new user', user.login, function(data){
       });
       
       socket.on('usernames', function(data){
-        for (var i = 0 ; i < data.length; i++) {
-          $rootScope.importedListOfUsers[data[i]] = true;
-        };
+        for (var j = 0 ; j < data.length; j++) {
+          $rootScope.importedListOfUsers[data[j]] = true;
+        }
         var html = '';
         var newDataArray = _.filter(data, function(eachUserName) {
           return eachUserName !== user.login;
         });
         if(newDataArray.length === 0) {
           html = '<li class="sidebar-list"><a href="#">Waiting for users...</a></li>';
-        };
+        }
         for (var i = 0 ; i < newDataArray.length; i++) {
           html += '<li class="sidebar-list"><a id="userid' + newDataArray[i] + '" href="#/chat/' + newDataArray[i] + '"> ' + newDataArray[i] + '</a></li>';
-        };
+        }
         $usersIDDiv.html(html);
       });
     });
