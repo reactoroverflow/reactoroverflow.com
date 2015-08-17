@@ -30,17 +30,17 @@ angular.module('RDash')
   }; //adds image data to $scope.data
 
   $scope.addTag = function(newTag) {
-    var newTag = newTag.toLowerCase();
+    var newTagLower = newTag.toLowerCase();
     $scope.tagPlaceholder = '';
     $scope.newTagBlankError = '';
     $scope.repeatedTagError = '';
     $scope.tagHasSpaceError = '';
     $scope.tag='';
-    if(newTag !== '') {
-      if(!$scope.tagsObject.hasOwnProperty(newTag)) {
-        if(newTag.indexOf(' ')===-1) {
-          $scope.tags.push(newTag);
-          $scope.tagsObject[newTag]=true;
+    if(newTagLower !== '') {
+      if(!$scope.tagsObject.hasOwnProperty(newTagLower)) {
+        if(newTagLower.indexOf(' ')===-1) {
+          $scope.tags.push(newTagLower);
+          $scope.tagsObject[newTagLower]=true;
           $scope.tag = '';
         } else {
           $scope.tagHasSpaceError = 'Tags cannot have space';
@@ -55,11 +55,11 @@ angular.module('RDash')
 
   $scope.removeSelectCategoryInstruction = function() {
     $scope.categoryInstruc = '';
-  }
+  };
 
   $scope.removeEnterTitleInstruction = function() {
     $scope.enterTitleInstruc = '';
-  }
+  };
   $scope.showInstruction = function() {
     if(!$scope.newTagBlankError && !$scope.repeatedTagError && !$scope.tagHasSpaceError) {    
       $scope.instruction = 'Click on tag to remove';
@@ -101,5 +101,5 @@ angular.module('RDash')
         $scope.isDisabled = false;
       }
     } 
-  }
+  };
 });
