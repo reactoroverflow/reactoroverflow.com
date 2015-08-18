@@ -79,28 +79,23 @@ angular.module('RDash.services', [])
     });
   };
 
-  var upVote = function(commentID, cb){
+  var upVote = function(commentID){
     return $http({
       method: 'POST',
       url: '/api/comments/'+commentID+'/upvote'
-    }).then(function (resp) {
-      cb(resp.data);
     });
   };
 
-  // var downVote = function(commentID, user, cb){
-  //   return $http({
-  //     method: 'POST',
-  //     url: '/api/comments'+commentID,
-  //     data: user
-  //   }).then(function (resp) {
-  //     cb(resp.data);
-  //   });
-  // };
+  var downVote = function(commentID){
+    return $http({
+      method: 'POST',
+      url: '/api/comments/'+commentID+'/downvote'
+    });
+  };
 
   return {
     upVote: upVote,
-    // downVote: downVote,
+    downVote: downVote,
     getComments: getComments,
     addComment: addComment
   };

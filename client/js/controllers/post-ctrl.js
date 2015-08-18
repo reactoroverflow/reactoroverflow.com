@@ -32,6 +32,7 @@ angular.module('RDash')
     Comments.addComment($scope.comment)
     .then(function(resp) {
       resp._source.created_at = new Date(resp._source.created_at).toString();
+      resp.votes = resp.votes || 0;
       $scope.data.comments.push(resp);
     })
     .catch(function(error) {
@@ -39,21 +40,21 @@ angular.module('RDash')
     });
   };
 
-  $rootScope.$on('showComments', function(event){
-      $scope.fetch()
-    });
-
   $scope.upVote = function(commentID) {
-    console.log("commentID ===== ", commentID)
     //use commentID to send the user into the comment.upVotes array
-    Comments.upVote(commentID)
+    Comments.upVote(commentID).then(function() {
+      $scope.fetch();
+    });
+    
   };
 
-  // $scope.downVote = function() {
-  //   Comments.downVote($stateParams.postID, user.id, function(resp){
-  //     $scope.data.comment.votes = resp.upVotes.length - resp.downVotes.length;
-  //   })
-  // };
+  $scope.downVote = function(commentID) {
+    Comments.downVote(commentID).then(function() {
+      // debugger
+      $scope.fetch();
+    });
+    
+  };
 
   $scope.$on('$viewContentLoaded', function(){
     $scope.simplemde = new SimpleMDE({

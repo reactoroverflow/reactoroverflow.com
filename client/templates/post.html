@@ -64,12 +64,12 @@
                   <div ng-click='upVote(comment._id)'>
                     <img src="http://icons.iconarchive.com/icons/icons8/windows-8/32/Hands-Thumbs-Up-icon.png"/>
                   </div>
-                  <div ng-click="downVote()">
+                  <div ng-click="downVote(comment._id)">
                     <img src="http://icons.iconarchive.com/icons/icons8/windows-8/32/Hands-Thumbs-Down-icon.png"/>
                   </div>
                 </div>
                 <div class="pull-right" ng-model="comment.votes">
-                  {{comment._source.votes}}
+                  {{comment.votes}}
                 </div>
               </div>
             </rd-widget-body>

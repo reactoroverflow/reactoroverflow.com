@@ -5,7 +5,6 @@ var path = require('path');
 var client = require(path.resolve('./lib/elasticsearch'));
 
 exports.renderComments = function(req, res) {
-  console.log("I am rendering Comments")
   var postID = req.query.postID;
   var search;
 
@@ -22,14 +21,13 @@ exports.renderComments = function(req, res) {
     search.body.sort = {"created_at" : {"order" : "desc"}};
 
     client.search(search).then(function (results){
-      console.log("in !postID")
       res.send(results.hits.hits);
     });
   } else {
     search = {};
     search.index = 'comments';
     search.type = 'comment';
-    search.size = 10;
+    search.size = 1000;
     search.body = {};
       search.body.query = {};
         search.body.query.match = {};
@@ -42,11 +40,9 @@ exports.renderComments = function(req, res) {
 
     client.search(search).then(function (result) {
       var hits = result.hits.hits;
-      console.log(hits);
       for(var i=0; i<hits.length; i++) {
         hits[i].votes = hits[i]._source.upvotes.length - hits[i]._source.downvotes.length;
       }
-      console.log("hits === ", hits);
       res.json(hits);
     });
   }
@@ -88,19 +84,19 @@ exports.storeComment = function(req, res) {
 };
 
 exports.upvoteComment = function(req, res) {
-  console.log("req.comment ==== ", req.comment)
+
   var comment = req.comment;
-  if(!comment.upvotes) {
-    comment.upvotes = [];
+  if(!comment._source.upvotes) {
+    comment._source.upvotes = [];
   }
-  if(!comment.downvotes) {
-    comment.downvotes = [];
+  if(!comment._source.downvotes) {
+    comment._source.downvotes = [];
   }
-  if(comment.downvotes.indexOf(req.session.user.id) > -1) {
-    comment.downvotes.splice(comment.downvotes.indexOf(req.session.user.id), 1);
+  if(comment._source.downvotes.indexOf(req.session.user.id) > -1) {
+    comment._source.downvotes.splice(comment._source.downvotes.indexOf(req.session.user.id), 1);
   }
-  if(comment.upvotes.indexOf(req.session.user.id) === -1) {
-    comment.upvotes.push(req.session.user.id);
+  if(comment._source.upvotes.indexOf(req.session.user.id) === -1) {
+    comment._source.upvotes.push(req.session.user.id);
   }
   var update = {};
   update.index = 'comments';
@@ -108,8 +104,8 @@ exports.upvoteComment = function(req, res) {
   update.id = comment._id;
   update.body = {};
   update.body.doc = {};
-  update.body.upvotes = comment.upvotes;
-  update.body.downvotes = comment.downvotes;
+  update.body.doc.upvotes = comment._source.upvotes;
+  update.body.doc.downvotes = comment._source.downvotes;
   client.update(update).then(function (result) {
     res.send(result);
   });
@@ -117,17 +113,17 @@ exports.upvoteComment = function(req, res) {
 
 exports.downvoteComment = function(req, res) {
   var comment = req.comment;
-  if(!comment.downvotes) {
-    comment.downvotes = [];
+  if(!comment._source.downvotes) {
+    comment._source.downvotes = [];
   }
-  if(!comment.upvotes) {
-    comment.upvotes = [];
+  if(!comment._source.upvotes) {
+    comment._source.upvotes = [];
   }
-  if(comment.upvotes.indexOf(req.session.user.id) > -1) {
-    comment.upvotes.splice(comment.upvotes.indexOf(req.session.user.id), 1);
+  if(comment._source.upvotes.indexOf(req.session.user.id) > -1) {
+    comment._source.upvotes.splice(comment._source.upvotes.indexOf(req.session.user.id), 1);
   }
-  if(comment.downvotes.indexOf(req.session.user.id) === -1) {
-    comment.downvotes.push(req.session.user.id);
+  if(comment._source.downvotes.indexOf(req.session.user.id) === -1) {
+    comment._source.downvotes.push(req.session.user.id);
   }
   var update = {};
   update.index = 'comments';
@@ -135,8 +131,8 @@ exports.downvoteComment = function(req, res) {
   update.id = comment._id;
   update.body = {};
   update.body.doc = {};
-  update.body.upvotes = comment.upvotes;
-  update.body.downvotes = comment.downvotes;
+  update.body.doc.upvotes = comment._source.upvotes;
+  update.body.doc.downvotes = comment._source.downvotes;
   client.update(update).then(function (result) {
     res.send(result);
   });
