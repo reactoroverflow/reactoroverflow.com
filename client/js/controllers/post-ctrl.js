@@ -32,6 +32,7 @@ angular.module('RDash')
     .then(function(resp) {
       resp._source.created_at = new Date(resp._source.created_at).toString();
       $scope.data.comments.push(resp);
+      $scope.simplemde.value() = '';
     })
     .catch(function(error) {
       console.log(error);
