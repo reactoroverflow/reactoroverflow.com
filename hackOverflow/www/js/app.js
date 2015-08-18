@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('hackOverflow', ['ionic', 'hackOverflow.controllers', 'hackOverflow.postsView', 'hackOverflow.tags', 'hackOverflow.create', 'hackOverflow.postTag', 'hackOverflow.pairs'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -32,42 +32,55 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'AppCtrl'
   })
 
-  .state('app.search', {
-    url: '/search',
+  .state('app.posts', {
+    url: '/posts',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/posts-view.html',
+        controller: 'PostsViewCtrl'
       }
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
-      }
-    })
-    .state('app.playlists', {
-      url: '/playlists',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
-        }
-      }
-    })
-
-  .state('app.single', {
-    url: '/playlists/:playlistId',
+  .state('app.tags', {
+    url: '/tags',
     views: {
       'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
+        templateUrl: 'templates/tags.html',
+        controller: 'TagsCtrl'
+      }
+    }
+  })
+
+  .state('app.create', {
+    url: '/create',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/create.html',
+        controller: 'CreateCtrl'
+      }
+    }
+  })
+
+  .state('app.tag', {
+    url: '/tags/:tagName',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/posts-view.html',
+        controller: 'PostTagCtrl'
+      }
+    }
+  })
+
+  .state('app.pairs', {
+    url: '/pairs',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/pairs.html',
+        controller: 'PairsCtrl'
       }
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/posts');
 });
