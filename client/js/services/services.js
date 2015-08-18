@@ -79,7 +79,23 @@ angular.module('RDash.services', [])
     });
   };
 
+  var upVote = function(commentID){
+    return $http({
+      method: 'POST',
+      url: '/api/comments/'+commentID+'/upvote'
+    });
+  };
+
+  var downVote = function(commentID){
+    return $http({
+      method: 'POST',
+      url: '/api/comments/'+commentID+'/downvote'
+    });
+  };
+
   return {
+    upVote: upVote,
+    downVote: downVote,
     getComments: getComments,
     addComment: addComment
   };

@@ -58,6 +58,20 @@
                   </div>
                 </div>
               </div>
+              <div class="votes pull-right">
+                
+                <div class="pull-left">
+                  <div ng-click='upVote(comment._id)'>
+                    <img src="http://icons.iconarchive.com/icons/icons8/windows-8/32/Hands-Thumbs-Up-icon.png"/>
+                  </div>
+                  <div ng-click="downVote(comment._id)">
+                    <img src="http://icons.iconarchive.com/icons/icons8/windows-8/32/Hands-Thumbs-Down-icon.png"/>
+                  </div>
+                </div>
+                <div class="pull-right" ng-model="comment.votes">
+                  <h2>{{comment.votes}}</h2>
+                </div>
+              </div>
             </rd-widget-body>
           </rd-widget>
           <br/>
