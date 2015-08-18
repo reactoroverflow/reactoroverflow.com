@@ -6,7 +6,7 @@
      <rd-widget>
        <rd-widget-body>
          <div class="title"><a href="/#/post/{{ post._id }}">{{post._source.title}}</a></div>
-         <div ng-bind-html='post._source.contentNoTags | limitTo: 400'>...</div>
+         <div ng-bind-html='post._source.contentNoTags | limitTo: 400'></div>
          <hr>
          <div class="authorTags">
            <div class="pull-left">
@@ -23,29 +23,7 @@
          </div>
        </rd-widget-body>
      </rd-widget>
-     <br/>
 
-
-
-
-
-
-
-     <!--  <rd-widget>
-        <rd-widget-body>
-          <div class="widget-icon blue pull-left viewcountdiv">
-            <div class="viewcount">15</div>
-            <div class="views">views</div>
-          </div>
-          <div>
-            <div class="title"><a href="/#/post/{{ post._id }}">Title: {{post._source.title}}</a></div>
-            <div class="author">Author: {{post._source.author}}</div>
-            <div class="content">Content: {{post._source.contentNoTags}}</div>
-            <div class="tags">Tags: {{post._source.tags}}</div>
-            <div class="date">Date: {{post._source.created_at}}</div>
-          </div>
-        </rd-widget-body>
-      </rd-widget> -->
     </div>
 
   </div>
