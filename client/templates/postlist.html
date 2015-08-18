@@ -2,21 +2,28 @@
   <div class="row">
 
     <div ng-repeat="post in data.posts" class="col-md-12">
-      <rd-widget>
-        <rd-widget-body>
-          <div class="widget-icon blue pull-left viewcountdiv">
-            <div class="viewcount">15</div>
-            <div class="views">views</div>
-          </div>
-          <div>
-            <div class="title"><a href="/#/post/{{ post._id }}">Title: {{post._source.title}}</a></div>
-            <div class="author">Author: {{post._source.author}}</div>
-            <div class="content">Content: {{post._source.contentNoTags}}</div>
-            <div class="tags">Tags: {{post._source.tags}}</div>
-            <div class="date">Date: {{post._source.created_at}}</div>
-          </div>
-        </rd-widget-body>
-      </rd-widget>
+     
+     <rd-widget>
+       <rd-widget-body>
+         <div class="title"><a href="/#/post/{{ post._id }}">{{post._source.title}}</a></div>
+         <div ng-bind-html='post._source.contentNoTags | limitTo: 400'></div>
+         <hr>
+         <div class="authorTags">
+           <div class="pull-left">
+             <img style="width:50px; border-radius: 2px" src="img/avatar.jpg"/>
+           </div>
+           <div class="pull-right" style=" margin: 5px 10px;">
+             <div class="author">
+               <a href="http://www.github.com/{{post._source.author}}">@{{post._source.author}}</a>
+             </div>
+             <div class="date">
+               Posted: {{post._source.created_at}}
+             </div>
+           </div>
+         </div>
+       </rd-widget-body>
+     </rd-widget>
+
     </div>
 
   </div>
