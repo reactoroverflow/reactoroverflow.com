@@ -62,7 +62,6 @@ angular.module('hackOverflow.post', [])
     }; //keys: content
     Comments.addComment($scope.comment)
     .then(function(resp) {
-      resp._source.created_at = new Date(resp._source.created_at).toString();
       resp.votes = resp.votes || 0;
       resp.isUpvoted = false;
       $scope.data.comments.push(resp);

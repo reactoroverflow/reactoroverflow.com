@@ -164,7 +164,7 @@ i:hover, .blue {
   color: #6cf;
 }
 
-.post-avatar > img:first-child {
+.post-header > img:first-child {
   top: 50px;
 }
 .full-image {
