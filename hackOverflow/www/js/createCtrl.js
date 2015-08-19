@@ -1,9 +1,16 @@
 angular.module('hackOverflow.create', [])
 
-.controller('CreateCtrl', function($scope, $cordovaCamera, Posts) {
+.controller('CreateCtrl', function($scope, $cordovaCamera, Posts, Tags) {
+  $scope.tags = Tags.tags;
+  $scope.tagObj = {};
+  $scope.tags.forEach(function(tag) {
+    $scope.tagObj[tag] = {checked: false};
+  });
+
+  console.log($scope.tagObj);
   $scope.post = {tags: []};
-  $scope.addTag = function(tag) {
-    $scope.post.tags.push(tag);
+  $scope.toggleTag = function(tag) {
+    $scope.tagObj[tag].checked = !$scope.tagObj[tag].checked;
   };
   $scope.takePhoto = function() {
     $cordovaCamera.getPicture({
@@ -26,6 +33,11 @@ angular.module('hackOverflow.create', [])
 
   $scope.createPost = function() {
     var text = $scope.post.content || '';
+    for (var i in $scope.tagObj) {
+      if ($scope.tagObj[i].checked) {
+        $scope.post.tags.push(i);
+      }
+    }
     $scope.post = {
       title: $scope.post.title,
       content: marked(text),
