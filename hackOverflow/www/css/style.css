@@ -8,3 +8,21 @@ textarea {
   resize: none;
   height: 30vh;
 }
+
+.circle {
+  position: relative;
+  border: 1px solid black;
+  height: 150px;
+  width: 150px;
+  border-radius: 75px;
+  margin: 0 auto;
+  top: 30px;
+}
+
+.bar__profile--header {
+  height: 35%;
+}
+
+.has__profile--header {
+  top: 35%;
+}
