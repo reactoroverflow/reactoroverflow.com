@@ -5,13 +5,13 @@ var path = require('path');
 
 var client = require(path.resolve('./lib/elasticsearch'));
 
-exports.renderPosts = function(req, res) {
+exports.renderProfiles = function(req, res) {
   var query = {};
   query.match_all = {};
 
   var search = {};
-  search.index = 'posts';
-  search.type = 'post';
+  search.index = 'profiles';
+  search.type = 'profiles';
   search.size = 50;
   search.body = {};
   search.body.query = query;
@@ -22,13 +22,14 @@ exports.renderPosts = function(req, res) {
   });
 };
 
-exports.renderPost = function(req, res) {
-  // Return a single post by ID
-  res.json(req.post);
+exports.renderProfile = function(req, res) {
+  // Return a single profile by ID
+  res.json(req.profile);
 };
 
-exports.storePost = function(req, res) {
-  
+exports.storeProfile = function(req, res) {
+  //TODO: profile schema!
+  /*
   var post = {};
   post.title = req.body.title;
   post.author = req.session.user.login;
@@ -47,24 +48,25 @@ exports.storePost = function(req, res) {
     console.log(results);
     res.json(results);
   });
+*/
 };  
 
-exports.updatePost = function(req, res) {
-  // Update a Single Post
+exports.updateProfile = function(req, res) {
+  // Update a Single Profile
 };
 
-exports.deletePost = function(req, res) {
-  // Delete a Single Post
+exports.deleteProfile = function(req, res) {
+  // Delete a Single Profile
 };
 
-exports.postByID = function(req, res, next, id) {
+exports.profileByID = function(req, res, next, id) {
   var query = {};
-  query.index = 'posts';
-  query.type = 'post';
+  query.index = 'profiles';
+  query.type = 'profile';
   query.id = id;
 
   client.get(query).then(function (result) {
-    req.post = result;
+    req.profile = result;
     next();
   });
 };
