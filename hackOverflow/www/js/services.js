@@ -1,8 +1,11 @@
-angular.module('hackOverflow.services', [])
+// 'use strict';
+
+angular.module('hackOverflow.services', ['ionic'])
+
 .factory('Posts', function ($http) {
 
   var getPosts = function(cb){
-    console.log("getting posts")
+    console.log("getting posts");
     $http({
       method: 'GET',
       url: '/api/posts'
@@ -40,8 +43,8 @@ angular.module('hackOverflow.services', [])
   };
 
   var addPost = function(post){
-    console.log(post)
-    console.log("Posting posts")
+    console.log(post);
+    console.log("Posting posts");
     return $http({
       method: 'POST',
       url: '/api/posts',
@@ -99,5 +102,17 @@ angular.module('hackOverflow.services', [])
     downVote: downVote,
     getComments: getComments,
     addComment: addComment
+  };
+})
+
+.factory('History', function($ionicHistory, $state) {
+  return {
+    lastState: null,
+
+    navToProfile: function() {
+      this.lastState = $ionicHistory.currentStateName();
+      console.log("STATE", this.lastState, this);
+      $state.go('profileTabs.main');
+    }
   };
 });

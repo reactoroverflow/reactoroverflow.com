@@ -15,7 +15,8 @@ angular.module('hackOverflow', [
   'hackOverflow.tags',
   'hackOverflow.create',
   'hackOverflow.postTag',
-  'hackOverflow.pairs'
+  'hackOverflow.pairs',
+  'hackOverflow.profile'
 ])
 
 .run(function($ionicPlatform) {
@@ -100,6 +101,39 @@ angular.module('hackOverflow', [
       'menuContent': {
         templateUrl: 'templates/pairs.html',
         controller: 'PairsCtrl'
+      }
+    }
+  })
+
+  // USER PROFILE
+  .state('profileTabs', {
+    url: "/user",
+    abstract: true,
+    controller: 'ProfileCtrl',
+    templateUrl: "templates/profile/tabs.html"
+  })
+  .state('profileTabs.main', {
+    url: "/main",
+    views: {
+      'main-tab': {
+        templateUrl: "templates/profile/main.html",
+        // controller: 'ProfileCtrl'
+      }
+    }
+  })
+  .state('profileTabs.bio', {
+    url: "/bio",
+    views: {
+      'bio-tab': {
+        templateUrl: "templates/profile/bio.html"
+      }
+    }
+  })
+  .state('profileTabs.social', {
+    url: "/social",
+    views: {
+      'social-tab': {
+        templateUrl: "templates/profile/social.html"
       }
     }
   });
