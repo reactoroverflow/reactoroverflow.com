@@ -1,12 +1,10 @@
 'use strict';
 
-
 var path = require('path');
 
 var client = require(path.resolve('./lib/elasticsearch'));
 
 exports.renderProfiles = function(req, res) {
-  //res.send("You got the renderProfiles endpoint!");
   
   var query = {};
   query.match_all = {};
@@ -17,16 +15,14 @@ exports.renderProfiles = function(req, res) {
   search.size = 50;
   search.body = {};
   search.body.query = query;
-  //search.body.sort = {"created_at" : {"order" : "desc"}};
 
   client.search(search).then(function (results){
     res.send(results.hits.hits);
   });
-  
 };
 
 exports.renderProfile = function(req, res) {
-  // Return a single profile by ID
+  // Return a single profile by username
   res.json(req.profile);
 };
 
@@ -111,15 +107,13 @@ exports.findOrStoreProfile = function(username, callback) {
   });
 };  
 
+//Called before any route that involves a parameter. Takes that parameter
+//and any profile associated with it and attaches both to the request.
 exports.profileByUsername = function(req, res, next, username) {
   var query = {};
   query.index = 'profiles';
   query.type = 'profile';
-  //TODO: FIX THIS
   query.id = username;
-
-  // req.username = username;
-  // next();
   
   client.get(query, function (error, result) {
     req.username = username;
