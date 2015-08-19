@@ -1,6 +1,7 @@
 angular.module('hackOverflow.create', [])
 
 .controller('CreateCtrl', function($scope, $cordovaCamera, Posts) {
+  $scope.post = {};
   $scope.takePhoto = function() {
     $cordovaCamera.getPicture({
       quality: 75,
