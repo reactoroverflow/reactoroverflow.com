@@ -1,14 +1,16 @@
 angular.module('hackOverflow.create', [])
 
-.controller('CreateCtrl', function($scope, $cordovaCamera, Posts, Tags) {
-  $scope.tags = Tags.tags;
-  $scope.tagObj = {};
-  $scope.tags.forEach(function(tag) {
-    $scope.tagObj[tag] = {checked: false};
-  });
+.controller('CreateCtrl', function($scope, $state, $cordovaCamera, Posts, Tags) {
+  var init = function () {
+    $scope.tags = Tags.tags;
+    $scope.tagObj = {};
+    $scope.tags.forEach(function(tag) {
+      $scope.tagObj[tag] = {checked: false};
+    });
+    $scope.post = {tags: []};
+  }
 
-  console.log($scope.tagObj);
-  $scope.post = {tags: []};
+  init();
   $scope.toggleTag = function(tag) {
     $scope.tagObj[tag].checked = !$scope.tagObj[tag].checked;
   };
@@ -46,7 +48,9 @@ angular.module('hackOverflow.create', [])
       }; //keys: title, content and tags
     Posts.addPost($scope.post)
     .then(function(resp) {
-      $location.path('/post/'+resp._id); //takes user to the post they created.
+      init();
+      console.log(resp._id);
+      $state.go('app.post', {postId: resp._id}); //takes user to the post they created.
     })
     .catch(function(error) {
       console.log(error);
