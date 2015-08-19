@@ -128,11 +128,11 @@ angular.module('hackOverflow', [
       }
     }
   })
-  .state('profileTabs.links', {
-    url: "/links",
+  .state('profileTabs.social', {
+    url: "/social",
     views: {
-      'links-tab': {
-        templateUrl: "templates/profile/links.html"
+      'social-tab': {
+        templateUrl: "templates/profile/social.html"
       }
     }
   });
