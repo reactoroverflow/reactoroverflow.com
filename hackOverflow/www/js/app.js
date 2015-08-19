@@ -15,7 +15,8 @@ angular.module('hackOverflow', [
   'hackOverflow.tags',
   'hackOverflow.create',
   'hackOverflow.postTag',
-  'hackOverflow.pairs'
+  'hackOverflow.pairs',
+  'hackOverflow.profile'
 ])
 
 .run(function($ionicPlatform) {
