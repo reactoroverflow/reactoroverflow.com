@@ -1,5 +1,5 @@
-angular.module('hackOverflow.profile', [])
+angular.module('hackOverflow.profile', ['ionic'])
 
-.controller('ProfileCtrl', function($scope) {
+.controller('ProfileCtrl', function ($scope) {
 
 });
