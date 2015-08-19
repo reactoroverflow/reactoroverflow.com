@@ -102,6 +102,39 @@ angular.module('hackOverflow', [
         controller: 'PairsCtrl'
       }
     }
+  })
+
+  // USER PROFILE
+  .state('profileTabs', {
+    url: "/user",
+    abstract: true,
+    controller: 'ProfileCtrl',
+    templateUrl: "templates/profile/tabs.html"
+  })
+  .state('profileTabs.main', {
+    url: "/main",
+    views: {
+      'main-tab': {
+        templateUrl: "templates/profile/main.html",
+        // controller: 'ProfileCtrl'
+      }
+    }
+  })
+  .state('profileTabs.bio', {
+    url: "/bio",
+    views: {
+      'bio-tab': {
+        templateUrl: "templates/profile/bio.html"
+      }
+    }
+  })
+  .state('profileTabs.links', {
+    url: "/links",
+    views: {
+      'links-tab': {
+        templateUrl: "templates/profile/links.html"
+      }
+    }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/posts');

@@ -1,8 +1,14 @@
-<div class="bar bar-header bar-light bar__profile--header">
-    <div class="circle"></div>
-</div>
+<ion-nav-bar>
+  <ion-nav-back-button ng-click="data.goBack()">
+    <i class="ion-arrow-left-c"></i> Back
+  </ion-nav-back-button>
+</ion-nav-bar>
 
-<ion-tabs class="tabs-icon-top tabs-positive">
+<!-- <div class="bar bar-header bar-light bar__profile-header"> -->
+    <div class="circle"></div>
+<!-- </div> -->
+
+<ion-tabs class="tabs-icon-top tabs-calm">
   <ion-tab title="Main" icon="ion-android-contact" href="#/user/main">
     <ion-nav-view name="main-tab"></ion-nav-view>
   </ion-tab>
