@@ -1,1 +1,10 @@
 /* Empty. Add your own CSS if you like */
+
+.camera {
+  font-size: 2em;
+}
+
+textarea {
+  resize: none;
+  height: 30vh;
+}

@@ -4,14 +4,17 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
+
 angular.module('hackOverflow', [
-  'ionic', 
+  'ionic',
+  'ngCordova',
+  'hackOverflow.controllers',
   'hackOverflow.services',
-  'hackOverflow.controllers', 
-  'hackOverflow.postsView', 
-  'hackOverflow.tags', 
-  'hackOverflow.create', 
-  'hackOverflow.postTag', 
+  'hackOverflow.postsView',
+  'hackOverflow.post',
+  'hackOverflow.tags',
+  'hackOverflow.create',
+  'hackOverflow.postTag',
   'hackOverflow.pairs'
 ])
 
@@ -47,6 +50,16 @@ angular.module('hackOverflow', [
       'menuContent': {
         templateUrl: 'templates/posts-view.html',
         controller: 'PostsViewCtrl'
+      }
+    }
+  })
+
+  .state('app.post', {
+    url: '/posts/:postId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/post.html',
+        controller: 'PostCtrl'
       }
     }
   })

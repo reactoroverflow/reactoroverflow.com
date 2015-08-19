@@ -1,0 +1,17 @@
+<ion-view view-title="Create A Post">
+  <ion-content>
+    <form name="post" class="list list-inset" ng-submit="createPost()">
+  <label class="item item-input">
+    <input ng-model="post.title" type="text" placeholder="Title">
+  </label>
+  <label class="item item-input text">
+    <textarea class="post-content" ng-model="post.content" placeholder="Insert Post Here"></textarea>
+  </label>
+  <button class="button button-outline button-block button-calm" ng-click="takePhoto()">
+    <i class="camera ion-camera pull-left"></i>
+  </button>
+  <center><img ng-if="data" ng-src="{{data}}"></center>
+  <button class="button button-block button-calm" type="submit">Post</button>
+</div>
+  </ion-content>
+</ion-view>

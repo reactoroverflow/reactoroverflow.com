@@ -1,5 +1,3 @@
-// 'use strict';
-
 angular.module('hackOverflow.services', [])
 .factory('Posts', function ($http) {
 
