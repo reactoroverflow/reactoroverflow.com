@@ -30,6 +30,37 @@ exports.renderProfile = function(req, res) {
   res.json(req.profile);
 };
 
+exports.updateProfile = function(req, res) {
+  // Update a Single Profile
+  if (!req.profile) {
+    res.send("No profile found with that name");
+    return;
+  }
+  if (req.username !== req.session.user.login) {
+    res.send("You don't have permission to edit that profile")
+    return;
+  }
+  var query = {};
+  query.index = 'profiles';
+  query.type = 'profile';
+  query.id = req.username;
+  query.body = {};
+  query.body.doc = req.body;
+
+  client.update(query, function(error, response) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Successfully updated profile");
+      res.send(response);
+    }
+  })
+};
+
+exports.deleteProfile = function(req, res) {
+  // Delete a Single Profile
+};
+
 exports.findOrStoreProfile = function(username, callback) {
   
 
@@ -79,14 +110,6 @@ exports.findOrStoreProfile = function(username, callback) {
     }
   });
 };  
-
-exports.updateProfile = function(req, res) {
-  // Update a Single Profile
-};
-
-exports.deleteProfile = function(req, res) {
-  // Delete a Single Profile
-};
 
 exports.profileByUsername = function(req, res, next, username) {
   var query = {};
