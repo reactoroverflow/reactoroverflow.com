@@ -4,14 +4,16 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
+
 angular.module('hackOverflow', [
-  'ionic', 
+  'ionic',
+  'ngCordova',
+  'hackOverflow.controllers',
   'hackOverflow.services',
-  'hackOverflow.controllers', 
-  'hackOverflow.postsView', 
-  'hackOverflow.tags', 
-  'hackOverflow.create', 
-  'hackOverflow.postTag', 
+  'hackOverflow.postsView',
+  'hackOverflow.tags',
+  'hackOverflow.create',
+  'hackOverflow.postTag',
   'hackOverflow.pairs'
 ])
 
