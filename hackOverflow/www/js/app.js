@@ -6,6 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('hackOverflow', [
   'ionic', 
+  'hackOverflow.services',
   'hackOverflow.controllers', 
   'hackOverflow.postsView', 
   'hackOverflow.tags', 
