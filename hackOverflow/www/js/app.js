@@ -11,6 +11,7 @@ angular.module('hackOverflow', [
   'hackOverflow.controllers',
   'hackOverflow.services',
   'hackOverflow.postsView',
+  'hackOverflow.post',
   'hackOverflow.tags',
   'hackOverflow.create',
   'hackOverflow.postTag',
@@ -49,6 +50,16 @@ angular.module('hackOverflow', [
       'menuContent': {
         templateUrl: 'templates/posts-view.html',
         controller: 'PostsViewCtrl'
+      }
+    }
+  })
+
+  .state('app.post', {
+    url: '/posts/:postId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/post.html',
+        controller: 'PostCtrl'
       }
     }
   })
