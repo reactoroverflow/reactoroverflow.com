@@ -20,7 +20,7 @@
        </div>
 
        <div class="item item-divider tabs tabs-secondary tabs-icon-left">
-         <div class="tab-item" ng-click="upVote(post._id)">
+         <div class="tab-item" ng-click="upVotePost(post._id)">
            <i class="icon ion-thumbsup"></i>
            Like
          </div>
@@ -49,7 +49,7 @@
           <div class="tab-item subdued">
             {{comment.votes}} Likes
           </div>
-          <div class="tab-item" ng-click="upVote(comment._id)">
+          <div class="tab-item" ng-click="upVoteComment(comment._id)">
            <i class="icon ion-thumbsup"></i>
              Like
           </div>
