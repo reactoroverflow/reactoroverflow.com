@@ -7,10 +7,10 @@ var profiles = require(path.resolve('./server/controllers/profiles.controllers.s
 
 module.exports = function(app) {
 
-  app.route('/api/profiles')/*.all(auth.loggedIn)*/
+  app.route('/api/profiles').all(auth.loggedIn)
     .get(profiles.renderProfiles);
 
-  app.route('/api/profiles/:username')/*.all(auth.loggedIn)*/
+  app.route('/api/profiles/:username').all(auth.loggedIn)
     .get(profiles.renderProfile)
     //.post(profiles.storeProfile)
     .put(profiles.updateProfile)
