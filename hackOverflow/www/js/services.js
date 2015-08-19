@@ -42,6 +42,7 @@ angular.module('hackOverflow.services', [])
   };
 
   var addPost = function(post){
+    console.log(post)
     console.log("Posting posts")
     return $http({
       method: 'POST',
