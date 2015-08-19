@@ -1,7 +1,10 @@
 angular.module('hackOverflow.create', [])
 
 .controller('CreateCtrl', function($scope, $cordovaCamera, Posts) {
-  $scope.post = {};
+  $scope.post = {tags: []};
+  $scope.addTag = function(tag) {
+    $scope.post.tags.push(tag);
+  };
   $scope.takePhoto = function() {
     $cordovaCamera.getPicture({
       quality: 75,
@@ -14,16 +17,18 @@ angular.module('hackOverflow.create', [])
       saveToPhotoAlbum: false
     }).then(function(imageURI) {
       console.log(imageURI);
-      $scope.data = "data:image/jpeg;base64," + imageURI;
+      $scope.imgSrc = "data:image/jpeg;base64," + imageURI;
+      $scope.data = imageURI;
     }, function(err) {
       console.err(err);
     });
   };
 
   $scope.createPost = function() {
+    var text = $scope.post.content || '';
     $scope.post = {
       title: $scope.post.title,
-      content: marked($scope.post.content),
+      content: marked(text),
       tags: $scope.post.tags, //format: Tags: ["asdf","asdf"]
       data: $scope.data
       }; //keys: title, content and tags

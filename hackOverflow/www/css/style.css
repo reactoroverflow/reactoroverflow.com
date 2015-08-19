@@ -6,9 +6,12 @@
 
 textarea {
   resize: none;
-  height: 30vh;
+  height: 3em;
 }
 
+.post-content {
+  height: 30vh;
+}
 .circle {
   position: relative;
   border: 1px solid black;
