@@ -1,33 +1,26 @@
 <ion-view view-title="Create A Post">
   <ion-content>
     <form name="postForm" class="list list-inset" ng-submit="submitPost()">
-  <label class="item item-input">
-    <input ng-model="post.title" type="text" placeholder="Title" required>
-  </label>
-  <label class="item item-input text">
-    <textarea class="post-content" ng-model="post.content" placeholder="Insert Post Here"></textarea>
-  </label>
-  <div class="ck-buttons">
-    <div class="ck-button" ng-repeat="tag in tags" ng-click="toggleTag(tag)">
-      <label ng-class="tagObj[tag].checked ? 'button-royal button' : 'button-royal button-outline button'">
-        
-        <span>{{tag}}</span>
+      <label class="item item-input">
+        <input ng-model="post.title" type="text" placeholder="Title" required>
       </label>
-    </div>
-  </div>
-<!--   <button class="button button-outline button-block button-calm" ng-click="takePhoto()">
-    <i class="camera ion-camera pull-left"></i>
-  </button>
- <!
-   {{post.data}} -->
-  <div class="button button-outline button-calm button-block" ng-click="fileInput()">
-    <i class="icon ion-camera"></i>
-    </div>
-     <input class="file-upload" onchange="angular.element(this).scope().add()" type="file" id="file" capture="camera" accept="image/*" id="takePictureField">
-
-
-    <center><img class="create-img" ng-if="post.data" src="{{post.data}}"></center>
-    <button ng-disabled="postForm.$invalid" class="button button-block button-calm" type="submit">Submit</button>
-  </div>
+      <label class="item item-input text">
+        <textarea class="post-content" ng-model="post.content" placeholder="Insert Post Here"></textarea>
+      </label>
+      <div class="ck-buttons">
+        <div class="ck-button" ng-repeat="tag in tags" ng-click="toggleTag(tag)">
+          <label ng-class="tagObj[tag].checked ? 'button-royal button' : 'button-royal button-outline button'">
+            
+            <span>{{tag}}</span>
+          </label>
+        </div>
+      </div>
+      <div class="button button-outline button-calm button-block" ng-click="fileInput()">
+        <i class="icon ion-camera"></i>
+      </div>
+      <input class="file-upload" onchange="angular.element(this).scope().add()" type="file" id="file" capture="camera" accept="image/*" id="takePictureField">
+      <center><img class="create-img" ng-if="post.data" src="{{post.data}}"></center>
+      <button ng-disabled="postForm.$invalid" class="button button-block button-calm" type="submit">Submit</button>
+    </form>
   </ion-content>
 </ion-view>
