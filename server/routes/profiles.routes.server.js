@@ -7,15 +7,15 @@ var profiles = require(path.resolve('./server/controllers/profiles.controllers.s
 
 module.exports = function(app) {
 
-  app.route('/api/profiles').all(auth.loggedIn)
-    .get(profiles.renderProfiles)
-    .post(profiles.storeProfile);
+  app.route('/api/profiles')/*.all(auth.loggedIn)*/
+    .get(profiles.renderProfiles);
 
-  app.route('/api/profiles/:profileID').all(auth.loggedIn)
+  app.route('/api/profiles/:username')/*.all(auth.loggedIn)*/
     .get(profiles.renderProfile)
+    //.post(profiles.storeProfile)
     .put(profiles.updateProfile)
     .delete(profiles.deleteProfile);
 
-  app.param('profileID', profiles.profileByID);
+  app.param('username', profiles.profileByUsername);
 
 };
