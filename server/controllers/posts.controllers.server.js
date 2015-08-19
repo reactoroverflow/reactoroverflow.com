@@ -28,6 +28,7 @@ exports.renderPost = function(req, res) {
 };
 
 exports.storePost = function(req, res) {
+  
   var post = {};
   post.title = req.body.title;
   post.author = req.session.user.login;
@@ -35,7 +36,7 @@ exports.storePost = function(req, res) {
   post.tags = req.body.tags;
   post.data = req.body.data;
   post.created_at = Date.now();
-
+  
   var query = {};
   query.index = 'posts';
   query.type = 'post';
@@ -46,7 +47,7 @@ exports.storePost = function(req, res) {
     console.log(results);
     res.json(results);
   });
-};
+};  
 
 exports.updatePost = function(req, res) {
   // Update a Single Post

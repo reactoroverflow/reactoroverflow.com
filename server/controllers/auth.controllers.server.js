@@ -6,7 +6,7 @@ exports.renderLogin = function(req, res) {
   if(req.session.user) {
     res.redirect('/');
   } else {
-    res.sendFile(path.resolve('./client/landing.html'));
+    res.sendFile(path.resolve('./hackOverflow/www/landing.html'));
   }
   
 };
