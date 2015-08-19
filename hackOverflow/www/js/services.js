@@ -8,7 +8,7 @@ angular.module('hackOverflow.services', ['ionic'])
     console.log("getting posts");
     $http({
       method: 'GET',
-      url: '/api/posts'
+      url: 'http://localhost:4000/api/posts'
     }).then(function (resp) {
       cb(resp.data);
     });
@@ -43,11 +43,11 @@ angular.module('hackOverflow.services', ['ionic'])
   };
 
   var addPost = function(post){
-    console.log(post);
-    console.log("Posting posts");
+    console.log("--->",post)
+    console.log("Posting posts")
     return $http({
       method: 'POST',
-      url: '/api/posts',
+      url: 'http://localhost:4000/api/posts',
       data: post
     }).then(function (resp) {
       return resp.data;
