@@ -6,14 +6,14 @@ angular.module('hackOverflow.create', [])
       quality: 75,
       destinationType: Camera.DestinationType.DATA_URL,
       sourceType: Camera.PictureSourceType.CAMERA,
-      encodingType: Camera.encodingType.JPEG,
+      encodingType: Camera.EncodingType.JPEG,
       popoverOptions: CameraPopoverOptions,
-      targetWidth: 320,
-      targetHeight: 320,
+      targetWidth: 250,
+      targetHeight: 250,
       saveToPhotoAlbum: false
     }).then(function(imageURI) {
       console.log(imageURI);
-      $scope.data = imageURI;
+      $scope.data = "data:image/jpeg;base64," + imageURI;
     }, function(err) {
       console.err(err);
     });
