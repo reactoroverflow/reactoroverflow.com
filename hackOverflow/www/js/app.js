@@ -107,10 +107,16 @@ angular.module('hackOverflow', [
 
   // USER PROFILE
   .state('profileTabs', {
-    url: "/user",
+    url: "/user/:username",
     abstract: true,
     controller: 'ProfileCtrl',
-    templateUrl: "templates/profile/tabs.html"
+    templateUrl: "templates/profile/tabs.html",
+    cache: false,
+    resolve:{
+      username: ['$stateParams', function($stateParams){
+        return $stateParams.username;
+      }]
+    }
   })
   .state('profileTabs.main', {
     url: "/main",

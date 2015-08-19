@@ -1,12 +1,29 @@
 <ion-view view-title="Main">
   <ion-content class="padding">
+  <button ng-model="edit" ng-click="toggleEdit()">Edit</button>
     <ion-list>
-      <ion-item>Blog:</ion-item>
-      <ion-item>Website:</ion-item>
-      <ion-item>Coming to HR from:</ion-item>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Blog</span>
+        <input ng-if="edit" type="url" placeholder="Blog" ng-model="data.blogUrl">
+        <p><a ng-if="!edit" ng-href="{{data.blogUrl}}">{{data.blogUrl}}</a></p>
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Website</span>
+        <input ng-if="edit" type="url" placeholder="Website" ng-model="data.websiteUrl">
+        <p><a ng-if="!edit" ng-href="{{data.websiteUrl}}">{{data.websiteUrl}}</a></p>
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Hometown</span>
+        <input ng-if="edit" type="url" placeholder="Hometown" ng-model="data.hometown">
+        <p ng-if="!edit">{{data.hometown}}</p>
+      </label>
+<!--
       <ion-item>Age:</ion-item>
       <ion-item>Phone:</ion-item>
-      <ion-item>Experience:</ion-item>
+      <ion-item>Experience:</ion-item> -->
     </ion-list>
   </ion-content>
 </ion-view>

@@ -21,8 +21,11 @@
         <ion-item menu-close href="#/app/posts">
           Home
         </ion-item>
-        <ion-item menu-close ng-click="navToProfile()">
+        <ion-item menu-close ng-click="navToProfile(username)">
           Profile
+        </ion-item>
+        <ion-item menu-close ng-click="navToProfile('testprofile')">
+          TestProfile
         </ion-item>
         <ion-item menu-close href="#/app/tags">
           Tags

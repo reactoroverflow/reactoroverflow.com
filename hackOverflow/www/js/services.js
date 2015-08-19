@@ -109,13 +109,41 @@ angular.module('hackOverflow.services', ['ionic'])
   };
 })
 
-.factory('History', function($ionicHistory, $state) {
-  return {
-    lastState: null,
+.factory('Profile', function() {
+  var username = null;
 
-    navToProfile: function() {
+  // store user to search
+  var setUser = function(username) {
+    this.username = username;
+  };
+
+  var getUser = function(username) {
+    return this.username;
+  };
+
+  var downloadUser = function() {
+    return $http({
+      method: 'GET',
+      url: '/api/profiles/' + this.username
+    });
+  };
+
+  return {
+    setUser: setUser,
+    getUser: getUser,
+    downloadUser: downloadUser
+  };
+})
+
+.factory('History', function($ionicHistory, $state, $stateParams, Profile) {
+  return {
+    lastState: 'app.posts',
+
+    navToProfile: function(username) {
       this.lastState = $ionicHistory.currentStateName();
-      $state.go('profileTabs.main');
+      // set user
+      Profile.setUser(username);
+      $state.go('profileTabs.main', {username: username});
     }
   };
 })
