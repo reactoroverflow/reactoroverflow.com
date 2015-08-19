@@ -56,20 +56,3 @@ body {
 .ck-button label {
     width: 100%;
 }
-
-/*.ck-button label span {
-    text-align:center;
-    padding:3px 0px;
-    display:block;
-}*/
-
-
-.ck-button label input {
-    position:absolute;
-    top:-20000px;
-}
-
-/*.ck-button input:checked + span {
-    background-color:#911;
-    color:#fff;
-}*/
