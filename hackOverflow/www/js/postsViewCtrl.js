@@ -1,24 +1,5 @@
 angular.module('hackOverflow.postsView', [])
 .controller('PostsViewCtrl', function($scope, $rootScope, Posts){
-
-  $scope.post = {
-    _source: {title: "Title", author: "Jay", created_at: "Timestamp", content: "WHAT"}
-  };
-  var testData = [$scope.post, $scope.post];
-
-  $scope.data = {};
-  $scope.getPosts = function() {
-    console.log("IN HERE");
-    // Posts.getPosts(function(data) {
-      console.log("NOW HERE");
-      $scope.data.posts = testData;
-
-      // $scope.data.posts = data;
-  // $scope.post = {
-  //   _source: {title: "Title", author: "Jay", created_at: "Timestamp", content: "WHAT"}
-  // }
-  // var testData = [$scope.post, $scope.post];
-
   $scope.data = {};
   $scope.getPosts = function() {  
     Posts.getPosts(function(data) {
