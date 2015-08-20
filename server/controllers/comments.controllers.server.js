@@ -92,11 +92,11 @@ exports.upvoteComment = function(req, res) {
   if(!comment._source.downvotes) {
     comment._source.downvotes = [];
   }
-  if(comment._source.downvotes.indexOf(req.session.user.id) > -1) {
-    comment._source.downvotes.splice(comment._source.downvotes.indexOf(req.session.user.id), 1);
+  if(comment._source.downvotes.indexOf(req.session.user.login) > -1) {
+    comment._source.downvotes.splice(comment._source.downvotes.indexOf(req.session.user.login), 1);
   }
-  if(comment._source.upvotes.indexOf(req.session.user.id) === -1) {
-    comment._source.upvotes.push(req.session.user.id);
+  if(comment._source.upvotes.indexOf(req.session.user.login) === -1) {
+    comment._source.upvotes.push(req.session.user.login);
   }
   var update = {};
   update.index = 'comments';

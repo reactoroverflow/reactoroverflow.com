@@ -57,8 +57,8 @@ exports.upvotePost = function(req, res) {
     post._source.upvotes = [];
   }
 
-  if(post._source.upvotes.indexOf(req.session.user.id) === -1) {
-    post._source.upvotes.push(req.session.user.id);
+  if(post._source.upvotes.indexOf(req.session.user.login) === -1) {
+    post._source.upvotes.push(req.session.user.login);
   } else {
     res.send(412);
     return;
@@ -82,7 +82,7 @@ exports.removeUpvote = function(req, res) {
   if(!post._source.upvotes) {
     res.send(412);
   }
-  var userIndex = post._source.upvotes.indexOf(req.session.user.id);
+  var userIndex = post._source.upvotes.indexOf(req.session.user.login);
   if(userIndex === -1) {
     res.send(412);
   }
