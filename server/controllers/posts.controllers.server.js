@@ -118,7 +118,6 @@ exports.updatePost = function(req, res) {
       res.send(404);
     } else {
       res.send(204);
-      res.send(response);
     }
   })
 };
