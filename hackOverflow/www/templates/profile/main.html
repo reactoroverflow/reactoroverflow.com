@@ -3,13 +3,13 @@
     <ion-list>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Blog</span>
-        <input ng-if="edit" type="url" placeholder="Blog" ng-model="user._source.blog">
+        <input ng-if="edit" type="text" placeholder="Blog" ng-model="user._source.blog">
         <p><a ng-if="!edit" ng-href="{{user._source.blog}}">{{user._source.blog}}</a></p>
       </label>
 
       <label class="item item-input item-stacked-label">
         <span class="input-label">Website</span>
-        <input ng-if="edit" type="url" placeholder="Website" ng-model="user._source.website">
+        <input ng-if="edit" type="text" placeholder="Website" ng-model="user._source.website">
         <p>
           <a ng-if="!edit" ng-href="{{user._source.website}}">{{user._source.website}}</a>
         </p>
@@ -17,7 +17,7 @@
 
       <label class="item item-input item-stacked-label">
         <span class="input-label">Hometown</span>
-        <input ng-if="edit" type="url" placeholder="Hometown" ng-model="user._source.hometown">
+        <input ng-if="edit" type="text" placeholder="Hometown" ng-model="user._source.hometown">
         <p ng-if="!edit">{{user._source.hometown}}</p>
       </label>
 
