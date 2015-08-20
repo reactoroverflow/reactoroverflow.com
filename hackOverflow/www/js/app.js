@@ -146,11 +146,17 @@ angular.module('hackOverflow', [
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/posts');
 
-  // http interceptor
+  // add http interceptor
   $httpProvider.interceptors.push('checkResponse');
 
 })
-// http interceptor
+/**
+ * @ngdoc service
+ * @name checkResponse
+ * @requires User
+ * @description
+ *   Sets the signed-in user by looking at server's response header
+*/
 .factory('checkResponse', function(User) {
   return {
     response: function(response) {

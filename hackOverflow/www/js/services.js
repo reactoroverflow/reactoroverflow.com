@@ -110,20 +110,29 @@ angular.module('hackOverflow.services', ['ionic'])
 })
 
 /**
- * Provides a way to store a user across views and to download that user.
+ * @ngdoc service
+ * @name Profile
+ * @description
+ *   Provides a way to store a username across views in order to access that profile.
 */
 .factory('Profile', function ($http, $state) {
   var username = null;
 
-  // store user to search
+  // store profile to search
   var setProfile = function(username) {
     this.username = username;
   };
 
+  // get profile; defaults to the username param in URL
   var getProfile = function(username) {
     return this.username || $state.params.username;
   };
 
+  /**
+   * Requests a given user's profile
+   * @memberof Profile
+   * @returns {Promise} http response with profile data
+   */
   var downloadProfile = function() {
     console.log("FACTORY", this.getProfile());
     return $http({
@@ -134,6 +143,11 @@ angular.module('hackOverflow.services', ['ionic'])
     });
   };
 
+  /**
+   * Updates a given user's profile
+   * @memberof Profile
+   * @returns {Promise} http response with profile data
+   */
   var updateProfile = function(username, data) {
     console.log("FACTORY PUT", this.getProfile());
     return $http({
@@ -154,7 +168,10 @@ angular.module('hackOverflow.services', ['ionic'])
 })
 
 /**
- * Keep track of signed in user
+ * @ngdoc service
+ * @name User
+ * @description
+ *   Keeps track of the currently signed in user
 */
 .factory('User', function() {
   var user = null;
@@ -170,19 +187,27 @@ angular.module('hackOverflow.services', ['ionic'])
     user: user,
     setUser: setUser,
     getUser: getUser
-  }
+  };
 })
 
 /**
- * Saves last state when navigating to another profile
+ * @ngdoc service
+ * @name History
+ * @description
+ *   Allows saving of state before navigating to a profile (in order to easily return
+ *   to that profile)
 */
 .factory('History', function($ionicHistory, $state, $stateParams, Profile) {
   return {
     lastState: 'app.posts',
 
+    /**
+     * Navigates to a given profile, while saving the state before the user profile
+     * @memberof History
+     */
     navToProfile: function(username) {
       this.lastState = $ionicHistory.currentStateName();
-      // set user
+      // set user in Profile Service (in order to access in profile controller)
       Profile.setProfile(username);
       $state.go('profileTabs.main', {username: username});
     }
