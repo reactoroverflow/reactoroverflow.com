@@ -92,6 +92,8 @@ exports.upvoteComment = function(req, res) {
 
   if(comment._source.upvotes.indexOf(req.session.user.login) === -1) {
     comment._source.upvotes.push(req.session.user.login);
+  } else {
+    res.send(412);
   }
   var update = {};
   update.index = 'comments';
@@ -101,7 +103,7 @@ exports.upvoteComment = function(req, res) {
   update.body.doc = {};
   update.body.doc.upvotes = comment._source.upvotes;
   client.update(update).then(function (result) {
-    res.send(result);
+    res.send(204);
   });
 };
 
@@ -109,10 +111,14 @@ exports.downvoteComment = function(req, res) {
   var comment = req.comment;
 
   if(!comment._source.upvotes) {
-    comment._source.upvotes = [];
+    res.send(412);
+    return;
   }
   if(comment._source.upvotes.indexOf(req.session.user.login) > -1) {
     comment._source.upvotes.splice(comment._source.upvotes.indexOf(req.session.user.login), 1);
+  } else {
+    res.send(412);
+    return;
   }
 
   var update = {};
@@ -123,7 +129,7 @@ exports.downvoteComment = function(req, res) {
   update.body.doc = {};
   update.body.doc.upvotes = comment._source.upvotes;
   client.update(update).then(function (result) {
-    res.send(result);
+    res.send(204);
   });
 };
 
