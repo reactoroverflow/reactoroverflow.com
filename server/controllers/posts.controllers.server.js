@@ -51,6 +51,27 @@ exports.storePost = function(req, res) {
   });
 };  
 
+exports.upvotePost = function(req, res) {
+  var post = req.post;
+  if(!post._source.upvotes) {
+    post._source.upvotes = [];
+  }
+
+  if(post._source.upvotes.indexOf(req.session.user.id) === -1) {
+    post._source.upvotes.push(req.session.user.id);
+  }
+  var update = {};
+  update.index = 'posts';
+  update.type = 'post';
+  update.id = post._id;
+  update.body = {};
+  update.body.doc = {};
+  update.body.doc.upvotes = post._source.upvotes;
+  client.update(update).then(function (result) {
+    res.send(result);
+  });
+}
+
 exports.updatePost = function(req, res) {
   // Update a Single Post
 };
