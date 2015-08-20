@@ -59,7 +59,11 @@ exports.upvotePost = function(req, res) {
 
   if(post._source.upvotes.indexOf(req.session.user.id) === -1) {
     post._source.upvotes.push(req.session.user.id);
+  } else {
+    res.send(412);
+    return;
   }
+
   var update = {};
   update.index = 'posts';
   update.type = 'post';
@@ -68,8 +72,32 @@ exports.upvotePost = function(req, res) {
   update.body.doc = {};
   update.body.doc.upvotes = post._source.upvotes;
   client.update(update).then(function (result) {
-    res.send(result);
+    res.send(204);
   });
+}
+
+exports.removeUpvote = function(req, res) {
+  var post = req.post;
+  
+  if(!post._source.upvotes) {
+    res.send(412);
+  }
+  var userIndex = post._source.upvotes.indexOf(req.session.user.id);
+  if(userIndex === -1) {
+    res.send(412);
+  }
+  post._source.upvoted.splice(userIndex);
+  var update = {};
+  update.index = 'posts';
+  update.type = 'post';
+  update.id = post._id;
+  update.body = {};
+  update.body.doc = {};
+  update.body.doc.upvotes = post._source.upvotes;
+  client.update(update).then(function (result) {
+    res.send(204);
+  });
+
 }
 
 exports.updatePost = function(req, res) {

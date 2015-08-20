@@ -53,6 +53,10 @@ exports.updateProfile = function(req, res) {
   })
 };
 
+exports.setPair = function(req, res) {
+
+}
+
 exports.deleteProfile = function(req, res) {
   // Delete a Single Profile
 };
@@ -106,6 +110,10 @@ exports.findOrStoreProfile = function(username, callback) {
     }
   });
 };  
+
+exports.getCurrent = function(req, res) {
+  res.send(req.profile);
+}
 
 //Called before any route that involves a parameter. Takes that parameter
 //and any profile associated with it and attaches both to the request.
