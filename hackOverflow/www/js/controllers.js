@@ -1,9 +1,11 @@
 angular.module('hackOverflow.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, History) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, History, User) {
 
-  $scope.navToProfile = function() {
-    History.navToProfile();
+  // for testing
+  $scope.username = User.getUser();
+  $scope.navToProfile = function(username) {
+    History.navToProfile(username);
   };
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.

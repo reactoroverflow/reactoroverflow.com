@@ -19,16 +19,32 @@ textarea {
   width: 150px;
   border-radius: 75px;
   margin: 0 auto;
-  top: 0px;
+  top: 10px;
 }
 
 .bar__profile--header {
-  height: 35%;
+  height: 30%;
 }
 
 .has__profile--header {
-  top: 35%;
+  top: 30%;
 }
+
+.btn-hide {
+  visibility: hidden;
+}
+
+/*.profile__info {
+  display: block;
+  padding-top: 2px;
+  padding-left: 0;
+  height: 34px;
+  color: #111;
+  vertical-align: middle;
+  font-size: 14px;
+  line-height: 16px;
+}*/
+
 
 div label input {
    margin-right:100px;

@@ -35,7 +35,7 @@ angular.module('hackOverflow', [
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   $stateProvider
 
     .state('app', {
@@ -107,10 +107,16 @@ angular.module('hackOverflow', [
 
   // USER PROFILE
   .state('profileTabs', {
-    url: "/user",
+    url: "/user/:username",
     abstract: true,
     controller: 'ProfileCtrl',
-    templateUrl: "templates/profile/tabs.html"
+    templateUrl: "templates/profile/tabs.html",
+    cache: false,
+    resolve:{
+      username: ['$stateParams', function($stateParams){
+        return $stateParams.username;
+      }]
+    }
   })
   .state('profileTabs.main', {
     url: "/main",
@@ -139,4 +145,24 @@ angular.module('hackOverflow', [
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/posts');
+
+  // add http interceptor
+  $httpProvider.interceptors.push('checkResponse');
+
+})
+/**
+ * @ngdoc service
+ * @name checkResponse
+ * @requires User
+ * @description
+ *   Sets the signed-in user by looking at server's response header
+*/
+.factory('checkResponse', function(User) {
+  return {
+    response: function(response) {
+      User.setUser(response.headers().username);
+      console.log(User.getUser());
+      return response;
+    }
+  };
 });
