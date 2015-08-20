@@ -6,7 +6,6 @@ var path = require('path');
 var client = require(path.resolve('./lib/elasticsearch'));
 
 exports.renderPosts = function(req, res) {
-  console.log("Rendering")
   var query = {};
   query.match_all = {};
 
@@ -29,11 +28,9 @@ exports.renderPost = function(req, res) {
 };
 
 exports.storePost = function(req, res) {
-  console.log("STORING")
   var post = {};
   post.title = req.body.title;
-  // post.author = req.session.user.login;
-  post.author = "JAY";
+  post.author = req.session.user.login;
   post.content = req.body.content;
   post.tags = req.body.tags;
   post.data = req.body.data;
@@ -46,7 +43,6 @@ exports.storePost = function(req, res) {
   query.body = post;
 
   client.create(query).then(function (results){
-    console.log(results);
     res.json(results);
   });
 };  

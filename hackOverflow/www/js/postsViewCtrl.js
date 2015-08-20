@@ -3,7 +3,6 @@ angular.module('hackOverflow.postsView', [])
   $scope.data = {};
   $scope.getPosts = function() {  
     Posts.getPosts(function(data) {
-      console.log("data", data)
       
       $scope.data.posts = data;
       $scope.data.posts.forEach(function (post) {
