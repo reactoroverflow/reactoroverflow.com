@@ -1,26 +1,50 @@
 <ion-view title="Social">
   <ion-content class="has__profile--header">
     <div class="list">
+
+      <!-- github, do not allow editing -->
       <a class="item item-icon-left" ng-href="https://github.com/{{userData._source.gitHubUser.login}}">
-        <i class="ion-social-github"></i>
+        <i class="icon ion-social-github"></i>
         {{userData._source.gitHubUser.name}}
       </a>
-      <a class="item item-icon-left" ng-href="https://www.facebook.com/{{userData._source.social.facebook}}">
-        <i class="ion-social-facebook"></i>
-        {{userData._source.social.facebook}}
-      </a>
-      <a class="item item-icon-left" href="https://www.instagram.com/{{userData._source.social.instagram}}">
-        <i class="ion-social-instagram"></i>
-        {{userData._source.social.instagram}}
-      </a>
-      <a class="item item-icon-left" href="https://www.twitter.com/{{userData._source.social.twitter}}">
-        <i class="ion-social-twitter"></i>
-        {{userData._source.social.twitter}}
-      </a>
-      <a class="item item-icon-left" href="#">
-        <i class="ion-social-linkedin"></i>
-        LinkedIn handle (needs work)
-      </a>
+
+      <!-- Facebook -->
+      <div class="item item-icon-left">
+        <i class="icon ion-social-facebook"></i>
+        <a ng-if="!edit" ng-href="https://www.facebook.com/{{userData._source.social.facebook}}" class="profile__social--link">{{userData._source.social.facebook}}</a>
+
+        <input class="profile__social--input" ng-if="edit" type="text" placeholder="facebook" ng-model="user._source.social.facebook">
+      </div>
+
+      <!-- Instagram -->
+      <div class="item item-icon-left">
+        <i class="icon ion-social-instagram"></i>
+        <a ng-if="!edit" ng-href="https://www.instagram.com/{{userData._source.social.instagram}}" class="profile__social--link">{{userData._source.social.instagram}}</a>
+
+        <input class="profile__social--input" ng-if="edit" type="text" placeholder="instagram" ng-model="user._source.social.instagram">
+      </div>
+
+      <!-- Twitter -->
+      <div class="item item-icon-left">
+        <i class="icon ion-social-twitter"></i>
+        <a ng-if="!edit" ng-href="https://www.twitter.com/{{userData._source.social.twitter}}" class="profile__social--link">{{userData._source.social.twitter}}</a>
+
+        <input class="profile__social--input" ng-if="edit" type="text" placeholder="twitter" ng-model="user._source.social.twitter">
+      </div>
+
+      <!-- LinkedIn -->
+      <div class="item item-icon-left">
+        <i class="icon ion-social-linkedin"></i>
+        <a ng-if="!edit" ng-href="https://www.linkedin.com/in/{{userData._source.social.linkedin}}" class="profile__social--link">{{userData._source.social.linkedin}}</a>
+
+        <input class="profile__social--input" ng-if="edit" type="text" placeholder="linkedin" ng-model="user._source.social.linkedin">
+      </div>
     </div>
+
+    <!-- Edit profile buttons -->
+    <div ng-if="edit" class="button-bar">
+       <button type="submit" ng-click="updateUserInfo()" class="button  button-balanced">Submit</button>
+       <button type="button" ng-click="cancelEditUser()" class="button  button-stable">Cancel</button>
+     </div>
   </ion-content>
 </ion-view>

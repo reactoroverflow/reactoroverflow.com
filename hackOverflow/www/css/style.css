@@ -40,11 +40,43 @@ textarea {
   bottom: 0.5rem;
   border: 1px solid black;
   max-height: 70%;
-  border-radius: 75px;
+  border-radius: 100px;
   margin-left: auto;
   margin-right: auto;
 }
 
+.profile__bio--textarea {
+  border: 1px dotted gray;
+  width: 100%;
+  min-height: 100%;
+  margin: 0 5px;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.42857;
+}
+
+.profile__bio--textarea[disabled] {
+  border: none;
+  background-color: white;
+  width: 100%;
+  min-height: 100%;
+}
+
+input.profile__social--input {
+  display: inline;
+}
+
+.profile__main--link,
+.profile__social--link {
+  color: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  text-decoration: inherit;
+}
+
+.scroll {
+  height:75%;
+}
 
 
 .btn-hide {

@@ -4,14 +4,14 @@
       <label class="item item-input item-stacked-label">
         <span class="input-label">Blog</span>
         <input ng-if="edit" type="text" placeholder="Blog" ng-model="user._source.blog">
-        <p><a ng-if="!edit" ng-href="{{user._source.blog}}">{{user._source.blog}}</a></p>
+        <p><a ng-if="!edit" ng-href="{{user._source.blog}}" class="profile__main--link">{{user._source.blog}}</a></p>
       </label>
 
       <label class="item item-input item-stacked-label">
         <span class="input-label">Website</span>
         <input ng-if="edit" type="text" placeholder="Website" ng-model="user._source.website">
         <p>
-          <a ng-if="!edit" ng-href="{{user._source.website}}">{{user._source.website}}</a>
+          <a ng-if="!edit" ng-href="{{user._source.website}}" class="profile__main--link">{{user._source.website}}</a>
         </p>
       </label>
 
@@ -22,9 +22,9 @@
       </label>
 
       <!-- Edit profile buttons -->
-      <div ng-if="edit" class="buttons">
-        <button type="submit" ng-click="updateUserInfo()" class="button button-block button-balanced">Submit</button>
-        <button type="button" ng-click="cancelEditUser()" class="button button-block button-stable">Cancel</button>
+      <div ng-if="edit" class="button-bar">
+        <button type="submit" ng-click="updateUserInfo()" class="button  button-balanced">Submit</button>
+        <button type="button" ng-click="cancelEditUser()" class="button  button-stable">Cancel</button>
       </div>
 <!--
       <ion-item>Age:</ion-item>
