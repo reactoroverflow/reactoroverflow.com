@@ -31,13 +31,20 @@ angular.module('hackOverflow.create', [])
       content: marked(text),
       tags: $scope.post.tags, //format: Tags: ["asdf","asdf"]
       data: $scope.data
-      }; //keys: title, content and tags
+      };
+    // $scope.post = {
+    //   title: $scope.post.title,
+    //   content: marked($scope.post.content),
+    //   tags: $scope.post.tags, //format: Tags: ["asdf","asdf"]
+    //   data: $scope.data
+    //   }; //keys: title, content and tags
+
     Posts.addPost($scope.post)
     .then(function(resp) {
       $location.path('/post/'+resp._id); //takes user to the post they created.
     })
     .catch(function(error) {
-      console.log(error);
+      console.log("err",error);
     });
   };
 });
