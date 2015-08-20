@@ -15,6 +15,12 @@ module.exports = function(app) {
     //.post(profiles.storeProfile)
     .put(profiles.updateProfile)
     .delete(profiles.deleteProfile);
+  
+  app.route('/api/profiles/setpair/:username').all(auth.loggedIn)
+    .post(profiles.setPair);
+  
+  app.route('/api/profiles/currentuser').all(auth.loggedIn)
+    .get(profiles.getCurrent);
 
   app.param('username', profiles.profileByUsername);
 
