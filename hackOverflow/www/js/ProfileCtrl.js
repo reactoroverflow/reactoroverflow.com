@@ -34,7 +34,6 @@ angular.module('hackOverflow.profile', ['ionic'])
    * Navigates back to view before opening up profile
   */
   $scope.goBack = function() {
-    console.log("going back to: ", History.lastState);
     $state.go(History.lastState);
   };
 
@@ -44,7 +43,6 @@ angular.module('hackOverflow.profile', ['ionic'])
    * @param {string} username - username to check against
   */
   $scope.checkUser = function() {
-    console.log("checkuser", $scope.username === User.getUser());
     return $scope.username === User.getUser();
   };
 
@@ -53,12 +51,10 @@ angular.module('hackOverflow.profile', ['ionic'])
    * Stores response data as $scope.userData
   */
   $scope.getProfile = function() {
-    console.log("CONTROLLER USERNAME", $scope.username);
     Profile.downloadProfile($scope.username)
       .then(function(userData) {
         $scope.userData = userData;
         $scope.user = angular.copy($scope.userData);
-        console.log($scope.userData);
       });
   };
 

@@ -134,7 +134,6 @@ angular.module('hackOverflow.services', ['ionic'])
    * @returns {Promise} http response with profile data
    */
   var downloadProfile = function() {
-    console.log("FACTORY", this.getProfile());
     return $http({
       method: 'GET',
       url: '/api/profiles/' + this.getProfile()
@@ -149,7 +148,6 @@ angular.module('hackOverflow.services', ['ionic'])
    * @returns {Promise} http response with profile data
    */
   var updateProfile = function(username, data) {
-    console.log("FACTORY PUT", this.getProfile());
     return $http({
       method:'PUT',
       url: '/api/profiles/' + this.getProfile(),

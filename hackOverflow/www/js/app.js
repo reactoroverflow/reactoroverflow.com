@@ -161,7 +161,6 @@ angular.module('hackOverflow', [
   return {
     response: function(response) {
       User.setUser(response.headers().username);
-      console.log(User.getUser());
       return response;
     }
   };
