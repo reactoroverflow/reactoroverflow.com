@@ -54,12 +54,20 @@ angular.module('hackOverflow.services', ['ionic'])
     });
   };
 
+  var upVote = function(postID){
+    return $http({
+      method: 'POST',
+      url: '/api/posts/'+postID+'/upvote'
+    });
+  };
+
   return {
     getPosts: getPosts,
     getPost: getPost,
     getPostsByTag: getPostsByTag,
     searchPosts: searchPosts,
-    addPost: addPost
+    addPost: addPost,
+    upVote: upVote
   };
 })
 .factory('Comments', function ($http) {
@@ -114,5 +122,11 @@ angular.module('hackOverflow.services', ['ionic'])
       console.log("STATE", this.lastState, this);
       $state.go('profileTabs.main');
     }
+  };
+})
+
+.factory('Tags', function() {
+  return {
+    tags: ['AskHR', 'MarketPlace', 'LPT', 'Random']
   };
 });

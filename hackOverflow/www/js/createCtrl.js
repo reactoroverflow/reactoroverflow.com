@@ -1,9 +1,18 @@
 angular.module('hackOverflow.create', [])
 
-.controller('CreateCtrl', function($scope, $cordovaCamera, Posts) {
-  $scope.post = {tags: []};
-  $scope.addTag = function(tag) {
-    $scope.post.tags.push(tag);
+.controller('CreateCtrl', function($scope, $state, $cordovaCamera, Posts, Tags) {
+  var init = function () {
+    $scope.tags = Tags.tags;
+    $scope.tagObj = {};
+    $scope.tags.forEach(function(tag) {
+      $scope.tagObj[tag] = {checked: false};
+    });
+    $scope.post = {tags: []};
+  }
+
+  init();
+  $scope.toggleTag = function(tag) {
+    $scope.tagObj[tag].checked = !$scope.tagObj[tag].checked;
   };
   $scope.takePhoto = function() {
     $cordovaCamera.getPicture({
@@ -26,6 +35,11 @@ angular.module('hackOverflow.create', [])
 
   $scope.createPost = function() {
     var text = $scope.post.content || '';
+    for (var i in $scope.tagObj) {
+      if ($scope.tagObj[i].checked) {
+        $scope.post.tags.push(i);
+      }
+    }
     $scope.post = {
       title: $scope.post.title,
       content: marked(text),
@@ -41,7 +55,9 @@ angular.module('hackOverflow.create', [])
 
     Posts.addPost($scope.post)
     .then(function(resp) {
-      $location.path('/post/'+resp._id); //takes user to the post they created.
+      init();
+      console.log(resp._id);
+      $state.go('app.post', {postId: resp._id}); //takes user to the post they created.
     })
     .catch(function(error) {
       console.log("err",error);
