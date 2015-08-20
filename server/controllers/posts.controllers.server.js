@@ -67,7 +67,6 @@ exports.upvotePost = function(req, res) {
   update.body = {};
   update.body.doc = {};
   update.body.doc.upvotes = post._source.upvotes;
-  update.body.doc.downvotes = post._source.downvotes;
   client.update(update).then(function (result) {
     res.send(result);
   });
