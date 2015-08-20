@@ -116,29 +116,29 @@ angular.module('hackOverflow.services', ['ionic'])
   var username = null;
 
   // store user to search
-  var setUser = function(username) {
+  var setProfile = function(username) {
     this.username = username;
   };
 
-  var getUser = function(username) {
+  var getProfile = function(username) {
     return this.username || $state.params.username;
   };
 
-  var downloadUser = function() {
-    console.log("FACTORY", this.getUser());
+  var downloadProfile = function() {
+    console.log("FACTORY", this.getProfile());
     return $http({
       method: 'GET',
-      url: '/api/profiles/' + this.getUser()
+      url: '/api/profiles/' + this.getProfile()
     }).then(function(resp) {
       return resp.data;
     });
   };
 
-  var updateUser = function(username, data) {
-    console.log("FACTORY PUT", this.getUser());
+  var updateProfile = function(username, data) {
+    console.log("FACTORY PUT", this.getProfile());
     return $http({
       method:'PUT',
-      url: '/api/profiles/' + this.getUser(),
+      url: '/api/profiles/' + this.getProfile(),
       data: data
     }).then(function(resp) {
       return resp.data;
@@ -146,11 +146,31 @@ angular.module('hackOverflow.services', ['ionic'])
   };
 
   return {
-    setUser: setUser,
-    getUser: getUser,
-    downloadUser: downloadUser,
-    updateUser: updateUser
+    setProfile: setProfile,
+    getProfile: getProfile,
+    downloadProfile: downloadProfile,
+    updateProfile: updateProfile
   };
+})
+
+/**
+ * Keep track of signed in user
+*/
+.factory('User', function() {
+  var user = null;
+  var setUser = function(username) {
+    this.user = username;
+  };
+
+  var getUser = function() {
+    return this.user;
+  };
+
+  return {
+    user: user,
+    setUser: setUser,
+    getUser: getUser
+  }
 })
 
 /**
@@ -163,7 +183,7 @@ angular.module('hackOverflow.services', ['ionic'])
     navToProfile: function(username) {
       this.lastState = $ionicHistory.currentStateName();
       // set user
-      Profile.setUser(username);
+      Profile.setProfile(username);
       $state.go('profileTabs.main', {username: username});
     }
   };

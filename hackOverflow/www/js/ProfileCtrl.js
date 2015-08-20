@@ -7,7 +7,7 @@ angular.module('hackOverflow.profile', ['ionic'])
   };
 
   // get username from Factory
-  $scope.username = Profile.getUser();
+  $scope.username = Profile.getProfile();
 
   $scope.goBack = function() {
     console.log("going back to: ", History.lastState);
@@ -22,7 +22,7 @@ angular.module('hackOverflow.profile', ['ionic'])
   $scope.user = {};
   $scope.getUserInfo = function() {
     console.log("CONTROLLER USERNAME", $scope.username);
-    Profile.downloadUser($scope.username)
+    Profile.downloadProfile($scope.username)
       .then(function(userData) {
         $scope.userData = userData;
         $scope.user = angular.copy($scope.userData);
@@ -37,7 +37,7 @@ angular.module('hackOverflow.profile', ['ionic'])
 
   $scope.updateUserInfo = function() {
     $scope.userData = angular.copy($scope.user);
-    Profile.updateUser($scope.username, $scope.userData._source)
+    Profile.updateProfile($scope.username, $scope.userData._source)
       .then(function() {
         $scope.toggleEdit();
       });

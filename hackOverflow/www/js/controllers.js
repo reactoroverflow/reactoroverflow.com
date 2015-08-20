@@ -1,9 +1,9 @@
 angular.module('hackOverflow.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, History) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, History, User) {
 
   // for testing
-  $scope.username = "hokennethk";
+  $scope.username = User.getUser();
   $scope.navToProfile = function(username) {
     History.navToProfile(username);
   };

@@ -35,7 +35,7 @@ angular.module('hackOverflow', [
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   $stateProvider
 
     .state('app', {
@@ -145,4 +145,18 @@ angular.module('hackOverflow', [
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/posts');
+
+  // http interceptor
+  $httpProvider.interceptors.push('checkResponse');
+
+})
+// http interceptor
+.factory('checkResponse', function(User) {
+  return {
+    response: function(response) {
+      User.setUser(response.headers().username);
+      console.log(User.getUser());
+      return response;
+    }
+  };
 });
