@@ -82,7 +82,7 @@ exports.downvotePost = function(req, res) {
   if(userIndex === -1) {
     res.send(412);
   }
-  post._source.upvoted.splice(userIndex);
+  post._source.upvotes.splice(userIndex);
   var update = {};
   update.index = 'posts';
   update.type = 'post';

@@ -4,30 +4,39 @@ angular.module('hackOverflow.post', [])
   $scope.data = {};
   $scope.comment = {};
   $scope.showComment = false;
+  $scope.data.comments = [];
   $scope.fetch = function(){
     Posts.getPost($stateParams.postId, function (resp) {
       $scope.user = resp.headers().username;
-      console.log($scope.user);
       $scope.data.post = resp.data._source;
+      resp.data._source.upvotes = resp.data._source.upvotes || [];
       $scope.data.post.votes = resp.data._source.upvotes.length;
-      $scope.data.post._id = resp._id;
+      $scope.data.post._id = resp.data._id;
       $scope.data.post.created_at = new Date($scope.data.post.created_at).toString();
       if (resp.data._source.upvotes.indexOf($scope.user) > -1) {
         $scope.data.post.isUpvoted = true;
+      } else {
+        $scope.data.post.isUpvoted = false;
       }
     });
     Comments.getComments($stateParams.postId, function (resp) {
-      $scope.data.comments = resp || [];
+      $scope.data.comments = resp;
       $scope.data.comments.forEach(function (comment) {
         comment._source.created_at = new Date(comment._source.created_at).toString();
         if (comment._source.upvotes.indexOf($scope.user) > -1) {
           comment.isUpvoted = true;
+        } else {
+          comment.isUpvoted = false;
         }
       });
     });
   };
 
   $scope.fetch();
+
+  $scope.isUpvoted = function(obj) {
+    return obj.isUpvoted;
+  };
 
   $scope.createComment = function() {
     var word = $scope.comment.word || '';
@@ -39,6 +48,7 @@ angular.module('hackOverflow.post', [])
     .then(function(resp) {
       resp._source.created_at = new Date(resp._source.created_at).toString();
       resp.votes = resp.votes || 0;
+      resp.isUpvoted = false;
       $scope.data.comments.push(resp);
       $scope.comment.word = '';
     })
@@ -49,6 +59,7 @@ angular.module('hackOverflow.post', [])
 
   $scope.upVoteComment = function(comment, commentId) {
     //use commentID to send the user into the comment.upVotes array
+    console.log("clicked", comment.isUpvoted);
     // comment.isUpvoted = true;
     if (comment.isUpvoted) {
       Comments.downVote(commentId).then(function(resp) {

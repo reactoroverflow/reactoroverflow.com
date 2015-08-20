@@ -1,18 +1,21 @@
-<ion-view view-title="{{data.post.title}}">
+<ion-view view-title="Post">
   <ion-content>
      <div class="card">
 
-       <div class="item-divider item item-avatar">
+       <div class="item-divider post-header item item-avatar">
          <img src="img/avatar.jpg">
+         <h1>{{data.post.title}}</h1>
          <h2>{{data.post.author}}</h2>
          <p>{{data.post.created_at}}</p>
+         <p class="post-icons">
+          <a href="/#/app/{{data.post._id}}/edit"><i class="icon ion-edit"></i></a>
+          <i class="icon ion-trash-a"></i>
+         </p>
        </div>
 
        <div class="item item-body item-text-wrap">
          <img ng-if="data.post.data" class="full-image" ng-src="{{data.post.data}}">
           <div class="content" ng-bind-html='data.post.content'></div>
-      
-          
          <p>
            <span class="subdued">{{data.post.votes || 0}} Likes</span>
            <span class="subdued">{{data.comments.length || 0}} Comments</span>
@@ -21,7 +24,7 @@
 
        <div class="item item-divider tabs tabs-secondary tabs-icon-left">
          <div class="tab-item" ng-click="upVotePost(data.post, data.post._id)">
-           <i ng-class="{data.post.isUpvoted ? 'blue icon ion-thumbsup' : 'icon ion-thumbsup'}"></i>
+           <i ng-class="{'blue icon ion-thumbsup': data.post.isUpvoted, 'icon ion-thumbsup': !data.post.isUpvoted}"></i>
            Like
          </div>
          <div class="tab-item" ng-click="showComment = !showComment">
@@ -39,7 +42,7 @@
          <button ng-disabled="commentForm.$invalid" class="button button-block button-outline button-calm">Submit</button>
      </form>
      
-     <div ng-repeat="comment in data.comments" class="list card">
+     <div ng-repeat="comment in data.comments | orderBy: '-votes'" class="list card">
        <div class="item">
          {{comment._source.author}}
          <p>{{comment._source.created_at}}</p>
@@ -50,7 +53,7 @@
             {{comment.votes}} Likes
           </div>
           <div class="tab-item" ng-click="upVoteComment(comment, comment._id)">
-           <i ng-class="{data.post.isUpvoted ? 'blue icon ion-thumbsup' : 'icon ion-thumbsup'}"></i>
+           <i ng-class="{'blue icon ion-thumbsup': comment.isUpvoted, 'icon ion-thumbsup': !comment.isUpvoted}"></i>
              Like
           </div>
          </div>

@@ -14,6 +14,7 @@ angular.module('hackOverflow', [
   'hackOverflow.post',
   'hackOverflow.tags',
   'hackOverflow.create',
+  'hackOverflow.edit',
   'hackOverflow.postTag',
   'hackOverflow.pairs',
   'hackOverflow.profile'
@@ -81,6 +82,16 @@ angular.module('hackOverflow', [
       'menuContent': {
         templateUrl: 'templates/create.html',
         controller: 'CreateCtrl'
+      }
+    }
+  })
+
+  .state('app.edit', {
+    url: '/:postId/edit',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/create.html',
+        controller: 'EditCtrl'
       }
     }
   })

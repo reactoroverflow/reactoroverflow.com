@@ -1,6 +1,6 @@
 <ion-view view-title="Create A Post">
   <ion-content>
-    <form name="postForm" class="list list-inset" ng-submit="createPost()">
+    <form name="postForm" class="list list-inset" ng-submit="submitPost()">
   <label class="item item-input">
     <input ng-model="post.title" type="text" placeholder="Title" required>
   </label>
@@ -19,7 +19,7 @@
     <i class="camera ion-camera pull-left"></i>
   </button>
   <center><img ng-if="imgSrc" ng-src="{{imgSrc}}"></center>
-  <button ng-disabled="postForm.$invalid" class="button button-block button-calm" type="submit">Post</button>
+  <button ng-disabled="postForm.$invalid" class="button button-block button-calm" type="submit">Submit</button>
 </div>
   </ion-content>
 </ion-view>

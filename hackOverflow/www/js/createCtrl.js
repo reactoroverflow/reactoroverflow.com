@@ -33,7 +33,7 @@ angular.module('hackOverflow.create', [])
     });
   };
 
-  $scope.createPost = function() {
+  $scope.submitPost = function() {
     var text = $scope.post.content || '';
     for (var i in $scope.tagObj) {
       if ($scope.tagObj[i].checked) {
