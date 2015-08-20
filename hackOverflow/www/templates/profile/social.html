@@ -1,6 +1,10 @@
 <ion-view title="Social">
   <ion-content class="has__profile--header">
     <div class="list">
+      <a class="item item-icon-left" ng-href="https://github.com/{{userData._source.gitHubUser.login}}">
+        <i class="ion-social-github"></i>
+        {{userData._source.gitHubUser.name}}
+      </a>
       <a class="item item-icon-left" ng-href="https://www.facebook.com/{{userData._source.social.facebook}}">
         <i class="ion-social-facebook"></i>
         {{userData._source.social.facebook}}

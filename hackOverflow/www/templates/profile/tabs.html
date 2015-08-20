@@ -2,8 +2,14 @@
 <div class="bar bar-header bar-light bar__profile--header">
   <a class="button icon-left ion-chevron-left button-clear button-dark"
      ng-click="goBack()">Back</a>
-  <div class="circle"></div>
-  <a class="button icon-right button-clear button-dark"
+  <p class="title">{{userData._source.gitHubUser.name}}</p>
+
+    <img
+      ng-src="{{user._source.gitHubUser.avatar_url}}"
+      class="bar__profile--userimage">
+    </img>
+
+  <a class="button icon-right button-clear button-dark pull-right"
   ng-class="{'btn-hide': !checkUser() || edit}" ng-model="edit" ng-click="toggleEdit()">Edit</a>
 </div>
 <!-- end header -->
