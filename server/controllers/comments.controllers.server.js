@@ -71,15 +71,16 @@ exports.storeComment = function(req, res) {
 
   client.create(query).then(function (results) {
     var commentID = results._id;
+    res.json({_id: commentID, _source: comment});
     
-    var query = {};
-    query.index = 'comments';
-    query.type = 'comment';
-    query.id = commentID;
+    // var query = {};
+    // query.index = 'comments';
+    // query.type = 'comment';
+    // query.id = commentID;
 
-    client.get(query).then(function (newComment) {
-      res.json(newComment);
-    });
+    // client.get(query).then(function (newComment) {
+    //   res.json(newComment);
+    // });
   });
 };
 
