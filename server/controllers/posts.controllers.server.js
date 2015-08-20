@@ -76,7 +76,7 @@ exports.upvotePost = function(req, res) {
   });
 }
 
-exports.removeUpvote = function(req, res) {
+exports.downvotePost = function(req, res) {
   var post = req.post;
   
   if(!post._source.upvotes) {

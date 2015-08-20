@@ -19,6 +19,8 @@ module.exports = function(app) {
   app.route('/api/posts/:postID/upvote').all(auth.loggedIn)
     .post(posts.upvotePost)
     .get(posts.upvotePost);
+  app.route('/api/posts/:postID/downvote').all(auth.loggedIn)
+    .post(posts.downvotePost);
 
   app.param('postID', posts.postByID);
 
