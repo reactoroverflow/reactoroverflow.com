@@ -1,9 +1,13 @@
 <ion-view view-title="Bio">
- <ion-content class="padding">
+ <ion-content class="padding has__profile--header">
    <h3>Bio</h3>
 
    <p>{{userData._source.bio}}</p>
-
+   <!-- Edit profile buttons -->
+   <div ng-if="edit" class="buttons">
+     <button type="submit" ng-click="updateUserInfo()" class="button button-block button-balanced">Submit</button>
+     <button type="button" ng-click="cancelEditUser()" class="button button-block button-stable">Cancel</button>
+   </div>
 
  </ion-content>
 </ion-view>
