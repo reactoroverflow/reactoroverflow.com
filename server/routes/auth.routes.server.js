@@ -28,6 +28,9 @@ module.exports = function(app) {
     }
   );
 
+  app.route('/api/auth/currentuser').all(auth.loggedIn)
+    .get(auth.getUsername);
+
   app.get('/logout', function(req, res){
     req.session.user = undefined;
     req.logout();

@@ -16,6 +16,10 @@ module.exports = function(app) {
     .put(posts.updatePost)
     .delete(posts.deletePost);
 
+  app.route('/api/posts/:postID/upvote').all(auth.loggedIn)
+    .post(posts.upvotePost)
+    .get(posts.upvotePost);
+
   app.param('postID', posts.postByID);
 
 };
