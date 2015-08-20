@@ -20,6 +20,3 @@ exports.loggedIn = function(req, res, next) {
   }
 };
 
-exports.getUsername = function(req, res, next) {
-  res.send(req.session.user.login);
-}
