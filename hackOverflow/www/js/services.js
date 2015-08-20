@@ -208,7 +208,7 @@ angular.module('hackOverflow.services', ['ionic'])
     navToProfile: function(username) {
       this.lastState = $ionicHistory.currentStateName();
       // set user in Profile Service (in order to access in profile controller)
-      Profile.setProfile(username);
+      // Profile.setProfile(username);
       $state.go('profileTabs.main', {username: username});
     }
   };
