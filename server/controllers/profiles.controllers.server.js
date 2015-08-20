@@ -50,7 +50,7 @@ exports.updateProfile = function(req, res) {
       console.log("Successfully updated profile");
       res.send(response);
     }
-  })
+  });
 };
 
 exports.setPair = function(req, res) {

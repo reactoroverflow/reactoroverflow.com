@@ -97,11 +97,49 @@ exports.downvotePost = function(req, res) {
 }
 
 exports.updatePost = function(req, res) {
-  // Update a Single Post
+  if (!req.post) {
+    res.send(412);
+    return;
+  }
+  if (req.post._source.author !== req.session.user.login) {
+    res.send(403);
+    return;
+  }
+  var query = {};
+  query.index = 'posts';
+  query.type = 'post';
+  query.id = req.post.id;
+  query.body = {};
+  query.body.doc = req.body;
+
+  client.update(query, function(error, response) {
+    if (error) {
+      console.log(error);
+      res.send(404);
+    } else {
+      res.send(204);
+    }
+  })
 };
 
 exports.deletePost = function(req, res) {
   // Delete a Single Post
+  if (!req.post) {
+    res.send(412);
+    return;
+  }
+  if (req.post._source.author !== req.session.user.login) {
+    res.send(403);
+    return;
+  }
+  var query = {};
+  query.index = 'posts';
+  query.type = 'post';
+  query.id = req.post.id;
+
+  client.delete(query).then(function(result) {
+    res.send(204);
+  });
 };
 
 exports.postByID = function(req, res, next, id) {
