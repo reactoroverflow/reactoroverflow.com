@@ -3,7 +3,7 @@ angular.module('hackOverflow.controllers', [])
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, History) {
 
   // for testing
-  $scope.username = "testUser";
+  $scope.username = "hokennethk";
   $scope.navToProfile = function(username) {
     History.navToProfile(username);
   };

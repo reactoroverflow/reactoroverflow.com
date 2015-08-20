@@ -1,21 +1,21 @@
 <ion-view title="Social">
   <ion-content class="has-header">
     <div class="list">
-      <a class="item item-icon-left" href="#">
+      <a class="item item-icon-left" ng-href="https://www.facebook.com/{{userData._source.social.facebook}}">
         <i class="ion-social-facebook"></i>
-        Facebook
+        {{userData._source.social.facebook}}
       </a>
-      <a class="item item-icon-left" href="#">
+      <a class="item item-icon-left" href="https://www.instagram.com/{{userData._source.social.instagram}}">
         <i class="ion-social-instagram"></i>
-        Instagram Handle
+        {{userData._source.social.instagram}}
       </a>
-      <a class="item item-icon-left" href="#">
+      <a class="item item-icon-left" href="https://www.twitter.com/{{userData._source.social.twitter}}">
         <i class="ion-social-twitter"></i>
-        Twitter handle
+        {{userData._source.social.twitter}}
       </a>
       <a class="item item-icon-left" href="#">
         <i class="ion-social-linkedin"></i>
-        LinkedIn
+        LinkedIn handle (needs work)
       </a>
     </div>
   </ion-content>

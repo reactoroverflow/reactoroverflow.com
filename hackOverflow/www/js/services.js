@@ -109,7 +109,10 @@ angular.module('hackOverflow.services', ['ionic'])
   };
 })
 
-.factory('Profile', function() {
+/**
+ * Provides a way to store a user across views and to download that user.
+*/
+.factory('Profile', function ($http, $state) {
   var username = null;
 
   // store user to search
@@ -118,23 +121,41 @@ angular.module('hackOverflow.services', ['ionic'])
   };
 
   var getUser = function(username) {
-    return this.username;
+    return this.username || $state.params.username;
   };
 
   var downloadUser = function() {
+    console.log("FACTORY", this.getUser());
     return $http({
       method: 'GET',
-      url: '/api/profiles/' + this.username
+      url: '/api/profiles/' + this.getUser()
+    }).then(function(resp) {
+      return resp.data;
+    });
+  };
+
+  var updateUser = function(username, data) {
+    console.log("FACTORY PUT", this.getUser());
+    return $http({
+      method:'PUT',
+      url: '/api/profiles/' + this.getUser(),
+      data: data
+    }).then(function(resp) {
+      return resp.data;
     });
   };
 
   return {
     setUser: setUser,
     getUser: getUser,
-    downloadUser: downloadUser
+    downloadUser: downloadUser,
+    updateUser: updateUser
   };
 })
 
+/**
+ * Saves last state when navigating to another profile
+*/
 .factory('History', function($ionicHistory, $state, $stateParams, Profile) {
   return {
     lastState: 'app.posts',

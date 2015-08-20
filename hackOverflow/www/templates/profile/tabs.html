@@ -1,6 +1,10 @@
 <div class="bar-header bar-light bar__profile-header">
+<div>
   <a class="button icon-left ion-chevron-left button-clear button-dark"
      ng-click="goBack()">Back</a>
+  <a class="button icon-right button-clear button-dark"
+  ng-if="!edit" ng-model="edit" ng-click="toggleEdit()">Edit</a>
+</div>
   <div class="circle"></div>
 </div>
 
