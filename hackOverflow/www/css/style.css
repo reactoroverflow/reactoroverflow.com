@@ -56,3 +56,7 @@ body {
 .ck-button label {
     width: 100%;
 }
+
+.content {
+  padding-left: 2em;
+}

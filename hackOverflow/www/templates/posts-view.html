@@ -1,10 +1,9 @@
 <ion-view view-title="Posts">
-  <br>
-  <br>
+  <ion-content>
     <div ng-repeat="post in data.posts">
       <div class="card">
         <div class="item item-text-wrap">
-          <div class="title"><a href="/#/post/{{ post._id }}">{{post._source.title}}</a>
+          <div class="title"><a href="/#/app/posts/{{ post._id }}">{{post._source.title}}</a>
           </div>
           <div ng-bind-html='post._source.contentNoTags | limitTo: 400'>
           </div>
@@ -25,4 +24,5 @@
         </div>
       </div>
     </div>
+  </ion-content>
 </ion-view>

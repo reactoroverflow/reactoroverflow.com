@@ -5,12 +5,10 @@ angular.module('hackOverflow.services', ['ionic'])
 .factory('Posts', function ($http) {
 
   var getPosts = function(cb){
-    console.log("getting posts");
     $http({
       method: 'GET',
       url: 'http://localhost:4000/api/posts'
     }).then(function (resp) {
-      console.log("WORKING")
       cb(resp.data);
     });
   };
@@ -34,7 +32,6 @@ angular.module('hackOverflow.services', ['ionic'])
   };
 
   var searchPosts = function(text, cb){
-    console.log("I am in searchPosts");
     $http({
       method: 'GET',
       url: 'http://localhost:4000/api/search?text='+text
@@ -44,8 +41,6 @@ angular.module('hackOverflow.services', ['ionic'])
   };
 
   var addPost = function(post){
-    console.log("--->",post)
-    console.log("Posting posts")
     return $http({
       method: 'POST',
       url: 'http://localhost:4000/api/posts',
@@ -120,7 +115,6 @@ angular.module('hackOverflow.services', ['ionic'])
 
     navToProfile: function() {
       this.lastState = $ionicHistory.currentStateName();
-      console.log("STATE", this.lastState, this);
       $state.go('profileTabs.main');
     }
   };

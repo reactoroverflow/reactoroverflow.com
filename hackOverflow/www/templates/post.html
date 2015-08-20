@@ -10,17 +10,17 @@
 
        <div class="item item-body item-text-wrap">
          <img ng-if="data.post.data" class="full-image" ng-src="{{data.post.data}}">
+          <div class="content" ng-bind-html='data.post.content'></div>
+      
+          
          <p>
-           {{data.post.content}}
-         </p>
-         <p>
-           <span class="subdued">{{data.post.votes}} Likes</span>
-           <span class="subdued">{{data.comments.length}} Comments</span>
+           <span class="subdued">{{data.post.votes || 0}} Likes</span>
+           <span class="subdued">{{data.comments.length || 0}} Comments</span>
          </p>
        </div>
 
        <div class="item item-divider tabs tabs-secondary tabs-icon-left">
-         <div class="tab-item" ng-click="upVotePost(post._id)">
+         <div class="tab-item" ng-click="upVotePost(data.post, data.post._id)">
            <i class="icon ion-thumbsup"></i>
            Like
          </div>
@@ -31,25 +31,25 @@
        </div>
 
      </div>
-     <form name="commentForm" ng-if="showComment" ngSubmit="createComment()" class="list list-inset">
+     
+     <form name="commentForm" ng-if="showComment" ng-submit="createComment()" class="list list-inset">
        <label class="item item-input">
-         <textarea ng-model="text" placeholder="What do you think?" required></textarea>
+         <textarea ng-model="comment.word" placeholder="What do you think?" required></textarea>
        </label>
          <button ng-disabled="commentForm.$invalid" class="button button-block button-outline button-calm">Submit</button>
      </form>
+     
      <div ng-repeat="comment in data.comments" class="list card">
        <div class="item">
          {{comment._source.author}}
          <p>{{comment._source.created_at}}</p>
        </div>
-       <div class="item item-body">
-         {{comment._source.content}}
-       </div>
+       <div class="content" ng-bind-html='comment._source.content'></div>
          <div class="item tabs tabs-secondary tabs-icon-left">
           <div class="tab-item subdued">
             {{comment.votes}} Likes
           </div>
-          <div class="tab-item" ng-click="upVoteComment(comment._id)">
+          <div class="tab-item" ng-click="comment.isUpvoted || upVoteComment(comment, comment._id)">
            <i class="icon ion-thumbsup"></i>
              Like
           </div>
