@@ -12,38 +12,81 @@ textarea {
 .post-content {
   height: 30vh;
 }
-.circle {
-  position: relative;
-  border: 1px solid black;
-  height: 150px;
-  width: 150px;
-  border-radius: 75px;
-  margin: 0 auto;
-  top: 10px;
-}
 
-.bar__profile--header {
-  height: 30%;
+/*=========================================
+  Profile
+=========================================*/
+.profile__bar--header {
+  height: 35%;
 }
 
 .has__profile--header {
-  top: 30%;
+  top: 35%;
 }
+
+.profile__bar--user {
+  position: relative;
+  height: 100%;
+  margin: 0 auto;
+  bottom: 0px;
+}
+
+.profile__bar--username {
+  height: 20%;
+  text-align: center;
+}
+
+.profile__bar--userimage {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.5rem;
+  border: 1px solid black;
+  max-height: 70%;
+  border-radius: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profile__bio--textarea {
+  border: 1px dotted gray;
+  width: 100%;
+  min-height: 100%;
+  margin: 0 5px;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.42857;
+}
+
+.profile__bio--textarea[disabled] {
+  border: none;
+  background-color: white;
+  width: 100%;
+  min-height: 100%;
+}
+
+input.profile__social--input {
+  display: inline;
+}
+
+.profile__main--link,
+.profile__social--link {
+  color: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  text-decoration: inherit;
+}
+
+.scroll {
+  height:75%;
+}
+
 
 .btn-hide {
   visibility: hidden;
 }
-
-/*.profile__info {
-  display: block;
-  padding-top: 2px;
-  padding-left: 0;
-  height: 34px;
-  color: #111;
-  vertical-align: middle;
-  font-size: 14px;
-  line-height: 16px;
-}*/
+/* End Profile */
+/*=========================================*/
 
 
 div label input {

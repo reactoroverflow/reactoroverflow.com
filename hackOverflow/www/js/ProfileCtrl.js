@@ -8,7 +8,7 @@
 
 angular.module('hackOverflow.profile', ['ionic'])
 
-.controller('ProfileCtrl', function ($scope, $state, $stateParams, History, Profile) {
+.controller('ProfileCtrl', function ($scope, $state, $stateParams, History, Profile, User) {
   /**
    * Scope variables
    * @property {bool} edit - Determines edit mode
@@ -18,7 +18,8 @@ angular.module('hackOverflow.profile', ['ionic'])
    *    may be saved or discarded
   */
   $scope.edit = false;
-  $scope.username = Profile.getProfile();
+  $scope.username = $state.params.username;
+  // $scope.username = Profile.getProfile();
   $scope.userData = {};
   $scope.user = {};
 
@@ -29,27 +30,31 @@ angular.module('hackOverflow.profile', ['ionic'])
     $scope.edit = !$scope.edit;
   };
 
-  // get username from Factory
-
   /**
    * Navigates back to view before opening up profile
   */
   $scope.goBack = function() {
-    console.log("going back to: ", History.lastState);
     $state.go(History.lastState);
+  };
+
+
+  /**
+   * Check signed in user
+   * @param {string} username - username to check against
+  */
+  $scope.checkUser = function() {
+    return $scope.username === User.getUser();
   };
 
   /**
    * Get user info from the DB
    * Stores response data as $scope.userData
   */
-  $scope.getUserInfo = function() {
-    console.log("CONTROLLER USERNAME", $scope.username);
+  $scope.getProfile = function() {
     Profile.downloadProfile($scope.username)
       .then(function(userData) {
         $scope.userData = userData;
         $scope.user = angular.copy($scope.userData);
-        console.log($scope.userData);
       });
   };
 
@@ -75,5 +80,5 @@ angular.module('hackOverflow.profile', ['ionic'])
     console.log($scope.userData);
   };
 
-  $scope.getUserInfo();
+  $scope.getProfile();
 });

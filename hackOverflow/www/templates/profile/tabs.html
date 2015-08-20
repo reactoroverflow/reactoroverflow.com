@@ -1,11 +1,20 @@
-<div class="bar bar-header bar-light bar__profile--header">
+<!-- header -->
+<div class="bar bar-header bar-light profile__bar--header">
   <a class="button icon-left ion-chevron-left button-clear button-dark"
      ng-click="goBack()">Back</a>
-  <div class="circle"></div>
-  <a class="button icon-right button-clear button-dark"
-  ng-class="{'btn-hide': edit}" ng-model="edit" ng-click="toggleEdit()">Edit</a>
-</div>
+  <p class="title">{{userData._source.gitHubUser.name}}</p>
 
+    <img
+      ng-src="{{user._source.gitHubUser.avatar_url}}"
+      class="profile__bar--userimage">
+    </img>
+
+  <a class="button icon-right button-clear button-dark pull-right"
+  ng-class="{'btn-hide': !checkUser() || edit}" ng-model="edit" ng-click="toggleEdit()">Edit</a>
+</div>
+<!-- end header -->
+
+<!-- Tabs -->
 <ion-tabs class="tabs-icon-top tabs-calm">
   <ion-tab title="Main" icon="ion-android-contact" ui-sref="profileTabs.main({username: username})">
     <ion-nav-view name="main-tab"></ion-nav-view>
@@ -19,3 +28,4 @@
     <ion-nav-view name="social-tab"></ion-nav-view>
   </ion-tab>
 </ion-tabs>
+<!-- end tabs -->

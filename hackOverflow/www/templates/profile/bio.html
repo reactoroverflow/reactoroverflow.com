@@ -1,13 +1,17 @@
 <ion-view view-title="Bio">
- <ion-content class="padding has__profile--header">
-   <h3>Bio</h3>
+  <ion-content class="padding has__profile--header">
+   <h3 class="text-center">Bio</h3>
 
-   <p>{{userData._source.bio}}</p>
-   <!-- Edit profile buttons -->
-   <div ng-if="edit" class="buttons">
-     <button type="submit" ng-click="updateUserInfo()" class="button button-block button-balanced">Submit</button>
-     <button type="button" ng-click="cancelEditUser()" class="button button-block button-stable">Cancel</button>
-   </div>
+    <!-- <label class="item item-input"> -->
+     <!-- <span class="input-label">Bio</span> -->
+     <textarea class="profile__bio--textarea" ng-disabled="!edit" type="text" placeholder="Blog" ng-model="user._source.bio"></textarea>
+    <!-- </label> -->
+    <!-- <p ng-if="!edit">{{userData._source.bio}}</p> -->
+    <!-- Edit profile buttons -->
+    <div ng-if="edit" class="button-bar">
+      <button type="submit" ng-click="updateUserInfo()" class="button  button-balanced">Submit</button>
+      <button type="button" ng-click="cancelEditUser()" class="button  button-stable">Cancel</button>
+    </div>
 
- </ion-content>
+  </ion-content>
 </ion-view>
