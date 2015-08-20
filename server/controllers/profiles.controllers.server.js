@@ -61,13 +61,13 @@ exports.deleteProfile = function(req, res) {
   // Delete a Single Profile
 };
 
-exports.findOrStoreProfile = function(username, callback) {
+exports.findOrStoreProfile = function(user, callback) {
   
 
   var query = {};
   query.index = 'profiles';
   query.type = 'profile';
-  query.id = username;
+  query.id = user.login;
   //Look for a profile associated with the provided username
   client.get(query, function (error, result) {
     if (error) {
@@ -87,12 +87,13 @@ exports.findOrStoreProfile = function(username, callback) {
         }
       }
       var profile = sampleProfile;
+      profile.gitHubUser = user;
       profile.created_at = Date.now();
 
       var query = {};
       query.index = 'profiles';
       query.type = 'profile';
-      query.id = username;
+      query.id = user.login;
       query._timestamp = {enabled: true};
       query.body = profile;
       //Add the newly-created profile to the database

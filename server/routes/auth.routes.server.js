@@ -20,7 +20,7 @@ module.exports = function(app) {
       console.log('success');
       //console.log(req.user._raw);
       req.session.user = req.user;
-      profiles.findOrStoreProfile(req.user.login, function(result) {
+      profiles.findOrStoreProfile(req.user, function(result) {
         req.session.profile = result;
         console.log("profile is " + result)
         res.redirect('/');
