@@ -13,7 +13,10 @@ textarea {
   height: 30vh;
 }
 
-.bar__profile--header {
+/*=========================================
+  Profile
+=========================================*/
+.profile__bar--header {
   height: 35%;
 }
 
@@ -21,19 +24,19 @@ textarea {
   top: 35%;
 }
 
-.bar__profile--user {
+.profile__bar--user {
   position: relative;
   height: 100%;
   margin: 0 auto;
   bottom: 0px;
 }
 
-.bar__profile--username {
+.profile__bar--username {
   height: 20%;
   text-align: center;
 }
 
-.bar__profile--userimage {
+.profile__bar--userimage {
   position: absolute;
   left: 0;
   right: 0;
@@ -82,17 +85,8 @@ input.profile__social--input {
 .btn-hide {
   visibility: hidden;
 }
-
-/*.profile__info {
-  display: block;
-  padding-top: 2px;
-  padding-left: 0;
-  height: 34px;
-  color: #111;
-  vertical-align: middle;
-  font-size: 14px;
-  line-height: 16px;
-}*/
+/* End Profile */
+/*=========================================*/
 
 
 div label input {

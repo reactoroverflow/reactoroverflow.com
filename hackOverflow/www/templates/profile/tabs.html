@@ -1,12 +1,12 @@
 <!-- header -->
-<div class="bar bar-header bar-light bar__profile--header">
+<div class="bar bar-header bar-light profile__bar--header">
   <a class="button icon-left ion-chevron-left button-clear button-dark"
      ng-click="goBack()">Back</a>
   <p class="title">{{userData._source.gitHubUser.name}}</p>
 
     <img
       ng-src="{{user._source.gitHubUser.avatar_url}}"
-      class="bar__profile--userimage">
+      class="profile__bar--userimage">
     </img>
 
   <a class="button icon-right button-clear button-dark pull-right"
