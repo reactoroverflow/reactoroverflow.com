@@ -34,7 +34,7 @@ angular.module('hackOverflow.profile', ['ionic'])
    * Navigates back to view before opening up profile
   */
   $scope.goBack = function() {
-    if ($rootScope.previousState) {
+    if ($rootScope.previousState && $rootScope.previousState.name) {
       $state.go($rootScope.previousState.name);
     } else {
       // default to app.posts
@@ -73,9 +73,11 @@ angular.module('hackOverflow.profile', ['ionic'])
     // get new data from ng-model bindings
     $scope.userData = angular.copy($scope.user);
     // update profile in database
+    // toggle edit mode immediately
+    $scope.toggleEdit();
     Profile.updateProfile($scope.username, $scope.userData._source)
       .then(function() {
-        $scope.toggleEdit();
+        //complete
       });
   };
 
