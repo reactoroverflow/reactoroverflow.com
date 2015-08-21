@@ -152,7 +152,7 @@ i:hover, .blue {
   color: #6cf;
 }
 
-.item-avatar > img:first-child {
+.post-avatar > img:first-child {
   top: 50px;
 }
 .full-image {
