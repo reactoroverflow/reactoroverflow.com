@@ -31,11 +31,13 @@ exports.storePost = function(req, res) {
   var post = {};
   post.title = req.body.title;
   post.author = req.session.user.login;
+  post.authorAvatarUrl = req.session.user.avatar_url;
+  post.authorName = req.session.user.name;
   post.content = req.body.content;
   post.tags = req.body.tags;
   post.data = req.body.data;
   post.created_at = Date.now();
-  
+
   var query = {};
   query.index = 'posts';
   query.type = 'post';
@@ -45,7 +47,7 @@ exports.storePost = function(req, res) {
   client.create(query).then(function (results){
     res.json(results);
   });
-};  
+};
 
 exports.upvotePost = function(req, res) {
   var post = req.post;
@@ -74,7 +76,7 @@ exports.upvotePost = function(req, res) {
 
 exports.downvotePost = function(req, res) {
   var post = req.post;
-  
+
   if(!post._source.upvotes) {
     res.send(412);
   }
