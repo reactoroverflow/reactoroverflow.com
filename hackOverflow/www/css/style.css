@@ -1,4 +1,11 @@
 /* Empty. Add your own CSS if you like */
+.title {
+  font-size: 1.5em;
+}
+
+.txt {
+  margin-top: 10px;
+}
 
 .camera {
   font-size: 2em;
@@ -144,4 +151,8 @@ i:hover, .blue {
 .post-icons i:first-child {
   margin-right: 2em;
   margin-left: 2em;
+  padding-left: 2em;
+}
+#search-bar {
+  margin-top: 50px;
 }
