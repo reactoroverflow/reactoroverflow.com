@@ -11,15 +11,6 @@
   font-size: 2em;
 }
 
-textarea {
-  resize: none;
-  height: 3em;
-}
-
-.post-content {
-  height: 30vh;
-}
-
 /*=========================================
   Profile
 =========================================*/
@@ -103,6 +94,12 @@ body {
     font-family:sans-serif;
 }
 
+/****************************************
+
+Create Form
+
+****************************************/
+
 .ck-button {
     margin:4px;
     background-color:#EFEFEF;
@@ -136,20 +133,38 @@ body {
   display: none;
 }
 
+
+.post-content {
+  height: 30vh;
+}
+
+/****************************
+
+Individual post view
+
+*****************************/
+textarea {
+  resize: none;
+  height: 3em;
+}
+
 i:hover, .blue {
   color: #6cf;
 }
 
-.item-avatar > img:first-child {
+.post-avatar > img:first-child {
   top: 50px;
 }
-
+.full-image {
+  height: 250px;
+  width:250px;
+}
 .post-icons i {
   font-size: 1.75em;
 }
 
 .post-icons i:first-child {
-  margin-right: 2em;
+  margin-right: 1em;
   margin-left: 2em;
-  padding-left: 2em;
 }
+

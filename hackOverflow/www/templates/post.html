@@ -2,11 +2,11 @@
   <ion-content>
      <div class="card">
 
-       <div class="item-divider post-header item item-avatar">
+       <div class="item-divider post-header item post-avatar item-avatar">
          <img src="img/avatar.jpg">
          <h1>{{data.post.title}}</h1>
          <h2>{{data.post.author}}</h2>
-         <p>{{data.post.created_at}}</p>
+         <p>{{data.post.created_at | date}}</p>
          <p ng-if="user === data.post.author" class="post-icons">
           <a href="/#/app/{{data.post._id}}/edit"><i class="icon ion-edit"></i></a>
           <a><i ng-click="deletePost()" class="icon ion-trash-a"></i></a>
@@ -44,7 +44,7 @@
      <div ng-repeat="comment in data.comments | orderBy: '-votes'" class="list card">
        <div class="item">
          {{comment._source.author}}
-         <p>{{comment._source.created_at}}</p>
+         <p>{{comment._source.created_at | date}}</p>
        </div>
        <div class="content" ng-bind-html='comment._source.content'></div>
          <div class="item tabs tabs-secondary tabs-icon-left">

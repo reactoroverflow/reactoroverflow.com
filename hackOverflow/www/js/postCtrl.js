@@ -12,7 +12,6 @@ angular.module('hackOverflow.post', [])
       resp.data._source.upvotes = resp.data._source.upvotes || [];
       $scope.data.post.votes = resp.data._source.upvotes.length;
       $scope.data.post._id = resp.data._id;
-      $scope.data.post.created_at = new Date($scope.data.post.created_at).toString();
       if (resp.data._source.upvotes.indexOf($scope.user) > -1) {
         $scope.data.post.isUpvoted = true;
       } else {
@@ -23,7 +22,6 @@ angular.module('hackOverflow.post', [])
       $scope.user = $scope.user || resp.headers().username;
       $scope.data.comments = resp.data;
       $scope.data.comments.forEach(function (comment) {
-        comment._source.created_at = new Date(comment._source.created_at).toString();
         if (comment._source.upvotes.indexOf($scope.user) > -1) {
           comment.isUpvoted = true;
         } else {

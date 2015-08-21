@@ -19,7 +19,7 @@
                 <a ui-sref="profileTabs.main({username: post._source.author})">@{{post._source.author}}</a>
               </div>
               <div class="date">
-                Posted: {{post._source.created_at}}
+                Posted: {{post._source.created_at | date}}
               </div>
             </div>
           </div>
