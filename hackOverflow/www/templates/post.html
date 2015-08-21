@@ -35,31 +35,17 @@
        </div>
 
      </div>
-<<<<<<< HEAD
-
-     <form name="commentForm" ng-if="showComment" ng-submit="createComment()" class="list list-inset">
-=======
      
      <form name="commentForm" ng-if="commentBox" ng-submit="createComment()" class="list list-inset">
->>>>>>> Change styles
        <label class="item item-input">
          <textarea ng-model="comment.word" placeholder="What do you think?" required></textarea>
        </label>
          <button ng-disabled="commentForm.$invalid" class="button button-block button-outline button-calm">Submit</button>
      </form>
-<<<<<<< HEAD
-
-     <div ng-repeat="comment in data.comments | orderBy: '-votes'" class="list card">
-       <div class="item">
-         {{comment._source.authorName || comment._source.author}}
-         <p>{{comment._source.created_at | date}}</p>
-=======
-     
      <div ng-repeat="comment in data.comments | orderBy: '-votes'" class="list card comment">
        <div class="item">
-         <a ui-sref="profileTabs.main({username: comment._source.author})">@{{comment._source.author}}</a>
+         <a ui-sref="profileTabs.main({username: comment._source.author})">{{comment._source.authorName || '@' + comment._source.author}}</a>
          <p>{{comment._source.created_at | date: 'short'}}</p>
->>>>>>> Change styles
        </div>
        <div class="content" ng-bind-html='comment._source.content'></div>
          <div class="item tabs tabs-secondary tabs-icon-left">

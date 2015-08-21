@@ -6,22 +6,8 @@
           <img ng-src="{{post._source.authorAvatarUrl || 'img/avatar.jpg'}}">
           <div class="title"><a href="/#/app/posts/{{ post._id }}">{{post._source.title}}</a>
           </div>
-
-          <div class="txt" ng-bind-html='post._source.contentNoTags | limitTo: 400'>
-          </div>
-          <p>
-           <span class="subdued">{{post.votes || 0}} Likes</span>
-         </p>
-          <hr>
-          <div class="authorTags">
-            <div class="pull-right" style=" margin: 5px 10px;">
-              <div class="author">
-                <a ui-sref="profileTabs.main({username: post._source.author})">{{post._source.authorName || '@' + post._source.author}}</a>
-              </div>
-              <div class="date">
-                Posted: {{post._source.created_at | date}}
-              </div>
-            </div>
+          <div class="author">
+            <a ui-sref="profileTabs.main({username: post._source.author})">{{post._source.authorName || '@' + post._source.author}}</a>
           </div>
         </div> 
         <div class="txt" ng-bind-html='post._source.contentNoTags | limitTo: 200'>

@@ -17,14 +17,14 @@ angular.module('hackOverflow.controllers', [])
     $scope.data.keywords = "";
 
   };
-
+  console.log($ionicHistory.backTitle());
   $scope.myGoBack = function() {
     if ($ionicHistory.backTitle() === "Create A Post") {
      $ionicHistory.goBack(-2);
     } else {
       $ionicHistory.goBack();
     }
-    console.log($ionicHistory.viewHistory());
+    console.log($ionicHistory.currentTitle());
   };
 
   // With the new view caching in Ionic, Controllers are only called
