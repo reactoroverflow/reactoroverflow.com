@@ -2,7 +2,7 @@
 
 var passport = require('passport');
 var path = require('path');
-
+var profiles = require(path.resolve('./server/controllers/profiles.controllers.server.js'));
 var auth = require(path.resolve('./server/controllers/auth.controllers.server.js'));
 
 module.exports = function(app) {
@@ -20,7 +20,11 @@ module.exports = function(app) {
       console.log('success');
       //console.log(req.user._raw);
       req.session.user = req.user;
-      res.redirect('/');
+      profiles.findOrStoreProfile(req.user, function(result) {
+        req.session.profile = result;
+        console.log("profile is " + result)
+        res.redirect('/');
+      })
     }
   );
 

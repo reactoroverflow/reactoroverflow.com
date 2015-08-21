@@ -1,0 +1,35 @@
+<ion-view view-title="Main">
+  <ion-content class="padding has__profile--header">
+    <ion-list>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Blog</span>
+        <input ng-if="edit" type="text" placeholder="Blog" ng-model="user._source.blog">
+        <p><a ng-if="!edit" ng-href="{{user._source.blog}}" class="profile__main--link">{{user._source.blog}}</a></p>
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Website</span>
+        <input ng-if="edit" type="text" placeholder="Website" ng-model="user._source.website">
+        <p>
+          <a ng-if="!edit" ng-href="{{user._source.website}}" class="profile__main--link">{{user._source.website}}</a>
+        </p>
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Hometown</span>
+        <input ng-if="edit" type="text" placeholder="Hometown" ng-model="user._source.hometown">
+        <p ng-if="!edit">{{user._source.hometown}}</p>
+      </label>
+
+      <!-- Edit profile buttons -->
+      <div ng-if="edit" class="button-bar">
+        <button type="submit" ng-click="updateUserInfo()" class="button  button-balanced">Submit</button>
+        <button type="button" ng-click="cancelEditUser()" class="button  button-stable">Cancel</button>
+      </div>
+<!--
+      <ion-item>Age:</ion-item>
+      <ion-item>Phone:</ion-item>
+      <ion-item>Experience:</ion-item> -->
+    </ion-list>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,51 @@
+#reactorOverflow {
+  margin-top:50px;
+}
+
+#login-signup-outer-container>div{
+  margin-top:200px;
+  position:relative;
+  top: 50%;
+}
+
+#login-signup-container li{
+  list-style-type: none;
+}
+
+.user-login-button, .user-signup-button{
+  border: 1px solid #4FA9C6;
+  border-radius:3px;
+  padding: 6px 6px 6px 6px;
+  text-align: center;
+}
+
+#user-login-button a{
+  text-align:center;
+  color: #4FA9C6;
+  font-family:Arial, Helvetica, sans-serif;
+  text-decoration:none;
+  font-size:30px;
+  text-shadow: 0 1px 0 #eeeeec;
+}
+
+#user-signup-button a{
+  margin-top:10px;
+  text-align:center;
+  color: #4FA9C6;
+  font-family:Arial, Helvetica, sans-serif;
+  text-decoration:none;
+  font-size:30px;
+  text-shadow: 0 1px 0 #eeeeec;
+}
+
+#user-login-button a:hover {
+  color:#FFA319;
+  background-color: #FFF1DA;
+  border:1px solid #FFA319;
+}
+
+#user-signup-button a:hover {
+  color:#FFA319;
+  background-color: #FFF1DA;
+  border:1px solid #FFA319;
+}

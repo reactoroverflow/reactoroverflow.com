@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 
 
 var path = require('path');
@@ -31,6 +31,8 @@ exports.storePost = function(req, res) {
   var post = {};
   post.title = req.body.title;
   post.author = req.session.user.login;
+  post.authorAvatarUrl = req.session.user.avatar_url;
+  post.authorName = req.session.user.name;
   post.content = req.body.content;
   post.tags = req.body.tags;
   post.data = req.body.data;
@@ -43,17 +45,102 @@ exports.storePost = function(req, res) {
   query.body = post;
 
   client.create(query).then(function (results){
-    console.log(results);
     res.json(results);
   });
 };
 
+exports.upvotePost = function(req, res) {
+  var post = req.post;
+  if(!post._source.upvotes) {
+    post._source.upvotes = [];
+  }
+
+  if(post._source.upvotes.indexOf(req.session.user.login) === -1) {
+    post._source.upvotes.push(req.session.user.login);
+  } else {
+    res.send(412);
+    return;
+  }
+
+  var update = {};
+  update.index = 'posts';
+  update.type = 'post';
+  update.id = post._id;
+  update.body = {};
+  update.body.doc = {};
+  update.body.doc.upvotes = post._source.upvotes;
+  client.update(update).then(function (result) {
+    res.send(204);
+  });
+}
+
+exports.downvotePost = function(req, res) {
+  var post = req.post;
+
+  if(!post._source.upvotes) {
+    res.send(412);
+  }
+  var userIndex = post._source.upvotes.indexOf(req.session.user.login);
+  if(userIndex === -1) {
+    res.send(412);
+  }
+  post._source.upvotes.splice(userIndex);
+  var update = {};
+  update.index = 'posts';
+  update.type = 'post';
+  update.id = post._id;
+  update.body = {};
+  update.body.doc = {};
+  update.body.doc.upvotes = post._source.upvotes;
+  client.update(update).then(function (result) {
+    res.send(204);
+  });
+
+}
+
 exports.updatePost = function(req, res) {
-  // Update a Single Post
+  if (!req.post) {
+    res.send(412);
+    return;
+  }
+  if (req.post._source.author !== req.session.user.login) {
+    res.send(403);
+    return;
+  }
+  var query = {};
+  query.index = 'posts';
+  query.type = 'post';
+  query.id = req.post._id;
+  query.body = {};
+  query.body.doc = req.body;
+
+  client.update(query, function(error, response) {
+    if (error) {
+      res.send(404);
+    } else {
+      res.send(204);
+    }
+  });
 };
 
 exports.deletePost = function(req, res) {
   // Delete a Single Post
+  if (!req.post) {
+    res.send(412);
+    return;
+  }
+  if (req.post._source.author !== req.session.user.login) {
+    res.send(403);
+    return;
+  }
+  var query = {};
+  query.index = 'posts';
+  query.type = 'post';
+  query.id = req.post._id;
+
+  client.delete(query).then(function(result) {
+    res.send(204);
+  });
 };
 
 exports.postByID = function(req, res, next, id) {
