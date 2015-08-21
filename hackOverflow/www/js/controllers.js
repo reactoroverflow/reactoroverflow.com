@@ -1,16 +1,11 @@
 angular.module('hackOverflow.controllers', [])
 
-
-.controller('AppCtrl', function($scope, $rootScope, $ionicModal, $timeout, History, User, Posts) {
-
+.controller('AppCtrl', function($scope, $rootScope, $ionicModal, $timeout, User, Posts) {
+  // Set current signed in user
+  $scope.username = User.getUser();
 
   $scope.data = {};
 
-  // for testing
-  $scope.username = User.getUser();
-  $scope.navToProfile = function(username) {
-    History.navToProfile(username);
-  };
 
   $scope.submitSearch = function(word) {
     Posts.searchPosts(word, function(results){
