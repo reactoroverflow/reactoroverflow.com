@@ -3,9 +3,9 @@
      <div class="card">
 
        <div class="item-divider post-header item post-avatar item-avatar">
-         <img src="img/avatar.jpg">
-         <h1>{{data.post.title}}</h1>
-         <h2>{{data.post.author}}</h2>
+          <img ng-src="{{data.post.authorAvatarUrl || 'img/avatar.jpg'}}">
+          <h1>{{data.post.title}}</h1>
+         <h2>{{data.post.authorName || data.post.author}}</h2>
          <p>{{data.post.created_at | date}}</p>
          <p ng-if="user === data.post.author" class="post-icons">
           <a href="/#/app/{{data.post._id}}/edit"><i class="icon ion-edit"></i></a>
@@ -33,17 +33,17 @@
        </div>
 
      </div>
-     
+
      <form name="commentForm" ng-if="showComment" ng-submit="createComment()" class="list list-inset">
        <label class="item item-input">
          <textarea ng-model="comment.word" placeholder="What do you think?" required></textarea>
        </label>
          <button ng-disabled="commentForm.$invalid" class="button button-block button-outline button-calm">Submit</button>
      </form>
-     
+
      <div ng-repeat="comment in data.comments | orderBy: '-votes'" class="list card">
        <div class="item">
-         {{comment._source.author}}
+         {{comment._source.authorName || comment._source.author}}
          <p>{{comment._source.created_at | date}}</p>
        </div>
        <div class="content" ng-bind-html='comment._source.content'></div>
