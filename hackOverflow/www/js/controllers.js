@@ -1,6 +1,6 @@
 angular.module('hackOverflow.controllers', [])
 
-.controller('AppCtrl', function($scope, $rootScope, $ionicModal, $timeout, User, Posts) {
+.controller('AppCtrl', function($scope, $rootScope, $ionicModal, $timeout, User, Posts, $ionicHistory) {
   // Set current signed in user
   $scope.username = User.getUser();
 
@@ -15,6 +15,16 @@ angular.module('hackOverflow.controllers', [])
     });
     
     $scope.data.keywords = "";
+
+  };
+
+  $scope.myGoBack = function() {
+    if ($ionicHistory.backTitle() === "Create A Post") {
+     $ionicHistory.goBack(-2);
+    } else {
+      $ionicHistory.goBack();
+    }
+    console.log($ionicHistory.viewHistory());
   };
 
   // With the new view caching in Ionic, Controllers are only called

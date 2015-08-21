@@ -1,7 +1,7 @@
 <ion-view view-title="Posts">
   <ion-content>
     <div ng-repeat="post in data.posts | orderBy: '-votes'">
-      <div class="card">
+      <div class="card postcard">
         <div class="item item-avatar">
           <img ng-src="{{post._source.authorAvatarUrl || 'img/avatar.jpg'}}">
           <div class="title"><a href="/#/app/posts/{{ post._id }}">{{post._source.title}}</a>
@@ -23,6 +23,14 @@
               </div>
             </div>
           </div>
+        </div> 
+        <div class="txt" ng-bind-html='post._source.contentNoTags | limitTo: 200'>
+        </div>
+        <p>
+         <span class="subdued">{{post.votes || 0}} Likes</span>
+       </p>
+        <div class="item">
+          Posted: {{post._source.created_at | date : 'short'}}
         </div>
       </div>
     </div>

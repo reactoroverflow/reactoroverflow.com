@@ -1,9 +1,9 @@
 angular.module('hackOverflow.post', [])
 
-.controller('PostCtrl', function($scope, $state, $stateParams, Posts, Comments, $ionicPopup, $ionicHistory) {
+.controller('PostCtrl', function($scope, $state, $stateParams, Posts, Comments, $ionicPopup, $ionicHistory, $ionicScrollDelegate) {
   $scope.data = {};
   $scope.comment = {};
-  $scope.showComment = false;
+  $scope.commentBox = false;
   $scope.data.comments = [];
   $scope.fetch = function(){
     Posts.getPost($stateParams.postId, function (resp) {
@@ -50,8 +50,14 @@ angular.module('hackOverflow.post', [])
     });
   };
 
-  $scope.isUpvoted = function(obj) {
-    return obj.isUpvoted;
+  $scope.showComment = function() {
+    if ($scope.commentBox) {
+      $scope.commentBox = false;
+      $ionicScrollDelegate.scrollBy(0, -150, true);
+    } else {
+      $scope.commentBox = true;
+      $ionicScrollDelegate.scrollBy(0, 150, true);
+    }
   };
 
   $scope.createComment = function() {
@@ -65,6 +71,7 @@ angular.module('hackOverflow.post', [])
       resp.votes = resp.votes || 0;
       resp.isUpvoted = false;
       $scope.data.comments.push(resp);
+      $ionicScrollDelegate.scrollBottom(true);
       $scope.comment.word = '';
     })
     .catch(function(error) {

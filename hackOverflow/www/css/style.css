@@ -1,15 +1,4 @@
 /* Empty. Add your own CSS if you like */
-.title {
-  font-size: 1.5em;
-}
-
-.txt {
-  margin-top: 10px;
-}
-
-.camera {
-  font-size: 2em;
-}
 
 /*=========================================
   Profile
@@ -155,28 +144,73 @@ Create Form
 Individual post view
 
 *****************************/
-textarea {
+.post textarea {
   resize: none;
   height: 3em;
 }
 
-i:hover, .blue {
+.post i:hover, .blue {
   color: #6cf;
 }
 
+.post-header {
+  padding-top: 0;
+}
+.post-header h1 {
+  font-size: 1.25em;
+}
 .post-header > img:first-child {
-  top: 50px;
+  top: 40px;
 }
 .full-image {
   height: 250px;
   width:250px;
 }
 .post-icons i {
-  font-size: 1.75em;
+  font-size: 1.5em;
 }
 
 .post-icons i:first-child {
   margin-right: 1em;
-  margin-left: 2em;
+  margin-left: 1em;
 }
 
+.post .content, .comment .content {
+  color: #676767 ;
+  padding: 10px;
+}
+.post-body h2, .post-body h1 {
+  font-size: 1.5em;
+}
+
+.post .info {
+  padding: 0 15px;
+}
+
+/***********************************
+
+All Posts
+
+**********************************/
+
+.postcard {
+  padding-right: 10px;
+  padding-left: 15px;
+}
+
+
+.postcard .title a{
+  font-size: 1.25em;
+  text-decoration: none;
+}
+
+.postcard .author {
+  margin-top: 5px;
+}
+
+.postcard .txt {
+  color: #666;
+  margin-top: 10px;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
