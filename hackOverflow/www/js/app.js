@@ -43,7 +43,6 @@ angular.module('hackOverflow', [
     .state('app', {
     url: '/app',
     abstract: true,
-    cache: false,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
