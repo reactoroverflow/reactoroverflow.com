@@ -164,4 +164,22 @@ angular.module('hackOverflow', [
       return response;
     }
   };
+})
+
+.run(function ($rootScope) {
+  /**
+   * Watch for state changes to user profiles. If changing to a user profile, save the
+   * previous state to rootScope so that we can easily navigate back to that previous
+   * state
+  */
+  $rootScope.$on('$stateChangeStart', function (evt, toState, toParams, fromState, fromParams) {
+    // if the next state contains a username param, then we're entering a user profile
+    if (!!toParams.username) {
+      // if the previous state does NOT have a username param, then we're coming from
+      // a state that is not a user profile, so we want to SAVE that last state
+      if (!fromParams.username) {
+        $rootScope.previousState = fromState;
+      }
+    }
+  });
 });
