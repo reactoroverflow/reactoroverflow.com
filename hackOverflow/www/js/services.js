@@ -27,7 +27,7 @@ angular.module('hackOverflow.services', ['ionic'])
       method: 'GET',
       url: 'http://localhost:4000/api/posts/'+postID
     }).then(function (resp) {
-      cb(resp.data);
+      cb(resp);
     });
   };
 
@@ -57,13 +57,38 @@ angular.module('hackOverflow.services', ['ionic'])
     });
   };
 
+  var downVote = function(postID){
+    return $http({
+      method: 'POST',
+      url: 'http://localhost:4000/api/posts/'+postID+'/downvote'
+    });
+  };
+
+  var editPost = function(post) {
+    return $http({
+      method: 'PUT',
+      url: 'api/posts/'+ post._id,
+      data: post
+    });
+  };
+
+  var deletePost = function(post) {
+    return $http({
+      method: 'DELETE',
+      url: 'api/posts/' + post._id
+    });
+  };
+
   return {
     getPosts: getPosts,
     getPost: getPost,
     getPostsByTag: getPostsByTag,
     searchPosts: searchPosts,
     addPost: addPost,
-    upVote: upVote
+    upVote: upVote,
+    downVote: downVote,
+    editPost: editPost,
+    deletePost: deletePost
   };
 })
 .factory('Comments', function ($http) {
@@ -73,7 +98,7 @@ angular.module('hackOverflow.services', ['ionic'])
       method: 'GET',
       url: 'http://localhost:4000/api/comments?postID='+postID
     }).then(function (resp) {
-      cb(resp.data);
+      cb(resp);
     });
   };
 

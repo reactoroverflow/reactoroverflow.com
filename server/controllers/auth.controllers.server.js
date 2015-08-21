@@ -12,6 +12,7 @@ exports.renderLogin = function(req, res) {
 };
 
 exports.loggedIn = function(req, res, next) {
+  console.log(req.session.user)
   if(req.session.user === undefined) {
     res.redirect('/login');
     res.end();

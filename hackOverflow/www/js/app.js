@@ -14,6 +14,7 @@ angular.module('hackOverflow', [
   'hackOverflow.post',
   'hackOverflow.tags',
   'hackOverflow.create',
+  'hackOverflow.edit',
   'hackOverflow.postTag',
   'hackOverflow.pairs',
   'hackOverflow.profile'
@@ -35,12 +36,14 @@ angular.module('hackOverflow', [
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider) {
+  $ionicConfigProvider.backButton.previousTitleText(false).text('');
   $stateProvider
 
     .state('app', {
     url: '/app',
     abstract: true,
+    cache: false,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
@@ -81,6 +84,16 @@ angular.module('hackOverflow', [
       'menuContent': {
         templateUrl: 'templates/create.html',
         controller: 'CreateCtrl'
+      }
+    }
+  })
+
+  .state('app.edit', {
+    url: '/:postId/edit',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/create.html',
+        controller: 'EditCtrl'
       }
     }
   })

@@ -82,7 +82,7 @@ exports.downvotePost = function(req, res) {
   if(userIndex === -1) {
     res.send(412);
   }
-  post._source.upvoted.splice(userIndex);
+  post._source.upvotes.splice(userIndex);
   var update = {};
   update.index = 'posts';
   update.type = 'post';
@@ -108,18 +108,17 @@ exports.updatePost = function(req, res) {
   var query = {};
   query.index = 'posts';
   query.type = 'post';
-  query.id = req.post.id;
+  query.id = req.post._id;
   query.body = {};
   query.body.doc = req.body;
 
   client.update(query, function(error, response) {
     if (error) {
-      console.log(error);
       res.send(404);
     } else {
       res.send(204);
     }
-  })
+  });
 };
 
 exports.deletePost = function(req, res) {
@@ -135,7 +134,7 @@ exports.deletePost = function(req, res) {
   var query = {};
   query.index = 'posts';
   query.type = 'post';
-  query.id = req.post.id;
+  query.id = req.post._id;
 
   client.delete(query).then(function(result) {
     res.send(204);

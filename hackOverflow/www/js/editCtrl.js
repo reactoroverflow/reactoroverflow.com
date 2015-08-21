@@ -1,22 +1,30 @@
-angular.module('hackOverflow.create', [])
+angular.module('hackOverflow.edit', [])
 
-.controller('CreateCtrl', function($scope, $state, $cordovaCamera, Posts, Tags, $ionicHistory) {
+.controller('EditCtrl', function($scope, $state, $stateParams, Posts, Tags, $ionicHistory) {
+  $scope.tags = Tags.tags;
+  $scope.tagObj = {};
 
-  var init = function () {
-    $scope.tags = Tags.tags;
-    $scope.tagObj = {};
-    $scope.tags.forEach(function(tag) {
-      $scope.tagObj[tag] = {checked: false};
+
+  $scope.fetch = function(){
+    Posts.getPost($stateParams.postId, function (resp) {
+      $scope.user = resp.headers().username;
+      $scope.post = resp.data._source;
+      $scope.post._id = resp.data._id;
+      $scope.tags.forEach(function(tag) {
+        if ($scope.post.tags.indexOf(tag) > -1) {
+          $scope.tagObj[tag] = { checked: true };
+        } else {
+          $scope.tagObj[tag] = {checked: false};
+        }
+      });
     });
-    $scope.post = {tags: []};
   };
-
-  $scope.$on('$ionicView.enter' , function () {
-    init();
+  
+  $scope.$on('$ionicView.enter', function () {
+    $scope.fetch();
   });
 
   $scope.toggleTag = function(tag) {
-      console.log($scope.imgSrc)
     $scope.tagObj[tag].checked = !$scope.tagObj[tag].checked;
   };
 
@@ -37,32 +45,24 @@ angular.module('hackOverflow.create', [])
   };
 
   $scope.submitPost = function() {
+    $scope.post.tags = [];
     var text = $scope.post.content || '';
+    $scope.post.content = marked(text);
     for (var i in $scope.tagObj) {
       if ($scope.tagObj[i].checked) {
         $scope.post.tags.push(i);
       }
     }
-    $scope.post = {
-      title: $scope.post.title,
-      content: marked(text),
-      tags: $scope.post.tags, //format: Tags: ["asdf","asdf"]
-      data: $scope.post.data
-      };
-
-      console.log($scope.post)
+    console.log($scope.post)
     // $scope.post = {
     //   title: $scope.post.title,
     //   content: marked($scope.post.content),
     //   tags: $scope.post.tags, //format: Tags: ["asdf","asdf"]
     //   data: $scope.data
     //   }; //keys: title, content and tags
-
-    Posts.addPost($scope.post)
+    Posts.editPost($scope.post)
     .then(function(resp) {
-      init();
-      console.log(resp._id);
-      $state.go('app.post', {postId: resp._id}); //takes user to the post they created.
+      $ionicHistory.goBack(); //takes user to the post they created.
     })
     .catch(function(error) {
       console.log("err",error);
