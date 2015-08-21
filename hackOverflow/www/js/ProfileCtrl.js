@@ -8,7 +8,7 @@
 
 angular.module('hackOverflow.profile', ['ionic'])
 
-.controller('ProfileCtrl', function ($scope, $state, $stateParams, History, Profile, User) {
+.controller('ProfileCtrl', function ($scope, $state, $stateParams, $rootScope, Profile, User) {
   /**
    * Scope variables
    * @property {bool} edit - Determines edit mode
@@ -34,7 +34,7 @@ angular.module('hackOverflow.profile', ['ionic'])
    * Navigates back to view before opening up profile
   */
   $scope.goBack = function() {
-    $state.go(History.lastState);
+    $state.go($rootScope.previousState.name);
   };
 
 

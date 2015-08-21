@@ -213,30 +213,6 @@ angular.module('hackOverflow.services', ['ionic'])
   };
 })
 
-/**
- * @ngdoc service
- * @name History
- * @description
- *   Allows saving of state before navigating to a profile (in order to easily return
- *   to that profile)
-*/
-.factory('History', function($ionicHistory, $state, $stateParams, Profile) {
-  return {
-    lastState: 'app.posts',
-
-    /**
-     * Navigates to a given profile, while saving the state before the user profile
-     * @memberof History
-     */
-    navToProfile: function(username) {
-      this.lastState = $ionicHistory.currentStateName();
-      // set user in Profile Service (in order to access in profile controller)
-      // Profile.setProfile(username);
-      $state.go('profileTabs.main', {username: username});
-    }
-  };
-})
-
 .factory('Tags', function() {
   return {
     tags: ['AskHR', 'MarketPlace', 'LPT', 'Random']
