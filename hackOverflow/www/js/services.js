@@ -7,7 +7,7 @@ angular.module('hackOverflow.services', ['ionic'])
   var getPosts = function(cb){
     $http({
       method: 'GET',
-      url: 'http://localhost:4000/api/posts'
+      url: '/api/posts'
     }).then(function (resp) {
       cb(resp.data);
     });
@@ -16,7 +16,7 @@ angular.module('hackOverflow.services', ['ionic'])
   var getPostsByTag = function(tagName, cb){
     $http({
       method: 'GET',
-      url: 'http://localhost:4000/api/search/tag/'+tagName
+      url: '/api/search/tag/'+tagName
     }).then(function (resp) {
       cb(resp.data);
     });
@@ -25,7 +25,7 @@ angular.module('hackOverflow.services', ['ionic'])
   var getPost = function(postID, cb){
     $http({
       method: 'GET',
-      url: 'http://localhost:4000/api/posts/'+postID
+      url: '/api/posts/'+postID
     }).then(function (resp) {
       cb(resp);
     });
@@ -34,7 +34,7 @@ angular.module('hackOverflow.services', ['ionic'])
   var searchPosts = function(text, cb){
     $http({
       method: 'GET',
-      url: 'http://localhost:4000/api/search?text='+text
+      url: '/api/search?text='+text
     }).then(function (resp) {
       cb(resp.data);
     });
@@ -43,7 +43,7 @@ angular.module('hackOverflow.services', ['ionic'])
   var addPost = function(post){
     return $http({
       method: 'POST',
-      url: 'http://localhost:4000/api/posts',
+      url: '/api/posts',
       data: post
     }).then(function (resp) {
       return resp.data;
@@ -53,7 +53,7 @@ angular.module('hackOverflow.services', ['ionic'])
   var upVote = function(postID){
     return $http({
       method: 'POST',
-      url: 'http://localhost:4000/api/posts/'+postID+'/upvote'
+      url: '/api/posts/'+postID+'/upvote'
     });
   };
 
@@ -96,7 +96,7 @@ angular.module('hackOverflow.services', ['ionic'])
   var getComments = function(postID, cb){
     $http({
       method: 'GET',
-      url: 'http://localhost:4000/api/comments?postID='+postID
+      url: '/api/comments?postID='+postID
     }).then(function (resp) {
       cb(resp);
     });
@@ -105,7 +105,7 @@ angular.module('hackOverflow.services', ['ionic'])
   var addComment = function(post){
     return $http({
       method: 'POST',
-      url: 'http://localhost:4000/api/comments',
+      url: '/api/comments',
       data: post
     }).then(function (resp) {
       return resp.data;
@@ -115,14 +115,14 @@ angular.module('hackOverflow.services', ['ionic'])
   var upVote = function(commentID){
     return $http({
       method: 'POST',
-      url: 'http://localhost:4000/api/comments/'+commentID+'/upvote'
+      url: '/api/comments/'+commentID+'/upvote'
     });
   };
 
   var downVote = function(commentID){
     return $http({
       method: 'POST',
-      url: 'http://localhost:4000/api/comments/'+commentID+'/downvote'
+      url: '/api/comments/'+commentID+'/downvote'
     });
   };
 
