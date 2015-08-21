@@ -18,8 +18,20 @@
   height: 35%;
 }
 
+/*.keyboard-open .has__profile--header {
+  height: 0;
+}*/
+
 .has__profile--header {
   top: 35%;
+  -webkit-transition: top 0.5s;
+  transition: top 0.5s;
+}
+
+.keyboard-open .has__profile--header {
+  top: 0;
+  -webkit-transition: top 0.5s;
+  transition: top 0.5s;
 }
 
 .profile__bar--user {

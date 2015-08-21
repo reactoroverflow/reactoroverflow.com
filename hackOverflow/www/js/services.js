@@ -60,7 +60,7 @@ angular.module('hackOverflow.services', ['ionic'])
   var downVote = function(postID){
     return $http({
       method: 'POST',
-      url: 'http://localhost:4000/api/posts/'+postID+'/downvote'
+      url: '/api/posts/'+postID+'/downvote'
     });
   };
 
