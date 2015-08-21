@@ -34,7 +34,12 @@ angular.module('hackOverflow.profile', ['ionic'])
    * Navigates back to view before opening up profile
   */
   $scope.goBack = function() {
-    $state.go($rootScope.previousState.name);
+    if ($rootScope.previousState) {
+      $state.go($rootScope.previousState.name);
+    } else {
+      // default to app.posts
+      $state.go('app.posts');
+    }
   };
 
 
