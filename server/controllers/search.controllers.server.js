@@ -7,22 +7,28 @@ var client = require(path.resolve('./lib/elasticsearch'));
 exports.search = function(req, res) {
   // pass a paramater text in as the search string
   var q = req.query;
-
+  
   var search = {};
   search.index = 'posts';
   search.type = 'post';
   search.size = 10;
   search.body = {};
     search.body.query = {};
-      search.body.query.match = {};
+      search.body.query.multi_match = {};
+      search.body.query.multi_match.query = q.text;
+      search.body.query.multi_match.type = "phrase_prefix";
+      search.body.query.multi_match.fields = ["title", "content", "tags", "author"];
         // search.body.query.match.title = {};
         //   search.body.query.match.title.query = q.text;
         //   search.body.query.match.title.fuzziness = 3;
         //   search.body.query.match.title.operator = "and";
-        search.body.query.match.content = {};
-          search.body.query.match.content.query = q.text;
-          search.body.query.match.content.fuzziness = 3;
-          search.body.query.match.content.operator = "and";
+
+
+        // search.body.query.match.content = {};
+        //   search.body.query.match.content.query = q.text;
+        //   search.body.query.match.content.fuzziness = 3;
+        //   search.body.query.match.content.operator = "and";
+
 
         // Fix and uncomment once tags are stored as an array
         // search.body.query.match.tags = {};
