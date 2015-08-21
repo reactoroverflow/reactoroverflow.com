@@ -9,16 +9,6 @@
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
-    <div id="search-bar">
-      <div class="list list-inset">
-        <form name="searchPosts" ng-submit="submitSearch(data.keywords)">
-          <label class="item item-input">
-            <i class="icon ion-search placeholder-icon"></i>
-            <input type="text" placeholder="Search Posts" ng-model="data.keywords">
-          </label>
-        </form>
-      </div>
-    </div>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
 
@@ -28,6 +18,13 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
+      <form name="searchPosts" ng-submit="submitSearch(data.keywords)">
+        <label class="item item-input">
+          <i class="icon ion-search placeholder-icon"></i>
+          <input type="text" placeholder="Search Posts" ng-model="data.keywords">
+        </label>
+      </form>
+        
         <ion-item menu-close href="#/app/posts">
           Home
         </ion-item>
