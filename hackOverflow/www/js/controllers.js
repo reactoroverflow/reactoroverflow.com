@@ -1,7 +1,5 @@
 angular.module('hackOverflow.controllers', [])
 
-  // Set current signed in user
-  $scope.username = User.getUser();
 
 .controller('AppCtrl', function($scope, $rootScope, $ionicModal, $timeout, History, User, Posts) {
 
