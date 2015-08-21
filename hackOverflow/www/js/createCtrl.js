@@ -2,11 +2,6 @@ angular.module('hackOverflow.create', [])
 
 .controller('CreateCtrl', function($scope, $state, $cordovaCamera, Posts, Tags, $ionicHistory) {
 
-  navigator.getMedia = ( navigator.getUserMedia ||
-                           navigator.webkitGetUserMedia ||
-                           navigator.mozGetUserMedia ||
-                           navigator.msGetUserMedia); 
-
   var init = function () {
     $scope.tags = Tags.tags;
     $scope.tagObj = {};
@@ -24,19 +19,6 @@ angular.module('hackOverflow.create', [])
       console.log($scope.imgSrc)
     $scope.tagObj[tag].checked = !$scope.tagObj[tag].checked;
   };
-  // $scope.takePhoto = function() {
-  //   navigator.camera.getPicture({
-  //     quality: 75,
-  //     targetWidth: 250,
-  //     targetHeight: 250,
-  //     saveToPhotoAlbum: false
-  //   }).then(function(imageURI) {
-  //     console.log(imageURI);
-  //     $scope.data = imageURI;
-  //   }, function(err) {
-  //     console.err(err);
-  //   });
-  // };
 
   $scope.add = function() {
     var f = document.getElementById('file').files[0];
