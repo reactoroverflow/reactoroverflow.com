@@ -20,14 +20,14 @@
   </button>
  <!
    {{post.data}} -->
-   <div class="button button-outline button-calm button-block" ng-click="fileInput()">
+  <div class="button button-outline button-calm button-block" ng-click="fileInput()">
     <i class="icon ion-camera"></i>
     </div>
-   <input class="file-upload" onchange="angular.element(this).scope().add()" type="file" id="file" capture="camera" accept="image/*" id="takePictureField">
+     <input class="file-upload" onchange="angular.element(this).scope().add()" type="file" id="file" capture="camera" accept="image/*" id="takePictureField">
 
 
-  <center><img class="create-img" ng-if="post.data" src="{{post.data}}"></center>
-  <button ng-disabled="postForm.$invalid" class="button button-block button-calm" type="submit">Submit</button>
-</div>
+    <center><img class="create-img" ng-if="post.data" src="{{post.data}}"></center>
+    <button ng-disabled="postForm.$invalid" class="button button-block button-calm" type="submit">Submit</button>
+  </div>
   </ion-content>
 </ion-view>

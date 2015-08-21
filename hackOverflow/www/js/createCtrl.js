@@ -16,7 +16,6 @@ angular.module('hackOverflow.create', [])
   });
 
   $scope.toggleTag = function(tag) {
-      console.log($scope.imgSrc)
     $scope.tagObj[tag].checked = !$scope.tagObj[tag].checked;
   };
 
@@ -32,7 +31,6 @@ angular.module('hackOverflow.create', [])
   };
 
   $scope.fileInput = function() {
-    console.log('clicked')
     $('input').click();
   };
 
@@ -49,8 +47,6 @@ angular.module('hackOverflow.create', [])
       tags: $scope.post.tags, //format: Tags: ["asdf","asdf"]
       data: $scope.post.data
       };
-
-      console.log($scope.post)
     // $scope.post = {
     //   title: $scope.post.title,
     //   content: marked($scope.post.content),
