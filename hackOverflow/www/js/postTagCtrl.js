@@ -14,5 +14,7 @@ angular.module('hackOverflow.postTag', [])
     });
   };
 
-  $scope.getPostsByTag();
+  $scope.$on('$ionicView.enter', function () {
+    $scope.getPostsByTag();
+  });
 });

@@ -36,12 +36,14 @@ angular.module('hackOverflow', [
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider) {
+  $ionicConfigProvider.backButton.previousTitleText(false).text('');
   $stateProvider
 
     .state('app', {
     url: '/app',
     abstract: true,
+    cache: false,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })

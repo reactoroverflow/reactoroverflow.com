@@ -1,6 +1,12 @@
 angular.module('hackOverflow.create', [])
 
-.controller('CreateCtrl', function($scope, $state, $cordovaCamera, Posts, Tags) {
+.controller('CreateCtrl', function($scope, $state, $cordovaCamera, Posts, Tags, $ionicHistory) {
+
+  navigator.getMedia = ( navigator.getUserMedia ||
+                           navigator.webkitGetUserMedia ||
+                           navigator.mozGetUserMedia ||
+                           navigator.msGetUserMedia); 
+
   var init = function () {
     $scope.tags = Tags.tags;
     $scope.tagObj = {};
@@ -8,29 +14,44 @@ angular.module('hackOverflow.create', [])
       $scope.tagObj[tag] = {checked: false};
     });
     $scope.post = {tags: []};
-  }
+  };
 
-  init();
+  $scope.$on('$ionicView.enter' , function () {
+    init();
+  });
+
   $scope.toggleTag = function(tag) {
+      console.log($scope.imgSrc)
     $scope.tagObj[tag].checked = !$scope.tagObj[tag].checked;
   };
-  $scope.takePhoto = function() {
-    $cordovaCamera.getPicture({
-      quality: 75,
-      destinationType: Camera.DestinationType.DATA_URL,
-      sourceType: Camera.PictureSourceType.CAMERA,
-      encodingType: Camera.EncodingType.JPEG,
-      popoverOptions: CameraPopoverOptions,
-      targetWidth: 250,
-      targetHeight: 250,
-      saveToPhotoAlbum: false
-    }).then(function(imageURI) {
-      console.log(imageURI);
-      $scope.imgSrc = "data:image/jpeg;base64," + imageURI;
-      $scope.data = imageURI;
-    }, function(err) {
-      console.err(err);
-    });
+  // $scope.takePhoto = function() {
+  //   navigator.camera.getPicture({
+  //     quality: 75,
+  //     targetWidth: 250,
+  //     targetHeight: 250,
+  //     saveToPhotoAlbum: false
+  //   }).then(function(imageURI) {
+  //     console.log(imageURI);
+  //     $scope.data = imageURI;
+  //   }, function(err) {
+  //     console.err(err);
+  //   });
+  // };
+
+  $scope.add = function() {
+    var f = document.getElementById('file').files[0];
+    var r = new FileReader();
+    r.onloadend = function(e){
+      console.log("ended");
+      $scope.post.data = e.target.result;
+      $scope.$apply();
+    };
+    r.readAsDataURL( f );
+  };
+
+  $scope.fileInput = function() {
+    console.log('clicked')
+    $('input').click();
   };
 
   $scope.submitPost = function() {
@@ -44,8 +65,10 @@ angular.module('hackOverflow.create', [])
       title: $scope.post.title,
       content: marked(text),
       tags: $scope.post.tags, //format: Tags: ["asdf","asdf"]
-      data: $scope.data
+      data: $scope.post.data
       };
+
+      console.log($scope.post)
     // $scope.post = {
     //   title: $scope.post.title,
     //   content: marked($scope.post.content),

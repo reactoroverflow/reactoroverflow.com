@@ -7,12 +7,11 @@
          <h1>{{data.post.title}}</h1>
          <h2>{{data.post.author}}</h2>
          <p>{{data.post.created_at}}</p>
-         <p class="post-icons">
+         <p ng-if="user === data.post.author" class="post-icons">
           <a href="/#/app/{{data.post._id}}/edit"><i class="icon ion-edit"></i></a>
-          <i class="icon ion-trash-a"></i>
+          <a><i ng-click="deletePost()" class="icon ion-trash-a"></i></a>
          </p>
        </div>
-
        <div class="item item-body item-text-wrap">
          <img ng-if="data.post.data" class="full-image" ng-src="{{data.post.data}}">
           <div class="content" ng-bind-html='data.post.content'></div>

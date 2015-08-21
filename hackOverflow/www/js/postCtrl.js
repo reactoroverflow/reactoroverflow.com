@@ -1,6 +1,6 @@
 angular.module('hackOverflow.post', [])
 
-.controller('PostCtrl', function($scope, $stateParams, Posts, Comments) {
+.controller('PostCtrl', function($scope, $state, $stateParams, Posts, Comments, $ionicPopup, $ionicHistory) {
   $scope.data = {};
   $scope.comment = {};
   $scope.showComment = false;
@@ -20,7 +20,8 @@ angular.module('hackOverflow.post', [])
       }
     });
     Comments.getComments($stateParams.postId, function (resp) {
-      $scope.data.comments = resp;
+      $scope.user = $scope.user || resp.headers().username;
+      $scope.data.comments = resp.data;
       $scope.data.comments.forEach(function (comment) {
         comment._source.created_at = new Date(comment._source.created_at).toString();
         if (comment._source.upvotes.indexOf($scope.user) > -1) {
@@ -32,7 +33,24 @@ angular.module('hackOverflow.post', [])
     });
   };
 
-  $scope.fetch();
+  $scope.$on('$ionicView.enter', function () {
+    $scope.fetch();
+  });
+
+  $scope.deletePost = function() {
+    var confirm = $ionicPopup.confirm({
+      title: "Delete Post",
+      template: "Are you sure you want to delete this post?"
+    });
+    confirm.then(function(res) {
+      if (res) {
+        Posts.deletePost($scope.data.post);
+        $ionicHistory.goBack();
+      } else {
+        console.log("NOOO!!!");
+      }
+    });
+  };
 
   $scope.isUpvoted = function(obj) {
     return obj.isUpvoted;
@@ -59,8 +77,6 @@ angular.module('hackOverflow.post', [])
 
   $scope.upVoteComment = function(comment, commentId) {
     //use commentID to send the user into the comment.upVotes array
-    console.log("clicked", comment.isUpvoted);
-    // comment.isUpvoted = true;
     if (comment.isUpvoted) {
       Comments.downVote(commentId).then(function(resp) {
         if (resp.status === 204) {

@@ -1,6 +1,6 @@
 angular.module('hackOverflow.edit', [])
 
-.controller('EditCtrl', function($scope, $state, $stateParams, Posts, Tags) {
+.controller('EditCtrl', function($scope, $state, $stateParams, Posts, Tags, $ionicHistory) {
   $scope.tags = Tags.tags;
   $scope.tagObj = {};
 
@@ -10,7 +10,6 @@ angular.module('hackOverflow.edit', [])
       $scope.user = resp.headers().username;
       $scope.post = resp.data._source;
       $scope.post._id = resp.data._id;
-      console.log($scope.post)
       $scope.tags.forEach(function(tag) {
         if ($scope.post.tags.indexOf(tag) > -1) {
           $scope.tagObj[tag] = { checked: true };
@@ -20,11 +19,29 @@ angular.module('hackOverflow.edit', [])
       });
     });
   };
-
-  $scope.fetch();
+  
+  $scope.$on('$ionicView.enter', function () {
+    $scope.fetch();
+  });
 
   $scope.toggleTag = function(tag) {
     $scope.tagObj[tag].checked = !$scope.tagObj[tag].checked;
+  };
+
+  $scope.add = function() {
+    var f = document.getElementById('file').files[0];
+    var r = new FileReader();
+    r.onloadend = function(e){
+      console.log("ended");
+      $scope.post.data = e.target.result;
+      $scope.$apply();
+    };
+    r.readAsDataURL( f );
+  };
+
+  $scope.fileInput = function() {
+    console.log('clicked')
+    $('input').click();
   };
 
   $scope.submitPost = function() {
@@ -36,18 +53,16 @@ angular.module('hackOverflow.edit', [])
         $scope.post.tags.push(i);
       }
     }
+    console.log($scope.post)
     // $scope.post = {
     //   title: $scope.post.title,
     //   content: marked($scope.post.content),
     //   tags: $scope.post.tags, //format: Tags: ["asdf","asdf"]
     //   data: $scope.data
     //   }; //keys: title, content and tags
-
     Posts.editPost($scope.post)
     .then(function(resp) {
-      init();
-      console.log(resp._id);
-      $state.go('app.post', {postId: resp._id}); //takes user to the post they created.
+      $ionicHistory.goBack(); //takes user to the post they created.
     })
     .catch(function(error) {
       console.log("err",error);

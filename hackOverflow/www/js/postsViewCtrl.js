@@ -23,5 +23,7 @@ angular.module('hackOverflow.postsView', [])
     $scope.data.posts = args;
   });
 
-  $scope.getPosts();
+  $scope.$on('$ionicView.enter', function () {
+    $scope.getPosts();
+  });
 });

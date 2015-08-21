@@ -116,8 +116,17 @@ body {
     width: 100%;
 }
 
+.create-img {
+  height: 250px;
+  width: 250px;
+}
+
 .content {
   padding: 2em;
+}
+
+.file-upload {
+  display: none;
 }
 
 i:hover, .blue {
