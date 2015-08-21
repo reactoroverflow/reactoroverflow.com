@@ -1,8 +1,29 @@
 angular.module('hackOverflow.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, User) {
   // Set current signed in user
   $scope.username = User.getUser();
+
+.controller('AppCtrl', function($scope, $rootScope, $ionicModal, $timeout, History, User, Posts) {
+
+
+  $scope.data = {};
+
+  // for testing
+  $scope.username = User.getUser();
+  $scope.navToProfile = function(username) {
+    History.navToProfile(username);
+  };
+
+  $scope.submitSearch = function(word) {
+    Posts.searchPosts(word, function(results){
+      console.log("word",results);
+      console.log('I am broadcasting the response data==== ', results);
+      $rootScope.$broadcast('showResults', results);
+    });
+    
+    $scope.data.keywords = "";
+
+  }
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.

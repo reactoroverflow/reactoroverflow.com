@@ -1,20 +1,24 @@
 <ion-view view-title="Posts">
   <ion-content>
+<<<<<<< HEAD
     <div ng-repeat="post in data.posts | orderBy: '-votes'">
+=======
+
+    <div ng-repeat="post in data.posts">
+>>>>>>> Edited card style in all posts, able to search for posts by content, add search bar, changed the bar to positive blue
       <div class="card">
-        <div class="item item-text-wrap">
+        <div class="item item item-avatar">
+          <img src = "img/avatar.jpg">
           <div class="title"><a href="/#/app/posts/{{ post._id }}">{{post._source.title}}</a>
           </div>
-          <div ng-bind-html='post._source.contentNoTags | limitTo: 400'>
+          
+          <div class="txt" ng-bind-html='post._source.contentNoTags | limitTo: 400'>
           </div>
           <p>
            <span class="subdued">{{post.votes || 0}} Likes</span>
          </p>
           <hr>
           <div class="authorTags">
-            <div class="pull-left">
-              <img style="width:50px; border-radius: 2px" src="img/avatar.jpg"/>
-            </div>
             <div class="pull-right" style=" margin: 5px 10px;">
               <div class="author">
                 <a ui-sref="profileTabs.main({username: post._source.author})">@{{post._source.author}}</a>
@@ -27,5 +31,6 @@
         </div>
       </div>
     </div>
+
   </ion-content>
 </ion-view>
