@@ -1,26 +1,15 @@
 # Reactor Overflow
 
 [![Join the chat at https://gitter.im/reactoroverflow/reactoroverflow.com](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/reactoroverflow/reactoroverflow.com?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Stories in Ready](https://badge.waffle.io/reactoroverflow/reactoroverflow.com.svg?label=inprogress&title=InProgress)](http://waffle.io/reactoroverflow/reactoroverflow.com)
 [![Code Climate](https://codeclimate.com/github/reactoroverflow/reactoroverflow.com/badges/gpa.svg)](https://codeclimate.com/github/reactoroverflow/reactoroverflow.com)
 
-> THe overflow of communication designed for Hack Reactor Students, Faculty, Alumni, and Precourse Students.
+> The overflow of communication designed for Hack Reactor Students, Faculty, Alumni, and Precourse Students.
 
 ## Team
 
   - __Product Owner__: @codydaig
   - __Scrum Master__: @linalu1
   - __Development Team Members__: @andrewkishino @kevbyte
-
-## Table of Contents
-
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
-    1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
-1. [Team](#team)
-1. [Contributing](#contributing)
 
 ## Requirements
 
@@ -53,7 +42,6 @@ node index.js
 
 View the project roadmap [here](https://github.com/reactoroverflow/reactoroverflow.com/issues)
 
-
-## Contributing
+### Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
