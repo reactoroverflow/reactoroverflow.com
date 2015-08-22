@@ -2,10 +2,7 @@
   "name": "Reactor Overflow",
   "main": "index.js",
   "version": "0.0.0",
-  "homepage": "https://github.com/AndrewKishino/reactoroverflow.com",
-  "authors": [
-    "Andrew Kishino <AndrewKishino@gmail.com>"
-  ],
+  "homepage": "https://github.com/reactoroverflow/reactoroverflow.com",
   "license": "MIT",
   "ignore": [
     "**/.*",
